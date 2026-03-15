@@ -1,96 +1,19 @@
-# ============================================================
-# Only track:
-#   - cli-anything-plugin/**
-#   - codex-skill/**
-#   - */agent-harness/**  (under each software dir)
-#   - .gitignore
-# Everything else is ignored.
-# ============================================================
+# OS
+.DS_Store
+Thumbs.db
 
-# Step 1: Ignore everything at the root
-/*
+# Editor
+.vscode/
+.idea/
 
-# Step 2: Allow .gitignore, README, assets, and marketplace
-!.gitignore
-!/README.md
-!/assets/
-!/.claude-plugin/
+# Node
+node_modules/
 
-# Step 3: Allow cli-anything-plugin entirely
-!/cli-anything-plugin/
-!/codex-skill/
-
-# Step 4: Allow each software dir (top level only)
-!/gimp/
-!/blender/
-!/inkscape/
-!/audacity/
-!/libreoffice/
-!/obs-studio/
-!/kdenlive/
-!/shotcut/
-!/anygen/
-!/zoom/
-!/drawio/
-
-# Step 5: Inside each software dir, ignore everything (including dotfiles)
-/gimp/*
-/gimp/.*
-/blender/*
-/blender/.*
-/inkscape/*
-/inkscape/.*
-/audacity/*
-/audacity/.*
-/libreoffice/*
-/libreoffice/.*
-/obs-studio/*
-/obs-studio/.*
-/kdenlive/*
-/kdenlive/.*
-/shotcut/*
-/shotcut/.*
-/anygen/*
-/anygen/.*
-/zoom/*
-/zoom/.*
-/drawio/*
-/drawio/.*
-
-# Step 6: ...except agent-harness/
-!/gimp/agent-harness/
-!/blender/agent-harness/
-!/inkscape/agent-harness/
-!/audacity/agent-harness/
-!/libreoffice/agent-harness/
-!/obs-studio/agent-harness/
-!/kdenlive/agent-harness/
-!/shotcut/agent-harness/
-!/anygen/agent-harness/
-!/zoom/agent-harness/
-!/drawio/agent-harness/
-
-# Step 7: Ignore build artifacts within allowed dirs
-**/__pycache__/
-**/*.egg-info/
-**/*.pyc
-**/dist/
-**/build/
-**/.pytest_cache/
-**/*.egg
-**/*.mp4
-**/*.wav
-**/*.blend
-**/*.xcf
-**/*.mlt
-**/*.drawio
-
-# Step 8: But allow assets images
-!/assets/*.png
-!/assets/*.jpg
-
-assets/gen_typing_gif.py
-!README_CN.md
-!opencode-commands/
-!/qoder-plugin/
-
+# Build
+dist/
+build/
+__pycache__/
+*.pyc
+*.egg-info/
+*.egg
+.pytest_cache/
