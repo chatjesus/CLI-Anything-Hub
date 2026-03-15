@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.agentputer.com/cli-anything/</loc><priority>1.0</priority></url>
+  <url><loc>https://www.agentputer.com/cli-anything/gimp/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.agentputer.com/cli-anything/blender/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.agentputer.com/cli-anything/inkscape/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.agentputer.com/cli-anything/obs-studio/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.agentputer.com/cli-anything/audacity/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.agentputer.com/cli-anything/libreoffice/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.agentputer.com/cli-anything/ms365/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.agentputer.com/cli-anything/notion/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.agentputer.com/cli-anything/zoom/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.agentputer.com/cli-anything/slack/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.agentputer.com/cli-anything/discord/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.agentputer.com/cli-anything/telegram/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.agentputer.com/cli-anything/docker/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.agentputer.com/cli-anything/github/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.agentputer.com/cli-anything/ollama/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.agentputer.com/cli-anything/drawio/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.agentputer.com/cli-anything/stripe/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+
+  <url><loc>https://www.agentputer.com/cli-anything/shopify/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://www.agentputer.com/cli-anything/twilio/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://www.agentputer.com/cli-anything/hubspot/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://www.agentputer.com/cli-anything/jira/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://www.agentputer.com/cli-anything/vercel/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://www.agentputer.com/cli-anything/cloudflare/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://www.agentputer.com/cli-anything/salesforce/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+</urlset>
