@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -163,7 +163,7 @@
   .build-step{flex:1;min-width:140px;padding:20px 16px;text-align:center;background:var(--bg2);border:1px solid var(--bdr);position:relative;transition:.25s}
   .build-step:hover{background:var(--bg3);border-color:rgba(0,255,65,.25);z-index:1}
   .build-step:not(:last-child)::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);font-size:16px;color:var(--g);z-index:2;font-weight:800}
-  .build-step .bs-icon{font-size:24px;margin-bottom:8px}
+  .build-step .bs-icon{font-size:24px;margin-bottom:8px;line-height:0;display:flex;justify-content:center;align-items:center;height:32px}
   .build-step h4{font-size:11px;font-weight:700;color:#fff;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
   .build-step p{font-size:11px;color:var(--mt);line-height:1.5}
 
@@ -235,6 +235,33 @@
     .build-flow{flex-direction:column}
     .build-step:not(:last-child)::after{content:'↓';right:auto;left:50%;top:auto;bottom:-14px;transform:translateX(-50%)}
   }
+  /* ── Submit to Hub ── */
+  .submit-steps{display:flex;gap:0;align-items:stretch;margin:40px 0;flex-wrap:wrap}
+  .submit-step-card{flex:1;min-width:200px;padding:28px 20px;background:var(--bg2);border:1px solid var(--bdr);display:flex;flex-direction:column;gap:10px;position:relative;transition:.25s}
+  .submit-step-card:hover{border-color:rgba(0,255,65,.3);background:var(--bg3)}
+  .ssc-num{font-size:10px;font-weight:800;color:var(--g);letter-spacing:3px;opacity:.7}
+  .submit-step-card h4{font-size:12px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.5px;margin:0}
+  .submit-step-card p{font-size:11px;color:var(--mt);line-height:1.6;margin:0}
+  .ssc-checks{display:flex;flex-direction:column;gap:5px;font-size:11px;color:var(--mt)}
+  .ssc-checks code{color:var(--g);background:rgba(0,255,65,.08);padding:0 4px;border-radius:2px;font-size:10px}
+  .ssc-btn{display:inline-block;margin-top:8px;padding:9px 18px;background:var(--g);color:#000;font-size:11px;font-weight:800;text-decoration:none;border-radius:3px;letter-spacing:.5px;transition:.2s}
+  .ssc-btn:hover{opacity:.85;transform:translateY(-1px)}
+  .ssc-arrow{display:flex;align-items:center;padding:0 6px;color:var(--g);font-size:20px;font-weight:800;flex-shrink:0}
+  /* Hub Standard grid */
+  .hub-standard{margin:36px 0;padding:24px;background:var(--bg2);border:1px solid var(--bdr)}
+  .hs-title{font-size:10px;font-weight:800;color:var(--g);letter-spacing:2px;margin-bottom:20px;text-transform:uppercase}
+  .hs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+  .hs-item{padding:16px;background:var(--bg3);border:1px solid var(--bdr);border-radius:2px}
+  .hs-item code{display:block;font-size:14px;font-weight:700;color:var(--g);margin-bottom:8px}
+  .hs-item p{font-size:11px;color:var(--mt);line-height:1.5;margin:0}
+  /* Community box */
+  .community-box{margin:36px 0;border:1px solid var(--bdr);background:var(--bg2)}
+  .community-hdr{padding:12px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--bdr)}
+  .comm-badge{font-size:10px;font-weight:800;color:var(--g);letter-spacing:2px}
+  .comm-count{font-size:11px;color:var(--mt)}
+  .community-empty{padding:48px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
+  .community-empty p{font-size:13px;color:var(--mt);margin:0}
+  @media(max-width:640px){.submit-steps{flex-direction:column}.ssc-arrow{transform:rotate(90deg);padding:4px 0;justify-content:center;display:flex}}
 </style>
 </head>
 <body>
@@ -611,12 +638,12 @@ caps = subprocess.<span class="fn">run</span>([<span class="str">"cli-anything-i
   <div class="section-title" data-i18n="custom.title">Build CLI for <span class="hl">Any Software</span></div>
   <div class="section-sub" data-i18n="custom.sub">Not just 100+ pre-built tools — any software with source code can become an Agent tool in one command</div>
   <div class="build-flow">
-    <div class="build-step"><div class="bs-icon">📁</div><h4 data-i18n="build.1.title">Prepare Target</h4><p data-i18n="build.1.desc">Local codebase or GitHub URL</p></div>
-    <div class="build-step"><div class="bs-icon">🤖</div><h4 data-i18n="build.2.title">Run Command</h4><p>/cli-anything<br>./your-software</p></div>
-    <div class="build-step"><div class="bs-icon">🔍</div><h4 data-i18n="build.3.title">Source Analysis</h4><p data-i18n="build.3.desc">Auto-map APIs, understand architecture</p></div>
-    <div class="build-step"><div class="bs-icon">🔨</div><h4 data-i18n="build.4.title">Auto-Generate</h4><p>Click CLI + REPL + JSON</p></div>
-    <div class="build-step"><div class="bs-icon">🧪</div><h4 data-i18n="build.5.title">Generate Tests</h4><p data-i18n="build.5.desc">Unit + E2E, full validation</p></div>
-    <div class="build-step"><div class="bs-icon">📦</div><h4 data-i18n="build.6.title">Install &amp; Release</h4><p data-i18n="build.6.desc">pip install into PATH</p></div>
+    <div class="build-step"><div class="bs-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#00ff41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div><h4 data-i18n="build.1.title">Prepare Target</h4><p data-i18n="build.1.desc">Local codebase or GitHub URL</p></div>
+    <div class="build-step"><div class="bs-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#00ff41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div><h4 data-i18n="build.2.title">Run Command</h4><p>/cli-anything<br>./your-software</p></div>
+    <div class="build-step"><div class="bs-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#00ff41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><h4 data-i18n="build.3.title">Source Analysis</h4><p data-i18n="build.3.desc">Auto-map APIs, understand architecture</p></div>
+    <div class="build-step"><div class="bs-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#00ff41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><h4 data-i18n="build.4.title">Auto-Generate</h4><p>Click CLI + REPL + JSON</p></div>
+    <div class="build-step"><div class="bs-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#00ff41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div><h4 data-i18n="build.5.title">Generate Tests</h4><p data-i18n="build.5.desc">Unit + E2E, full validation</p></div>
+    <div class="build-step"><div class="bs-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#00ff41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div><h4 data-i18n="build.6.title">Install &amp; Release</h4><p data-i18n="build.6.desc">pip install into PATH</p></div>
   </div>
 
   <p style="font-size:13px;font-weight:700;color:#fff;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px" data-i18n="plat.note">Select Your AI Platform</p>
@@ -796,6 +823,70 @@ bash CLI-Anything/qoder-plugin/setup-qodercli.sh
       <li data-i18n="warn.3">First generation may be incomplete — typically needs 1~3 /refine iterations for production quality</li>
       <li data-i18n="warn.4">Windows requires Git for Windows (with bash + cygpath) or WSL</li>
     </ul>
+  </div>
+</div>
+
+<!-- SUBMIT TO HUB -->
+<div id="submit" class="section reveal">
+  <div class="section-label" data-i18n="submit.label">MODULE: JOIN_THE_HUB</div>
+  <div class="section-title" data-i18n="submit.title">Submit Your CLI · <span class="hl">Join the Hub</span></div>
+  <div class="section-sub" data-i18n="submit.sub">Any developer can contribute a CLI — once merged, AI agents worldwide can discover and use it via <code style="color:var(--g);background:rgba(0,255,65,.08);padding:0 6px;border-radius:2px">pip install</code></div>
+
+  <!-- 3-step process -->
+  <div class="submit-steps">
+    <div class="submit-step-card">
+      <div class="ssc-num">01</div>
+      <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#00ff41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      <h4 data-i18n="submit.s1.title">Build to Hub Standard</h4>
+      <div class="ssc-checks">
+        <div data-i18n="submit.s1.c1">✓ <code>schema</code> command — no auth needed</div>
+        <div data-i18n="submit.s1.c2">✓ <code>detect</code> command — check connectivity</div>
+        <div data-i18n="submit.s1.c3">✓ <code>--json</code> flag on all outputs</div>
+        <div data-i18n="submit.s1.c4">✓ <code>setup.py</code> with pip entry point</div>
+      </div>
+    </div>
+    <div class="ssc-arrow">→</div>
+    <div class="submit-step-card">
+      <div class="ssc-num">02</div>
+      <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#00ff41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      <h4 data-i18n="submit.s2.title">Open a GitHub Issue</h4>
+      <p data-i18n="submit.s2.desc">Use our CLI submission template. Takes 2 minutes.</p>
+      <a href="https://github.com/chatjesus/CLI-Anything-Hub/issues/new?labels=cli-submission&title=%5BCLI+Submission%5D+your-tool-name" class="ssc-btn" target="_blank" data-i18n="submit.s2.btn">Submit CLI ↗</a>
+    </div>
+    <div class="ssc-arrow">→</div>
+    <div class="submit-step-card">
+      <div class="ssc-num">03</div>
+      <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#00ff41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <h4 data-i18n="submit.s3.title">Get Listed Here</h4>
+      <p data-i18n="submit.s3.desc">We review, merge, and your CLI appears in the Hub — instantly usable by any AI agent via pip install.</p>
+    </div>
+  </div>
+
+  <!-- Hub Standard -->
+  <div class="hub-standard">
+    <div class="hs-title" data-i18n="submit.std.title">Hub Standard — Required Interface</div>
+    <div class="hs-grid">
+      <div class="hs-item"><code>schema</code><p data-i18n="submit.std.schema">Output full capability JSON. No auth needed. Agents call this to self-discover your CLI.</p></div>
+      <div class="hs-item"><code>detect</code><p data-i18n="submit.std.detect">Check connectivity without side effects. Returns JSON status object.</p></div>
+      <div class="hs-item"><code>--json</code><p data-i18n="submit.std.json">All commands output structured JSON. Agents parse this programmatically.</p></div>
+      <div class="hs-item"><code>version</code><p data-i18n="submit.std.version">Print CLI version. Required for compatibility and update tracking.</p></div>
+    </div>
+  </div>
+
+  <!-- Community CLIs -->
+  <div class="community-box">
+    <div class="community-hdr">
+      <span class="comm-badge" data-i18n="submit.comm.label">COMMUNITY CLIs</span>
+      <span class="comm-count" data-i18n="submit.comm.count">0 listed · be the first</span>
+    </div>
+    <div class="community-empty">
+      <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="var(--mt)" stroke-width="1.5" stroke-linecap="round">
+        <rect x="8" y="8" width="32" height="32" rx="3"/><line x1="16" y1="20" x2="32" y2="20"/><line x1="16" y1="28" x2="26" y2="28"/>
+        <circle cx="38" cy="38" r="8" fill="var(--bg2)" stroke="#00ff41"/><line x1="38" y1="34" x2="38" y2="42"/><line x1="34" y1="38" x2="42" y2="38"/>
+      </svg>
+      <p data-i18n="submit.comm.empty">No community CLIs yet — be the first contributor.</p>
+      <a href="https://github.com/chatjesus/CLI-Anything-Hub/issues/new?labels=cli-submission&title=%5BCLI+Submission%5D+your-tool-name" class="btn btn-g" target="_blank" style="margin-top:4px" data-i18n="submit.comm.btn">+ Submit Your CLI</a>
+    </div>
   </div>
 </div>
 
@@ -1085,7 +1176,28 @@ bash CLI-Anything/qoder-plugin/setup-qodercli.sh
     "qs.1.title": "Clone the Repository",
     "qs.2.title": "Install Target Tool (Inkscape example)",
     "qs.3.title": "Start Using",
-    "cta.label": "STATUS: OPEN_SOURCE",
+    "submit.label": "MODULE: JOIN_THE_HUB",
+    "submit.title": "Submit Your CLI · Join the Hub",
+    "submit.sub": "Any developer can contribute a CLI — once merged, AI agents worldwide can discover and use it",
+    "submit.s1.title": "Build to Hub Standard",
+    "submit.s1.c1": "✓ schema command — no auth needed",
+    "submit.s1.c2": "✓ detect command — check connectivity",
+    "submit.s1.c3": "✓ --json flag on all outputs",
+    "submit.s1.c4": "✓ setup.py with pip entry point",
+    "submit.s2.title": "Open a GitHub Issue",
+    "submit.s2.desc": "Use our CLI submission template. Takes 2 minutes.",
+    "submit.s2.btn": "Submit CLI ↗",
+    "submit.s3.title": "Get Listed Here",
+    "submit.s3.desc": "We review, merge, and your CLI appears in the Hub — instantly usable by any AI agent.",
+    "submit.std.title": "Hub Standard — Required Interface",
+    "submit.std.schema": "Output full capability JSON. No auth needed. Agents call this to self-discover your CLI.",
+    "submit.std.detect": "Check connectivity without side effects. Returns JSON status.",
+    "submit.std.json": "All commands output structured JSON. Agents parse this programmatically.",
+    "submit.std.version": "Print CLI version. Required for compatibility tracking.",
+    "submit.comm.label": "COMMUNITY CLIs",
+    "submit.comm.count": "0 listed · be the first",
+    "submit.comm.empty": "No community CLIs yet — be the first contributor.",
+    "submit.comm.btn": "+ Submit Your CLI",    "cta.label": "STATUS: OPEN_SOURCE",
     "cta.title": "Fork the Hub · MIT License",
     "cta.desc": "Fork CLI-Anything Hub to add your own tools, publish to PyPI, and grow the community. Fully open source under MIT.",
     "cta.check1": "Personal Use",
@@ -1314,7 +1426,28 @@ bash CLI-Anything/qoder-plugin/setup-qodercli.sh
     "qs.1.title": "克隆存储库",
     "qs.2.title": "安装目标工具（Inkscape 示例）",
     "qs.3.title": "开始使用",
-    "cta.label": "STATUS: OPEN_SOURCE",
+        "submit.label": "模块: 加入HUB",
+    "submit.title": "提交你的 CLI · 加入 Hub",
+    "submit.sub": "任何开发者都可以贡献 CLI — 合并后，全球 AI Agent 可通过 pip install 立即使用",
+    "submit.s1.title": "遵循 Hub 标准构建",
+    "submit.s1.c1": "✓ schema 命令 — 无需认证",
+    "submit.s1.c2": "✓ detect 命令 — 检查连接",
+    "submit.s1.c3": "✓ --json 标志用于所有输出",
+    "submit.s1.c4": "✓ setup.py 包含 pip 入口",
+    "submit.s2.title": "提交 GitHub Issue",
+    "submit.s2.desc": "使用我们的 CLI 提交模板，仅需 2 分钟。",
+    "submit.s2.btn": "提交 CLI ↗",
+    "submit.s3.title": "在此展示",
+    "submit.s3.desc": "我们审核、合并，你的 CLI 即出现在 Hub 目录中，任何 AI Agent 均可立即使用。",
+    "submit.std.title": "Hub 标准 — 必须实现的接口",
+    "submit.std.schema": "输出完整能力 JSON，无需认证，Agent 通过此命令自动发现 CLI 功能。",
+    "submit.std.detect": "无副作用地检查连接状态，返回 JSON。",
+    "submit.std.json": "所有命令支持 JSON 输出，供 Agent 程序化解析。",
+    "submit.std.version": "输出 CLI 版本信息，用于兼容性追踪。",
+    "submit.comm.label": "社区 CLI",
+    "submit.comm.count": "0 个已收录 · 成为第一个贡献者",
+    "submit.comm.empty": "暂无社区 CLI — 你来成为第一个贡献者。",
+    "submit.comm.btn": "+ 提交你的 CLI","cta.label": "STATUS: OPEN_SOURCE",
     "cta.title": "MIT 许可证",
     "cta.desc": "完全开源——可以免费使用、修改和商业分发。只需要原始版权声明。",
     "cta.check1": "个人使用",
@@ -1543,7 +1676,28 @@ bash CLI-Anything/qoder-plugin/setup-qodercli.sh
     "qs.1.title": "リポジトリをクローンする",
     "qs.2.title": "ターゲットツールをインストールする（Inkscapeの例）",
     "qs.3.title": "使い始める",
-    "cta.label": "STATUS: OPEN_SOURCE",
+        "submit.label": "モジュール: HUBに参加",
+    "submit.title": "CLIを提出 · Hubに参加",
+    "submit.sub": "どの開発者でも CLI を貢献できます — マージ後、世界中の AI エージェントが pip install で即利用可能",
+    "submit.s1.title": "Hubスタンダードで構築",
+    "submit.s1.c1": "✓ schema コマンド — 認証不要",
+    "submit.s1.c2": "✓ detect コマンド — 接続確認",
+    "submit.s1.c3": "✓ --json フラグ（全出力）",
+    "submit.s1.c4": "✓ setup.py に pip エントリポイント",
+    "submit.s2.title": "GitHub Issue を開く",
+    "submit.s2.desc": "CLIの提出テンプレートを使用してください。2分で完了します。",
+    "submit.s2.btn": "CLIを提出 ↗",
+    "submit.s3.title": "ここに掲載",
+    "submit.s3.desc": "レビュー・マージ後、Hub ディレクトリに掲載 — どの AI エージェントもすぐに利用可能。",
+    "submit.std.title": "Hubスタンダード — 必須インターフェース",
+    "submit.std.schema": "完全な能力 JSON を出力。認証不要。エージェントが CLI 機能を自動発見します。",
+    "submit.std.detect": "副作用なしで接続確認。JSONステータスを返します。",
+    "submit.std.json": "全コマンドが JSON 出力をサポート。エージェントがプログラムで解析。",
+    "submit.std.version": "CLIバージョン情報を出力。互換性追跡に必要。",
+    "submit.comm.label": "コミュニティCLI",
+    "submit.comm.count": "0件掲載 · 最初の貢献者になろう",
+    "submit.comm.empty": "まだコミュニティCLIはありません — 最初の貢献者になりましょう。",
+    "submit.comm.btn": "+ CLIを提出","cta.label": "STATUS: OPEN_SOURCE",
     "cta.title": "MITライセンス",
     "cta.desc": "完全にオープンソース—自由に使用、変更、および商業的に配布できます。元の著作権表示のみが必要です。",
     "cta.check1": "個人使用",
@@ -1772,7 +1926,28 @@ bash CLI-Anything/qoder-plugin/setup-qodercli.sh
     "qs.1.title": "리포지토리 복제",
     "qs.2.title": "대상 도구 설치 (Inkscape 예시)",
     "qs.3.title": "사용 시작",
-    "cta.label": "STATUS: OPEN_SOURCE",
+        "submit.label": "모듈: HUB 참여",
+    "submit.title": "CLI 제출 · Hub에 참여",
+    "submit.sub": "모든 개발자가 CLI를 기여할 수 있습니다 — 병합 후 전 세계 AI 에이전트가 pip install로 즉시 사용 가능",
+    "submit.s1.title": "Hub 표준으로 빌드",
+    "submit.s1.c1": "✓ schema 명령 — 인증 불필요",
+    "submit.s1.c2": "✓ detect 명령 — 연결 확인",
+    "submit.s1.c3": "✓ --json 플래그 (모든 출력)",
+    "submit.s1.c4": "✓ setup.py에 pip 진입점",
+    "submit.s2.title": "GitHub 이슈 열기",
+    "submit.s2.desc": "CLI 제출 템플릿을 사용하세요. 2분이면 충분합니다.",
+    "submit.s2.btn": "CLI 제출 ↗",
+    "submit.s3.title": "여기에 등록",
+    "submit.s3.desc": "검토 후 병합되면 Hub 디렉토리에 등록 — 모든 AI 에이전트가 즉시 사용 가능합니다.",
+    "submit.std.title": "Hub 표준 — 필수 인터페이스",
+    "submit.std.schema": "전체 기능 JSON 출력. 인증 불필요. 에이전트가 CLI 기능을 자동 발견합니다.",
+    "submit.std.detect": "부작용 없이 연결 확인. JSON 상태 반환.",
+    "submit.std.json": "모든 명령이 JSON 출력 지원. 에이전트가 프로그래밍 방식으로 파싱.",
+    "submit.std.version": "CLI 버전 정보 출력. 호환성 추적에 필요.",
+    "submit.comm.label": "커뮤니티 CLI",
+    "submit.comm.count": "0개 등록 · 첫 번째 기여자가 되세요",
+    "submit.comm.empty": "아직 커뮤니티 CLI가 없습니다 — 첫 번째 기여자가 되세요.",
+    "submit.comm.btn": "+ CLI 제출","cta.label": "STATUS: OPEN_SOURCE",
     "cta.title": "MIT 라이선스",
     "cta.desc": "완전한 오픈 소스 — 자유롭게 사용, 수정 및 상업적으로 배포할 수 있습니다. 원본 저작권 고지만 필요합니다.",
     "cta.check1": "개인적 사용",
