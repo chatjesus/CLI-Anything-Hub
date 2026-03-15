@@ -1,0 +1,19 @@
+# Detect local Ollama instance
+$ cli-anything-ollama --json detect
+{"status":"running","host":"http://localhost:11434","version":"0.16.3"}
+
+# List available models
+$ cli-anything-ollama --json list
+{"count":2,"models":["huihui_ai/qwen2.5-abliterate:14b","qwen2.5:14b"]}
+
+# Check Docker daemon
+$ cli-anything-docker --json detect
+{"status":"running","version":"29.1.2","api_version":"1.52","os":"linux","arch":"amd64"}
+
+# Discover Slack CLI capabilities (no token needed)
+$ cli-anything-slack --json schema | head
+{"name":"cli-anything-slack","commands":15,"requires_token":true,"token_env":"SLACK_BOT_TOKEN"}
+
+# Run inference with local LLM
+$ cli-anything-ollama --json run qwen2.5:14b "What is CLI Anything in 10 words?"
+{"response":"CLI Anything: Run any command-line tool from anywhere."}

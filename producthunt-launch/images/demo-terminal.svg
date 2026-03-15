@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="490" viewBox="0 0 820 490">
+<rect width="820" height="490" rx="10" fill="#161b22"/>
+<rect width="820" height="36" rx="10" fill="#1c2128"/>
+<rect x="0" y="26" width="820" height="10" fill="#1c2128"/>
+<circle cx="18" cy="18" r="6" fill="#ff5f57"/>
+<circle cx="36" cy="18" r="6" fill="#febc2e"/>
+<circle cx="54" cy="18" r="6" fill="#28c840"/>
+<text x="80" y="22" font-family="monospace" font-size="12" fill="#8b949e">zsh — cli-anything-demo</text>
+<text x="24" y="48" font-family="monospace" font-size="13" fill="#484f58" font-style="italic"># Detect local Ollama instance</text>
+<text x="24" y="70" font-family="monospace" font-size="13"><tspan fill="#3fb950">$ </tspan><tspan fill="#e6edf3">cli-anything-ollama --json detect</tspan></text>
+<text x="24" y="92" font-family="monospace" font-size="13" fill="#d2a8ff">{&quot;status&quot;:&quot;running&quot;,&quot;host&quot;:&quot;http://localhost:11434&quot;,&quot;version&quot;:&quot;0.16.3&quot;}</text>
+<text x="24" y="136" font-family="monospace" font-size="13" fill="#484f58" font-style="italic"># List available models</text>
+<text x="24" y="158" font-family="monospace" font-size="13"><tspan fill="#3fb950">$ </tspan><tspan fill="#e6edf3">cli-anything-ollama --json list</tspan></text>
+<text x="24" y="180" font-family="monospace" font-size="13" fill="#d2a8ff">{&quot;count&quot;:2,&quot;models&quot;:[&quot;huihui_ai/qwen2.5-abliterate:14b&quot;,&quot;qwen2.5:14b&quot;]}</text>
+<text x="24" y="224" font-family="monospace" font-size="13" fill="#484f58" font-style="italic"># Check Docker daemon</text>
+<text x="24" y="246" font-family="monospace" font-size="13"><tspan fill="#3fb950">$ </tspan><tspan fill="#e6edf3">cli-anything-docker --json detect</tspan></text>
+<text x="24" y="268" font-family="monospace" font-size="13" fill="#d2a8ff">{&quot;status&quot;:&quot;running&quot;,&quot;version&quot;:&quot;29.1.2&quot;,&quot;api_version&quot;:&quot;1.52&quot;,&quot;os&quot;:&quot;linux&quot;,&quot;arch&quot;:&quot;amd64&quot;}</text>
+<text x="24" y="312" font-family="monospace" font-size="13" fill="#484f58" font-style="italic"># Discover Slack CLI capabilities (no token needed)</text>
+<text x="24" y="334" font-family="monospace" font-size="13"><tspan fill="#3fb950">$ </tspan><tspan fill="#e6edf3">cli-anything-slack --json schema | head</tspan></text>
+<text x="24" y="356" font-family="monospace" font-size="13" fill="#d2a8ff">{&quot;name&quot;:&quot;cli-anything-slack&quot;,&quot;commands&quot;:15,&quot;requires_token&quot;:true,&quot;token_env&quot;:&quot;SLACK_BOT_TOKEN&quot;}</text>
+<text x="24" y="400" font-family="monospace" font-size="13" fill="#484f58" font-style="italic"># Run inference with local LLM</text>
+<text x="24" y="422" font-family="monospace" font-size="13"><tspan fill="#3fb950">$ </tspan><tspan fill="#e6edf3">cli-anything-ollama --json run qwen2.5:14b &quot;What is CLI Anything in 10 words?&quot;</tspan></text>
+<text x="24" y="444" font-family="monospace" font-size="13" fill="#d2a8ff">{&quot;response&quot;:&quot;CLI Anything: Run any command-line tool from anywhere.&quot;}</text>
+</svg>

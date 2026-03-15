@@ -14,12 +14,14 @@
 
 *pip install any tool · Agents call any software · Zero friction*
 
+[![Product Hunt](https://img.shields.io/badge/Product%20Hunt-Launch-DA552F?style=for-the-badge&logo=producthunt&logoColor=white)](https://www.producthunt.com/posts/cli-anything)
 [![Hub CLIs](https://img.shields.io/badge/Hub_CLIs-130%2B_Planned-00ff41?style=for-the-badge&logo=python&logoColor=white)](https://github.com/chatjesus/CLI-Anything-Hub)
 [![Live CLIs](https://img.shields.io/badge/Live_CLIs-30%2B_Ready-brightgreen?style=for-the-badge&logo=python)](https://github.com/chatjesus/CLI-Anything-Hub)
+[![PyPI](https://img.shields.io/badge/PyPI-cli--anything--*-blue?style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/search/?q=cli-anything)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 [![Fork](https://img.shields.io/badge/Fork_%26_Extend-Welcome-orange?style=for-the-badge&logo=github)](https://github.com/chatjesus/CLI-Anything-Hub/fork)
 
-**[Website](https://agentputer.com/cli-anything/)** · **[Submit Your CLI](https://github.com/chatjesus/CLI-Anything-Hub/issues/new?labels=cli-submission&title=[CLI+Submission]+your-tool)** · **[Fork the Hub](https://github.com/chatjesus/CLI-Anything-Hub/fork)**
+**[Website](https://agentputer.com/cli-anything/)** · **[Product Hunt](https://www.producthunt.com/posts/cli-anything)** · **[Submit Your CLI](https://github.com/chatjesus/CLI-Anything-Hub/issues/new?labels=cli-submission&title=[CLI+Submission]+your-tool)** · **[Fork the Hub](https://github.com/chatjesus/CLI-Anything-Hub/fork)**
 
 </div>
 

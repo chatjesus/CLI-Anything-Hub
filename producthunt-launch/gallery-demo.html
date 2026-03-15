@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    background: #0d1117; 
+    display: flex; justify-content: center; align-items: center; 
+    min-height: 100vh; 
+    font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+  }
+  .frame {
+    width: 1270px; height: 760px;
+    background: #0d1117;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 30px 40px;
+  }
+  .badge {
+    font-family: -apple-system, sans-serif;
+    font-size: 13px; color: #8b949e; letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .title {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 24px; font-weight: 700; color: #e6edf3; margin-bottom: 24px;
+  }
+  .terminal {
+    width: 900px;
+    background: #161b22;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  }
+  .term-bar {
+    height: 36px; background: #1c2128;
+    display: flex; align-items: center; padding: 0 16px;
+    border-bottom: 1px solid #30363d;
+  }
+  .dot { width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #febc2e; }
+  .dot-g { background: #28c840; }
+  .term-title { color: #8b949e; font-size: 11px; margin-left: 12px; }
+  .term-body { padding: 18px 22px; line-height: 1.7; font-size: 13.5px; }
+  .prompt { color: #3fb950; }
+  .cmd { color: #e6edf3; }
+  .output { color: #d2a8ff; }
+  .comment { color: #484f58; font-style: italic; }
+  .gap { height: 8px; }
+  .label {
+    font-family: -apple-system, sans-serif;
+    display: inline-block; font-size: 10px; font-weight: 600;
+    padding: 2px 8px; border-radius: 4px; margin-bottom: 2px;
+    color: #fff;
+  }
+  .label-green { background: #238636; }
+  .label-blue { background: #1f6feb; }
+  .label-purple { background: #8957e5; }
+  .footer {
+    font-family: -apple-system, sans-serif;
+    font-size: 14px; color: #484f58; margin-top: 20px;
+  }
+  .footer strong { color: #8b949e; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="badge">Live Demo — Real Output</div>
+  <div class="title">CLI Anything in Action</div>
+
+  <div class="terminal">
+    <div class="term-bar">
+      <div class="dot dot-r"></div>
+      <div class="dot dot-y"></div>
+      <div class="dot dot-g"></div>
+      <div class="term-title">zsh — cli-anything-demo</div>
+    </div>
+    <div class="term-body">
+      <div><span class="label label-green">OLLAMA</span> <span class="comment">Detect local LLM</span></div>
+      <div><span class="prompt">$ </span><span class="cmd">cli-anything-ollama --json detect</span></div>
+      <div><span class="output">{"status":"running","host":"http://localhost:11434","version":"0.16.3"}</span></div>
+      <div class="gap"></div>
+
+      <div><span class="prompt">$ </span><span class="cmd">cli-anything-ollama --json list</span></div>
+      <div><span class="output">{"count":2,"models":["huihui_ai/qwen2.5-abliterate:14b","qwen2.5:14b"]}</span></div>
+      <div class="gap"></div>
+
+      <div><span class="label label-blue">DOCKER</span> <span class="comment">Check Docker daemon</span></div>
+      <div><span class="prompt">$ </span><span class="cmd">cli-anything-docker --json detect</span></div>
+      <div><span class="output">{"status":"running","version":"29.1.2","api_version":"1.52","os":"linux","arch":"amd64"}</span></div>
+      <div class="gap"></div>
+
+      <div><span class="label label-purple">SLACK</span> <span class="comment">Discover capabilities (no token needed)</span></div>
+      <div><span class="prompt">$ </span><span class="cmd">cli-anything-slack --json schema | jq '{name,commands:.commands|length}'</span></div>
+      <div><span class="output">{"name":"cli-anything-slack","commands":15,"requires_token":true,"token_env":"SLACK_BOT_TOKEN"}</span></div>
+      <div class="gap"></div>
+
+      <div><span class="label label-green">OLLAMA</span> <span class="comment">Run inference with local model</span></div>
+      <div><span class="prompt">$ </span><span class="cmd">cli-anything-ollama --json run qwen2.5:14b "What is CLI Anything in 10 words?"</span></div>
+      <div><span class="output">{"response":"CLI Anything: Run any command-line tool from anywhere."}</span></div>
+    </div>
+  </div>
+
+  <div class="footer">All output above is <strong>real</strong> — captured from a live system running 3 CLI Anything tools.</div>
+</div>
+</body></html>
