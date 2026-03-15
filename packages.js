@@ -21,12 +21,12 @@ const PACKAGES=[
     cmds:["gimp-cli resize --input photo.png --width 1920","gimp-cli filter --input photo.png --type sharpen","gimp-cli export --input photo.psd --format png"],
     plat:["linux","macos","windows"],req:["gimp>=2.10"],inf:["png","jpg","psd","tiff","bmp","webp"],outf:["png","jpg","webp","tiff"]},
 
-  {n:"photoshop",v:"1.0.0",d:"Adobe Photoshop automation via CLI. Layer operations, filters, batch processing, format conversion.",ld:"Wraps Adobe Photoshop's scripting interface (ExtendScript/UXP) to provide command-line access to professional image editing workflows.",c:"image",t:["adobe","image","editing"],dl:"6.1K",ts:210,logo:S+"adobephotoshop/31A8FF",q:.94,
+  {n:"photoshop",v:"1.0.0",d:"Adobe Photoshop automation via CLI. Layer operations, filters, batch processing, format conversion.",ld:"Wraps Adobe Photoshop's scripting interface (ExtendScript/UXP) to provide command-line access to professional image editing workflows.",c:"image",t:["adobe","image","editing"],dl:"6.1K",ts:210,logo:null,q:.94,
     caps:["image.open","image.resize","image.filter","image.export","layer.create","layer.style","image.crop","image.adjust"],
     cmds:["photoshop-cli resize --input banner.psd --width 1200 --output json","photoshop-cli export --input design.psd --format png --layers all","photoshop-cli batch --dir ./images --action resize --width 800"],
     plat:["macos","windows"],req:["photoshop>=2024"],inf:["psd","png","jpg","tiff","raw"],outf:["psd","png","jpg","webp","tiff"]},
 
-  {n:"illustrator",v:"1.0.0",d:"Adobe Illustrator vector editing via CLI. Path operations, artboard management, SVG/PDF export.",ld:"Command-line access to Illustrator's vector editing engine. Create, modify, and export vector graphics programmatically.",c:"image",t:["adobe","vector","design"],dl:"2.3K",ts:134,logo:S+"adobeillustrator/FF9A00",q:.91,
+  {n:"illustrator",v:"1.0.0",d:"Adobe Illustrator vector editing via CLI. Path operations, artboard management, SVG/PDF export.",ld:"Command-line access to Illustrator's vector editing engine. Create, modify, and export vector graphics programmatically.",c:"image",t:["adobe","vector","design"],dl:"2.3K",ts:134,logo:null,q:.91,
     caps:["vector.create","vector.edit","artboard.manage","path.combine","text.set","export.svg","export.pdf"],
     cmds:["illustrator-cli export --input logo.ai --format svg","illustrator-cli artboard --input file.ai --list --output json"],
     plat:["macos","windows"],req:["illustrator>=2024"],inf:["ai","svg","eps","pdf"],outf:["svg","pdf","png","eps"]},
@@ -67,12 +67,12 @@ const PACKAGES=[
     cmds:["obs-cli stream start --service twitch","obs-cli scene switch --name 'Game Capture'","obs-cli record start --output ./recordings"],
     plat:["linux","macos","windows"],req:["obs-studio>=28"],inf:[],outf:["mp4","mkv","flv"]},
 
-  {n:"premiere-pro",v:"1.0.0",d:"Adobe Premiere Pro video editing. Timeline operations, effects, rendering, and export automation.",ld:"Automate Premiere Pro workflows. Import media, arrange timelines, apply effects, and render final output via CLI.",c:"video",t:["adobe","video","editing"],dl:"3.4K",ts:156,logo:S+"adobepremierepro/9999FF",q:.91,
+  {n:"premiere-pro",v:"1.0.0",d:"Adobe Premiere Pro video editing. Timeline operations, effects, rendering, and export automation.",ld:"Automate Premiere Pro workflows. Import media, arrange timelines, apply effects, and render final output via CLI.",c:"video",t:["adobe","video","editing"],dl:"3.4K",ts:156,logo:null,q:.91,
     caps:["project.create","timeline.arrange","effect.apply","render.export","media.import","transition.add"],
     cmds:["premiere-cli render --project video.prproj --format mp4 --preset 'YouTube 1080p'","premiere-cli import --project video.prproj --files ./clips/*.mp4"],
     plat:["macos","windows"],req:["premiere-pro>=2024"],inf:["prproj","mp4","mov","mxf"],outf:["mp4","mov","mxf","prores"]},
 
-  {n:"after-effects",v:"1.0.0",d:"Adobe After Effects motion graphics. Composition rendering, expression control, template-based generation.",ld:"Render After Effects compositions via CLI. Control expressions, swap assets, and batch render motion graphics templates.",c:"video",t:["adobe","motion","vfx"],dl:"2.7K",ts:121,logo:S+"adobeaftereffects/9999FF",q:.89,
+  {n:"after-effects",v:"1.0.0",d:"Adobe After Effects motion graphics. Composition rendering, expression control, template-based generation.",ld:"Render After Effects compositions via CLI. Control expressions, swap assets, and batch render motion graphics templates.",c:"video",t:["adobe","motion","vfx"],dl:"2.7K",ts:121,logo:null,q:.89,
     caps:["comp.render","expression.set","asset.swap","template.render","output.configure"],
     cmds:["aftereffects-cli render --project intro.aep --comp 'Main' --format mp4","aftereffects-cli template --project mogrt.aep --text 'Breaking News' --output news.mp4"],
     plat:["macos","windows"],req:["after-effects>=2024"],inf:["aep","mogrt"],outf:["mp4","mov","gif","png-sequence"]},
@@ -109,22 +109,22 @@ const PACKAGES=[
     plat:["linux","macos","windows"],req:["godot>=4.0"],inf:["godot","tscn","tres"],outf:["exe","app","apk","html5"]},
 
   // ── Office / Docs ──
-  {n:"microsoft-word",v:"1.0.0",d:"Microsoft Word document automation. Create, edit, format documents, mail merge, PDF export.",ld:"Automate Word via Office JS/COM API. Create documents from templates, apply formatting, run mail merge, and export to PDF.",c:"office",t:["microsoft","documents","word"],dl:"8.2K",ts:234,logo:S+"microsoftword/2B579A",q:.95,
+  {n:"microsoft-word",v:"1.0.0",d:"Microsoft Word document automation. Create, edit, format documents, mail merge, PDF export.",ld:"Automate Word via Office JS/COM API. Create documents from templates, apply formatting, run mail merge, and export to PDF.",c:"office",t:["microsoft","documents","word"],dl:"8.2K",ts:234,logo:null,q:.95,
     caps:["doc.create","doc.edit","format.apply","template.use","mailmerge.run","export.pdf","table.insert","image.insert"],
     cmds:["word-cli create --template report.dotx --data data.json --output report.docx","word-cli export --input document.docx --format pdf","word-cli mailmerge --template letter.docx --data contacts.csv"],
     plat:["macos","windows"],req:["microsoft-365"],inf:["docx","dotx","doc","rtf"],outf:["docx","pdf","html","rtf"]},
 
-  {n:"microsoft-excel",v:"1.0.0",d:"Microsoft Excel spreadsheet automation. Data manipulation, formulas, charts, pivot tables, CSV import/export.",ld:"Full Excel automation. Read/write cells, create charts, build pivot tables, run macros, and convert between formats.",c:"office",t:["microsoft","spreadsheet","data"],dl:"9.5K",ts:278,logo:S+"microsoftexcel/217346",q:.96,
+  {n:"microsoft-excel",v:"1.0.0",d:"Microsoft Excel spreadsheet automation. Data manipulation, formulas, charts, pivot tables, CSV import/export.",ld:"Full Excel automation. Read/write cells, create charts, build pivot tables, run macros, and convert between formats.",c:"office",t:["microsoft","spreadsheet","data"],dl:"9.5K",ts:278,logo:null,q:.96,
     caps:["sheet.read","sheet.write","chart.create","pivot.build","formula.set","macro.run","format.convert","data.filter"],
     cmds:["excel-cli read --input sales.xlsx --sheet 'Q1' --range A1:D100 --output json","excel-cli chart --input data.xlsx --type bar --range B2:D10 --output chart.png","excel-cli convert --input data.csv --format xlsx"],
     plat:["macos","windows"],req:["microsoft-365"],inf:["xlsx","xls","csv","tsv"],outf:["xlsx","csv","pdf","json"]},
 
-  {n:"microsoft-powerpoint",v:"1.0.0",d:"Microsoft PowerPoint automation. Create presentations, apply themes, add content, export slides.",ld:"Automate PowerPoint workflows. Build presentations from templates, insert text/images/charts, apply animations, and export.",c:"office",t:["microsoft","presentation","slides"],dl:"5.8K",ts:189,logo:S+"microsoftpowerpoint/B7472A",q:.93,
+  {n:"microsoft-powerpoint",v:"1.0.0",d:"Microsoft PowerPoint automation. Create presentations, apply themes, add content, export slides.",ld:"Automate PowerPoint workflows. Build presentations from templates, insert text/images/charts, apply animations, and export.",c:"office",t:["microsoft","presentation","slides"],dl:"5.8K",ts:189,logo:null,q:.93,
     caps:["slide.create","slide.edit","theme.apply","content.insert","animation.add","export.pdf","export.images"],
     cmds:["powerpoint-cli create --template pitch.potx --data content.json --output deck.pptx","powerpoint-cli export --input slides.pptx --format pdf","powerpoint-cli export --input slides.pptx --format png --slides all"],
     plat:["macos","windows"],req:["microsoft-365"],inf:["pptx","potx","ppt"],outf:["pptx","pdf","png","jpg"]},
 
-  {n:"microsoft-outlook",v:"1.0.0",d:"Microsoft Outlook email automation. Send/read emails, manage calendar, contacts, and folders.",ld:"Automate Outlook via Graph API. Send and search emails, manage calendar events, organize contacts and folders.",c:"office",t:["microsoft","email","calendar"],dl:"4.3K",ts:156,logo:S+"microsoftoutlook/0078D4",q:.92,
+  {n:"microsoft-outlook",v:"1.0.0",d:"Microsoft Outlook email automation. Send/read emails, manage calendar, contacts, and folders.",ld:"Automate Outlook via Graph API. Send and search emails, manage calendar events, organize contacts and folders.",c:"office",t:["microsoft","email","calendar"],dl:"4.3K",ts:156,logo:null,q:.92,
     caps:["mail.send","mail.read","mail.search","calendar.create","calendar.list","contact.manage","folder.organize"],
     cmds:["outlook-cli send --to user@email.com --subject 'Report' --body-file report.html --attach data.xlsx","outlook-cli calendar list --start 2026-03-01 --end 2026-03-31 --output json"],
     plat:["macos","windows"],req:["microsoft-365"],inf:["eml","msg","ics"],outf:["json","eml","ics"]},
@@ -165,7 +165,7 @@ const PACKAGES=[
     cmds:["slack-cli send --channel '#general' --text 'Deploy complete'","slack-cli search --query 'bug report' --output json"],
     plat:["linux","macos","windows"],req:["slack-bot-token"],inf:["txt","json"],outf:["json"]},
 
-  {n:"microsoft-teams",v:"1.0.0",d:"Microsoft Teams automation. Send messages, manage channels, schedule meetings, handle files.",ld:"Automate Teams via Graph API. Post messages, create channels, schedule meetings, and manage team files.",c:"comm",t:["microsoft","messaging","meetings"],dl:"5.2K",ts:178,logo:S+"microsoftteams/6264A7",q:.91,
+  {n:"microsoft-teams",v:"1.0.0",d:"Microsoft Teams automation. Send messages, manage channels, schedule meetings, handle files.",ld:"Automate Teams via Graph API. Post messages, create channels, schedule meetings, and manage team files.",c:"comm",t:["microsoft","messaging","meetings"],dl:"5.2K",ts:178,logo:null,q:.91,
     caps:["message.send","channel.create","meeting.schedule","file.share","team.manage","chat.create"],
     cmds:["teams-cli send --team 'Engineering' --channel 'General' --text 'Build passed'","teams-cli meeting --title 'Standup' --time '2026-03-16T10:00' --attendees team.txt"],
     plat:["linux","macos","windows"],req:["microsoft-365"],inf:["txt","json"],outf:["json"]},
@@ -206,7 +206,7 @@ const PACKAGES=[
     cmds:["docker-cli compose up --file docker-compose.yml --detach","docker-cli build --tag myapp:latest --output json"],
     plat:["linux","macos","windows"],req:["docker>=20"],inf:["Dockerfile","docker-compose.yml"],outf:["json"]},
 
-  {n:"vscode",v:"1.0.0",d:"VS Code automation. Extension management, settings, workspace operations, task running.",ld:"Automate Visual Studio Code. Install extensions, modify settings, manage workspaces, run tasks, and control the editor.",c:"dev",t:["editor","ide","extensions"],dl:"4.5K",ts:189,logo:S+"visualstudiocode/007ACC",q:.94,
+  {n:"vscode",v:"1.0.0",d:"VS Code automation. Extension management, settings, workspace operations, task running.",ld:"Automate Visual Studio Code. Install extensions, modify settings, manage workspaces, run tasks, and control the editor.",c:"dev",t:["editor","ide","extensions"],dl:"4.5K",ts:189,logo:null,q:.94,
     caps:["extension.install","extension.list","settings.modify","workspace.open","task.run","diff.view"],
     cmds:["vscode-cli extension install ms-python.python","vscode-cli settings set editor.fontSize 14 --output json"],
     plat:["linux","macos","windows"],req:["vscode>=1.80"],inf:["json"],outf:["json"]},
@@ -279,7 +279,7 @@ const PACKAGES=[
     plat:["linux","macos","windows"],req:["redis>=7"],inf:[],outf:["json"]},
 
   // ── Cloud / Infra ──
-  {n:"aws-cli",v:"2.0.0",d:"AWS service management. S3, EC2, Lambda, CloudFormation, IAM — unified structured output.",ld:"Enhanced AWS CLI wrapper. Manage S3 buckets, EC2 instances, Lambda functions, and CloudFormation stacks with JSON output.",c:"cloud",t:["aws","cloud","infrastructure"],dl:"8.9K",ts:345,logo:S+"amazonaws/232F3E",q:.97,
+  {n:"aws-cli",v:"2.0.0",d:"AWS service management. S3, EC2, Lambda, CloudFormation, IAM — unified structured output.",ld:"Enhanced AWS CLI wrapper. Manage S3 buckets, EC2 instances, Lambda functions, and CloudFormation stacks with JSON output.",c:"cloud",t:["aws","cloud","infrastructure"],dl:"8.9K",ts:345,logo:S+"amazonwebservices/232F3E",q:.97,
     caps:["s3.sync","ec2.manage","lambda.deploy","cf.deploy","iam.manage","rds.manage","cloudwatch.query"],
     cmds:["aws-cli s3 sync --source ./build --bucket my-app --delete","aws-cli lambda deploy --function api --zip package.zip --output json"],
     plat:["linux","macos","windows"],req:["aws-cli>=2"],inf:["json","yaml"],outf:["json"]},
@@ -289,7 +289,7 @@ const PACKAGES=[
     cmds:["gcloud-cli run deploy --image gcr.io/myapp --region us-central1 --output json","gcloud-cli bigquery --query 'SELECT * FROM dataset.table LIMIT 100' --output json"],
     plat:["linux","macos","windows"],req:["gcloud-sdk"],inf:["json","yaml"],outf:["json"]},
 
-  {n:"azure-cli",v:"1.0.0",d:"Microsoft Azure management. VMs, Storage, Functions, AKS, and resource group operations.",ld:"Enhanced Azure CLI. Manage Virtual Machines, Blob Storage, Azure Functions, AKS clusters, and resource groups.",c:"cloud",t:["azure","cloud","infrastructure"],dl:"5.1K",ts:234,logo:S+"microsoftazure/0078D4",q:.94,
+  {n:"azure-cli",v:"1.0.0",d:"Microsoft Azure management. VMs, Storage, Functions, AKS, and resource group operations.",ld:"Enhanced Azure CLI. Manage Virtual Machines, Blob Storage, Azure Functions, AKS clusters, and resource groups.",c:"cloud",t:["azure","cloud","infrastructure"],dl:"5.1K",ts:234,logo:null,q:.94,
     caps:["vm.manage","storage.sync","function.deploy","aks.manage","resource.group","sql.manage"],
     cmds:["azure-cli function deploy --name api --package ./dist --output json","azure-cli vm list --resource-group prod --output json"],
     plat:["linux","macos","windows"],req:["azure-cli>=2"],inf:["json","yaml"],outf:["json"]},
