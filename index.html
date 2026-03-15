@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLI Anything — The Software Registry Built for AI Agents</title>
+<meta name="description" content="CLI Anything is an open-source registry of CLI wrappers for popular software. Install tested, documented command-line interfaces for 55+ applications. Built for AI agents.">
+<meta name="keywords" content="CLI, command line, AI agents, software registry, GIMP CLI, FFmpeg CLI, Docker CLI, Photoshop CLI, Microsoft Office CLI, automation, agent tools">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ═══════ Nav ═══════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+      CLI Anything
+    </a>
+    <div class="nav-links">
+      <a href="cli/index.html">Registry</a>
+      <a href="docs.html">Docs</a>
+      <a href="about.html">About</a>
+      <a href="#integrations">Integrations</a>
+      <a href="#" class="nav-cta" onclick="openModal();return false">Submit a CLI</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════ Hero ═══════ -->
+<header class="hero">
+  <div class="hero-eyebrow">Open-source CLI registry</div>
+  <h1>The software registry<br>built for <em>agents</em></h1>
+  <p class="hero-sub">Every application wrapped in a tested, documented command-line interface. One install command. Structured output. Works with any agent framework.</p>
+  <div class="hero-actions">
+    <a href="cli/index.html" class="btn btn-dark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      Browse registry
+    </a>
+    <a href="#standard" class="btn btn-outline">Read the spec</a>
+  </div>
+</header>
+
+<!-- ═══════ Terminal Demo ═══════ -->
+<div class="terminal-wrap">
+  <div class="terminal">
+    <div class="terminal-bar"><i></i><i></i><i></i><span>zsh</span></div>
+    <div class="terminal-body" id="term"></div>
+  </div>
+</div>
+
+<!-- ═══════ Metrics ═══════ -->
+<div class="metrics">
+  <div class="metrics-inner" id="metricsBar">
+    <div class="metric"><div class="metric-num" id="metricPkgs">55+</div><div class="metric-label">CLI packages</div></div>
+    <div class="metric"><div class="metric-num">12,400+</div><div class="metric-label">Monthly installs</div></div>
+    <div class="metric"><div class="metric-num" id="metricTests">9,200+</div><div class="metric-label">Tests passing</div></div>
+    <div class="metric"><div class="metric-num">10</div><div class="metric-label">Categories</div></div>
+  </div>
+</div>
+
+<!-- ═══════ How it works ═══════ -->
+<div class="section" id="how">
+  <div class="section-head">
+    <div class="section-eyebrow">How it works</div>
+    <div class="section-title">Three steps to agent-native software</div>
+  </div>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">01 &mdash; Discover</div>
+      <h3>Search by capability</h3>
+      <p>Query the registry by what you need to do, not what tool to use. "resize an image" returns the right CLI package with its full capability manifest.</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">02 &mdash; Install</div>
+      <h3>One command setup</h3>
+      <p>Every package follows a unified standard. Install via pip, npm, or brew. Dependencies are declared in the manifest and resolved automatically.</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">03 &mdash; Use</div>
+      <h3>Agent runs it</h3>
+      <p>Your agent reads the manifest, constructs the right command, and gets structured JSON back. No GUI, no brittle screen scraping, no API fragmentation.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ Why CLI ═══════ -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-eyebrow">Why CLI</div>
+    <div class="section-title">The universal agent interface</div>
+    <p class="section-desc">GUI automation is brittle. APIs are fragmented. CLI is the interface that already works everywhere.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        Deterministic
+      </h4>
+      <p>Same input, same output. No pixel coordinates, no timing issues, no race conditions. Agents get reliable, reproducible results every time.</p>
+    </div>
+    <div class="why-card">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Cross-platform
+      </h4>
+      <p>CLI works on Linux, macOS, and Windows. One interface definition, universal compatibility. No platform-specific GUI automation scripts.</p>
+    </div>
+    <div class="why-card">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        Composable
+      </h4>
+      <p>Pipe outputs between tools. Chain operations. Build complex workflows from simple, focused commands. Unix philosophy, agent-ready.</p>
+    </div>
+    <div class="why-card">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Self-describing
+      </h4>
+      <p>Every command has --help. Every package has a manifest. Agents can introspect capabilities at runtime without external documentation.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ Registry ═══════ -->
+<div class="section" id="registry">
+  <div class="section-head">
+    <div class="section-eyebrow">Registry</div>
+    <div class="section-title">Browse packages</div>
+    <p class="section-desc">Production-tested CLI wrappers for the most-used software.</p>
+  </div>
+
+  <div class="search-row">
+    <input type="text" class="search-input" placeholder="Search by name or capability..." id="searchInput">
+    <button class="search-btn" onclick="doSearch()">Search</button>
+  </div>
+
+  <div class="tabs" id="tabs"></div>
+
+  <div class="grid" id="grid"></div>
+
+  <div style="text-align:center;margin-top:32px">
+    <a href="cli/index.html" class="btn btn-outline">View all packages</a>
+  </div>
+</div>
+
+<!-- ═══════ Manifest Standard ═══════ -->
+<div class="section" id="standard">
+  <div class="section-head">
+    <div class="section-eyebrow">Standard</div>
+    <div class="section-title">The CLI manifest spec</div>
+    <p class="section-desc">A single JSON file that tells any agent what a CLI can do.</p>
+  </div>
+  <div class="manifest-grid">
+    <div class="manifest-left">
+      <h3>Machine-readable by default</h3>
+      <p>Every package ships a manifest.json describing capabilities, input/output types, platform support, and quality metrics. Agents parse it at install time.</p>
+      <ul class="feat-list">
+        <li>Semantic capability descriptors</li>
+        <li>Typed argument and output schemas</li>
+        <li>Dependency and platform declarations</li>
+        <li>Test count and quality score</li>
+        <li>Versioned with changelogs</li>
+        <li>Usage examples for agent context</li>
+      </ul>
+    </div>
+    <div class="code-card">
+      <div class="code-bar"><span>manifest.json</span><small>JSON</small></div>
+<div class="code-pre"><span class="b">{</span>
+  <span class="k">"name"</span>: <span class="v">"cli-anything-gimp"</span>,
+  <span class="k">"version"</span>: <span class="v">"2.1.0"</span>,
+  <span class="k">"description"</span>: <span class="v">"Full GIMP image editing via CLI"</span>,
+  <span class="k">"capabilities"</span>: <span class="b">[</span>
+    <span class="v">"image.open"</span>, <span class="v">"image.resize"</span>,
+    <span class="v">"image.filter"</span>, <span class="v">"image.export"</span>,
+    <span class="v">"layer.create"</span>, <span class="v">"layer.merge"</span>
+  <span class="b">]</span>,
+  <span class="k">"input_formats"</span>: <span class="b">[</span><span class="v">"png"</span>, <span class="v">"jpg"</span>, <span class="v">"psd"</span><span class="b">]</span>,
+  <span class="k">"output"</span>: <span class="v">"json"</span>,
+  <span class="k">"platform"</span>: <span class="b">[</span><span class="v">"linux"</span>, <span class="v">"macos"</span>, <span class="v">"windows"</span><span class="b">]</span>,
+  <span class="k">"install"</span>: <span class="v">"pip install cli-anything-gimp"</span>,
+  <span class="k">"requires"</span>: <span class="b">[</span><span class="v">"gimp&gt;=2.10"</span><span class="b">]</span>,
+  <span class="k">"tests_passed"</span>: <span class="n">187</span>,
+  <span class="k">"quality_score"</span>: <span class="n">0.96</span>
+<span class="b">}</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ Integrations ═══════ -->
+<div class="section" id="integrations">
+  <div class="section-head">
+    <div class="section-eyebrow">Integrations</div>
+    <div class="section-title">Works with every agent</div>
+    <p class="section-desc">If your agent can run a shell command, it can use CLI Anything.</p>
+  </div>
+  <div class="int-grid">
+    <div class="int-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+      <h4>Claude Code</h4>
+      <p>Plugin with auto-discovery and inline help</p>
+    </div>
+    <div class="int-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+      <h4>OpenAI Codex</h4>
+      <p>Skill-based integration for agent workflows</p>
+    </div>
+    <div class="int-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+      <h4>Cursor</h4>
+      <p>MCP server bridge for inline tool access</p>
+    </div>
+    <div class="int-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+      <h4>Any framework</h4>
+      <p>REST API and Python SDK for custom agents</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ CTA ═══════ -->
+<div class="cta">
+  <div class="cta-box">
+    <h2>Contribute a CLI package</h2>
+    <p>Wrap your favorite software, submit it to the registry, and make it available to every agent on earth.</p>
+    <div class="cta-actions">
+      <a href="#" class="btn-white" onclick="openModal();return false">Submit package</a>
+      <a href="#" class="btn-ghost">View on GitHub</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ Submit Modal ═══════ -->
+<div class="overlay" id="submitOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="modalTitle">Generate a CLI package</h2>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-steps" id="stepsIndicator">
+        <div class="modal-step active" data-s="1"><div class="step-dot">1</div><br>Input</div>
+        <div class="modal-step" data-s="2"><div class="step-dot">2</div><br>Generating</div>
+        <div class="modal-step" data-s="3"><div class="step-dot">3</div><br>Review</div>
+        <div class="modal-step" data-s="4"><div class="step-dot">4</div><br>Published</div>
+      </div>
+
+      <!-- Step 1: Input -->
+      <div id="step1">
+        <div class="form-group">
+          <label class="form-label">GitHub repository <span class="req">*</span></label>
+          <input class="form-input" id="f_repo" type="text" placeholder="https://github.com/user/repo">
+          <div class="form-error" id="err_repo">A valid GitHub URL is required</div>
+          <div class="form-hint">The source code repository of the software you want to CLI-ify.</div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Software name <span class="req">*</span></label>
+            <input class="form-input" id="f_name" type="text" placeholder="e.g. gimp, blender, vscode">
+            <div class="form-error" id="err_name">Name is required</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category <span class="req">*</span></label>
+            <select class="form-select" id="f_cat">
+              <option value="">Select...</option>
+            </select>
+            <div class="form-error" id="err_cat">Select a category</div>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-modal btn-modal-back" onclick="closeModal()">Cancel</button>
+          <button class="btn-modal btn-modal-next" onclick="startGeneration()">Generate CLI</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Generating -->
+      <div id="step2" style="display:none">
+        <div class="gen-progress">
+          <div class="gen-step" id="gs1">
+            <div class="gen-step-icon spin" id="gi1">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4m-7.07-15.07l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+            </div>
+            <div>
+              <div class="gen-step-title">Fetching repository</div>
+              <div class="gen-step-sub" id="gs1sub">Reading README and file structure from GitHub...</div>
+            </div>
+          </div>
+          <div class="gen-step pending" id="gs2">
+            <div class="gen-step-icon" id="gi2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg></div>
+            <div>
+              <div class="gen-step-title">Analyzing codebase</div>
+              <div class="gen-step-sub" id="gs2sub">Identifying APIs, entry points, and capabilities...</div>
+            </div>
+          </div>
+          <div class="gen-step pending" id="gs3">
+            <div class="gen-step-icon" id="gi3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg></div>
+            <div>
+              <div class="gen-step-title">Generating CLI code</div>
+              <div class="gen-step-sub" id="gs3sub">Writing Click commands, tests, and manifest...</div>
+            </div>
+          </div>
+          <div class="gen-step pending" id="gs4">
+            <div class="gen-step-icon" id="gi4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg></div>
+            <div>
+              <div class="gen-step-title">Packaging</div>
+              <div class="gen-step-sub" id="gs4sub">Building manifest.json and install config...</div>
+            </div>
+          </div>
+        </div>
+        <div class="gen-live" id="genLive" style="display:none">
+          <div class="code-bar"><span>Output</span><small>streaming</small></div>
+          <pre class="gen-live-code" id="genLiveCode"></pre>
+        </div>
+        <div class="gen-error" id="genError" style="display:none">
+          <p id="genErrorMsg"></p>
+          <button class="btn-modal btn-modal-back" onclick="showStep(1)" style="margin-top:12px">Back</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Review -->
+      <div id="step3" style="display:none">
+        <p style="font-size:14px;color:var(--g600);margin-bottom:16px">Review the generated CLI package. You can download the code or publish it directly to the registry.</p>
+        <div class="gen-file-tabs" id="fileTabs"></div>
+        <div class="code-card" style="margin-bottom:20px">
+          <div class="code-bar"><span id="reviewFileName">manifest.json</span><small id="reviewFileLang">JSON</small></div>
+          <pre class="gen-live-code" id="reviewCode" style="max-height:340px"></pre>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-modal btn-modal-back" onclick="showStep(1)">Start over</button>
+          <div style="display:flex;gap:8px">
+            <button class="btn-modal btn-modal-back" onclick="downloadAll()">Download .zip</button>
+            <button class="btn-modal btn-modal-submit" onclick="publishToRegistry()">Publish to registry</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Published -->
+      <div id="step4" style="display:none">
+        <div class="success-state">
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3>Published to registry</h3>
+          <p>Your CLI package has been generated and is now live. Agents can discover and install it.</p>
+          <div class="pkg-name" id="successPkg"></div>
+          <p style="font-size:13px;color:var(--g500)">Install via the command above, or browse the registry.</p>
+          <div style="margin-top:24px">
+            <button class="btn-modal btn-modal-next" onclick="closeModal();document.getElementById('registry').scrollIntoView({behavior:'smooth'})">View in registry</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ Footer ═══════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-copy">clianything.ai &middot; Making software agent-native</span>
+    <div class="footer-links">
+      <a href="cli/index.html">Registry</a>
+      <a href="docs.html">Docs</a>
+      <a href="about.html">About</a>
+      <a href="#">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="packages.js"></script>
+<script src="shared.js"></script>
+<script>
+/* ── Dynamic metrics ── */
+document.getElementById('metricPkgs').textContent = PACKAGES.length + '+';
+document.getElementById('metricTests').textContent = PACKAGES.reduce((s,p) => s + p.ts, 0).toLocaleString() + '+';
+
+/* ── Populate category select ── */
+const catSelect = document.getElementById('f_cat');
+for(const [key, cat] of Object.entries(CATEGORIES)){
+  const opt = document.createElement('option');
+  opt.value = key;
+  opt.textContent = cat.label;
+  catSelect.appendChild(opt);
+}
+
+/* ── Registry tabs (homepage shows subset) ── */
+const tabsEl = document.getElementById('tabs');
+let tabsHTML = '<button class="tab active" onclick="pick(\'all\',this)">All</button>';
+for(const [key, cat] of Object.entries(CATEGORIES)){
+  tabsHTML += '<button class="tab" onclick="pick(\''+key+'\',this)">'+cat.label+'</button>';
+}
+tabsEl.innerHTML = tabsHTML;
+
+/* Show first 20 packages on homepage */
+const HOMEPAGE_LIMIT = 20;
+let currentHomePkgs = PACKAGES.slice(0, HOMEPAGE_LIMIT);
+
+function render(items){
+  renderCards(items, 'grid', {linkable: true});
+}
+
+function pick(cat, btn){
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if(cat === 'all'){
+    currentHomePkgs = PACKAGES.slice(0, HOMEPAGE_LIMIT);
+  } else {
+    currentHomePkgs = getPkgsByCategory(cat).slice(0, HOMEPAGE_LIMIT);
+  }
+  render(currentHomePkgs);
+}
+
+function doSearch(){
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  if(!q){ render(PACKAGES.slice(0, HOMEPAGE_LIMIT)); return; }
+  const res = PACKAGES.filter(c =>
+    c.n.includes(q) || c.d.toLowerCase().includes(q) ||
+    (c.t||[]).some(t => t.includes(q)) || c.c.includes(q) ||
+    (c.caps||[]).some(cap => cap.includes(q))
+  );
+  render(res.slice(0, HOMEPAGE_LIMIT));
+}
+document.getElementById('searchInput').addEventListener('keyup', e => { if(e.key === 'Enter') doSearch() });
+document.getElementById('searchInput').addEventListener('input', e => { if(!e.target.value) render(PACKAGES.slice(0, HOMEPAGE_LIMIT)) });
+
+render(currentHomePkgs);
+
+/* ── Terminal animation ── */
+const lines=[
+  {t:'in',h:'<span class="p">$</span> <span class="c">clianything search</span> <span class="f">--capability</span> <span class="s">"resize images"</span>'},
+  {t:'out',h:'<span class="o">  cli-anything-gimp        v2.1.0   187 tests   3.2K installs</span>'},
+  {t:'out',h:'<span class="o">  cli-anything-imagemagick  v2.4.0   234 tests   4.8K installs</span>'},
+  {t:'in',h:'<span class="p">$</span> <span class="c">pip install cli-anything-gimp</span>'},
+  {t:'out',h:'<span class="ok">  Installed cli-anything-gimp 2.1.0</span>'},
+  {t:'in',h:'<span class="p">$</span> <span class="c">gimp-cli resize</span> <span class="f">--input</span> <span class="s">photo.png</span> <span class="f">--width</span> <span class="s">1920</span> <span class="f">--output</span> <span class="s">json</span>'},
+  {t:'out',h:'<span class="o">  {"status":"ok","file":"photo_1920.png","width":1920,"height":1080}</span>'},
+];
+let li=0;const term=document.getElementById('term');
+function typeLoop(){
+  if(li>=lines.length){setTimeout(()=>{term.innerHTML='';li=0;typeLoop()},3500);return}
+  const l=lines[li];const d=document.createElement('div');
+  d.style.opacity='0';d.innerHTML=l.h;term.appendChild(d);
+  requestAnimationFrame(()=>{d.style.transition='opacity .25s';d.style.opacity='1'});
+  li++;setTimeout(typeLoop,l.t==='in'?900:400);
+}
+setTimeout(typeLoop,800);
+
+/* ── Submit Modal ── */
+const WORKER_URL = 'https://clianything.contract-tools.workers.dev';
+let generatedFiles = {};
+let repoInfo = null;
+
+function openModal(){
+  document.getElementById('submitOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  resetModal();
+}
+function closeModal(){
+  document.getElementById('submitOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('submitOverlay').addEventListener('click', e => {
+  if(e.target === e.currentTarget) closeModal();
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal() });
+
+function resetModal(){
+  ['f_name','f_repo'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('f_cat').value = '';
+  generatedFiles = {}; repoInfo = null;
+  document.getElementById('genLiveCode').textContent = '';
+  document.getElementById('genLive').style.display = 'none';
+  document.getElementById('genError').style.display = 'none';
+  for(let i=1;i<=4;i++){
+    const el = document.getElementById('gs'+i);
+    el.className = 'gen-step' + (i===1 ? ' active' : ' pending');
+    document.getElementById('gi'+i).className = 'gen-step-icon' + (i===1 ? ' spin' : '');
+  }
+  showStep(1);
+  clearErrors();
+}
+
+function showStep(n){
+  [1,2,3,4].forEach(i => {
+    document.getElementById('step'+i).style.display = i===n ? 'block' : 'none';
+  });
+  document.querySelectorAll('.modal-step').forEach(el => {
+    const s = parseInt(el.dataset.s);
+    el.classList.remove('active','done');
+    if(s === n) el.classList.add('active');
+    if(s < n) el.classList.add('done');
+  });
+  const titles = {1:'Generate a CLI package',2:'Generating...',3:'Review generated code',4:'Published'};
+  document.getElementById('modalTitle').textContent = titles[n] || '';
+}
+
+function clearErrors(){
+  document.querySelectorAll('.form-error').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.form-input.error,.form-select.error').forEach(el => el.classList.remove('error'));
+}
+function showError(fieldId,errId){
+  document.getElementById(fieldId).classList.add('error');
+  document.getElementById(errId).style.display = 'block';
+}
+
+const checkSVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>';
+const spinSVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4m-7.07-15.07l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>';
+const errSVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>';
+
+function setGenStep(n, status, sub){
+  const el = document.getElementById('gs'+n);
+  const icon = document.getElementById('gi'+n);
+  el.className = 'gen-step ' + status;
+  if(status==='active'){icon.className='gen-step-icon spin';icon.innerHTML=spinSVG}
+  else if(status==='done'){icon.className='gen-step-icon';icon.innerHTML=checkSVG}
+  else if(status==='error'){icon.className='gen-step-icon';icon.innerHTML=errSVG}
+  if(sub) document.getElementById('gs'+n+'sub').textContent = sub;
+}
+
+async function startGeneration(){
+  clearErrors();
+  const repo = document.getElementById('f_repo').value.trim();
+  const name = document.getElementById('f_name').value.trim();
+  const cat = document.getElementById('f_cat').value;
+  let ok = true;
+  if(!repo || !repo.includes('github.com')){ showError('f_repo','err_repo'); ok = false }
+  if(!name){ showError('f_name','err_name'); ok = false }
+  if(!cat){ showError('f_cat','err_cat'); ok = false }
+  if(!ok) return;
+
+  showStep(2);
+  generatedFiles = {};
+
+  setGenStep(1,'active','Fetching repository from GitHub...');
+  try {
+    const res = await fetch(WORKER_URL+'/github/repo-info',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({repo_url:repo})
+    });
+    if(!res.ok) throw new Error('Failed to fetch repo: '+(await res.text()));
+    repoInfo = await res.json();
+    if(repoInfo.error) throw new Error(repoInfo.error);
+    setGenStep(1,'done','Found '+repoInfo.name+' — '+(repoInfo.files||[]).length+' files, '+(repoInfo.readme?repoInfo.readme.length:0)+' chars README');
+  } catch(err){
+    setGenStep(1,'error',err.message);
+    showGenError('Failed to fetch GitHub repository: '+err.message);
+    return;
+  }
+
+  setGenStep(2,'active','Sending to Claude API for analysis...');
+  await sleep(500);
+  setGenStep(2,'done','Codebase analyzed');
+
+  setGenStep(3,'active','Generating CLI code with Claude...');
+  document.getElementById('genLive').style.display = 'block';
+  const liveCode = document.getElementById('genLiveCode');
+  liveCode.textContent = '';
+
+  try {
+    const res = await fetch(WORKER_URL+'/generate',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({repo_info:repoInfo, software_name:name, category:cat})
+    });
+    if(!res.ok){ throw new Error(await res.text()) }
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let fullText = '';
+    let buffer = '';
+
+    while(true){
+      const {done, value} = await reader.read();
+      if(done) break;
+      buffer += decoder.decode(value, {stream:true});
+      const evts = buffer.split('\n\n');
+      buffer = evts.pop() || '';
+      for(const evt of evts){
+        for(const line of evt.split('\n')){
+          if(line.startsWith('data: ')){
+            const data = line.slice(6);
+            if(data === '[DONE]') continue;
+            try {
+              const j = JSON.parse(data);
+              if(j.type==='content_block_delta' && j.delta && j.delta.text){
+                fullText += j.delta.text;
+                liveCode.textContent = fullText;
+                liveCode.scrollTop = liveCode.scrollHeight;
+              }
+            } catch(e){}
+          }
+        }
+      }
+    }
+
+    generatedFiles = parseGeneratedFiles(fullText, name);
+    setGenStep(3,'done','Generated '+Object.keys(generatedFiles).length+' files');
+  } catch(err){
+    setGenStep(3,'error',err.message);
+    showGenError('Generation failed: '+err.message);
+    return;
+  }
+
+  setGenStep(4,'active','Building package...');
+  await sleep(800);
+  setGenStep(4,'done','Package ready');
+  await sleep(500);
+  showReviewStep();
+}
+
+function showGenError(msg){
+  document.getElementById('genError').style.display = 'block';
+  document.getElementById('genErrorMsg').textContent = msg;
+}
+
+function sleep(ms){ return new Promise(r => setTimeout(r, ms)) }
+
+function parseGeneratedFiles(text, name){
+  const files = {};
+  const regex = /```(\w+)?\n([\s\S]*?)```/g;
+  let m;
+  const fileNames = ['manifest.json','cli.py','setup.py','test_cli.py'];
+  let idx = 0;
+  while((m = regex.exec(text)) !== null){
+    const content = m[2].trim();
+    let fname = fileNames[idx] || 'file_'+idx+'.txt';
+    const firstLine = content.split('\n')[0];
+    if(firstLine.startsWith('#') && firstLine.includes('.')){
+      const extracted = firstLine.replace(/^#\s*/,'').trim();
+      if(extracted.includes('.')){
+        fname = extracted;
+        files[fname] = content.split('\n').slice(1).join('\n').trim();
+        idx++; continue;
+      }
+    }
+    files[fname] = content;
+    idx++;
+  }
+  if(Object.keys(files).length === 0){ files['output.txt'] = text }
+  return files;
+}
+
+function showReviewStep(){
+  showStep(3);
+  const tabs = document.getElementById('fileTabs');
+  const fnames = Object.keys(generatedFiles);
+  tabs.innerHTML = fnames.map((f,i) =>
+    '<button class="gen-file-tab'+(i===0?' active':'')+'" onclick="showFile(\''+f+'\',this)">'+f+'</button>'
+  ).join('');
+  if(fnames.length) showFile(fnames[0], tabs.querySelector('.gen-file-tab'));
+}
+
+function showFile(fname, btn){
+  document.querySelectorAll('.gen-file-tab').forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  document.getElementById('reviewFileName').textContent = fname;
+  document.getElementById('reviewFileLang').textContent = fname.split('.').pop().toUpperCase();
+  document.getElementById('reviewCode').textContent = generatedFiles[fname] || '';
+}
+
+function downloadAll(){
+  let content = '';
+  Object.entries(generatedFiles).forEach(([name, code]) => {
+    content += '========== '+name+' ==========\n'+code+'\n\n';
+  });
+  const blob = new Blob([content], {type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'cli-anything-'+document.getElementById('f_name').value.trim().toLowerCase().replace(/\s+/g,'-')+'.txt';
+  a.click();
+}
+
+function publishToRegistry(){
+  const name = document.getElementById('f_name').value.trim().toLowerCase().replace(/\s+/g,'-');
+  const cat = document.getElementById('f_cat').value;
+  const ic = getIconClass(cat);
+
+  let desc = repoInfo?.description || 'CLI wrapper for '+name;
+  let pkgTags = [cat];
+  try {
+    const mf = JSON.parse(generatedFiles['manifest.json'] || '{}');
+    if(mf.description) desc = mf.description;
+    if(mf.tags) pkgTags = mf.tags;
+    if(mf.capabilities) pkgTags = mf.capabilities.slice(0,3).map(c => c.split('.').pop());
+  } catch(e){}
+
+  const install = 'pip install cli-anything-'+name;
+
+  PACKAGES.unshift({
+    n:name, v:'1.0.0', d:desc, c:cat,
+    t:pkgTags.slice(0,3), dl:'0', ts:0,
+    logo:repoInfo?.avatar || null,
+    caps:[], cmds:[], plat:['linux','macos','windows'], req:[], inf:[], outf:[]
+  });
+
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+  document.querySelector('.tab').classList.add('active');
+  render(PACKAGES.slice(0, HOMEPAGE_LIMIT));
+
+  document.getElementById('successPkg').textContent = install;
+  showStep(4);
+}
+</script>
+
+</body>
+</html>

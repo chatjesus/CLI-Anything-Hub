@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLI Package Registry — CLI Anything | Browse 55+ CLI Wrappers for AI Agents</title>
+<meta name="description" content="Browse the CLI Anything package registry. 55+ production-ready CLI wrappers for popular software including Microsoft Office, Adobe Creative Suite, FFmpeg, Docker, and more. Built for AI agents.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<script src="../packages.js"></script>
+<script src="../shared.js"></script>
+<script>
+document.body.innerHTML = renderNav('registry') + `
+<div class="registry-hero">
+  <h1>CLI Package Registry</h1>
+  <p>Production-tested CLI wrappers for the most-used software. Every package works with any AI agent framework.</p>
+</div>
+<div class="registry-body">
+  <div class="search-row" style="max-width:480px;margin-bottom:28px">
+    <input type="text" class="search-input" placeholder="Search by name, capability, or category..." id="regSearch">
+    <button class="search-btn" onclick="doRegSearch()">Search</button>
+  </div>
+  <div class="tabs" id="regTabs"></div>
+  <div class="registry-count" id="regCount"></div>
+  <div id="regContent"></div>
+</div>
+` + renderFooter();
+
+// Build tabs
+const tabsEl = document.getElementById('regTabs');
+let tabsHTML = '<button class="tab active" onclick="filterReg(\'all\',this)">All</button>';
+for(const [key, cat] of Object.entries(CATEGORIES)){
+  const count = getPkgsByCategory(key).length;
+  tabsHTML += '<button class="tab" onclick="filterReg(\''+key+'\',this)">'+cat.label+' ('+count+')</button>';
+}
+tabsEl.innerHTML = tabsHTML;
+
+let currentFilter = 'all';
+
+function renderRegContent(pkgs){
+  document.getElementById('regCount').textContent = pkgs.length + ' packages';
+  if(currentFilter === 'all'){
+    // Group by category
+    let html = '';
+    for(const [key, cat] of Object.entries(CATEGORIES)){
+      const catPkgs = pkgs.filter(p => p.c === key);
+      if(!catPkgs.length) continue;
+      html += '<div class="cat-section" id="'+key+'">';
+      html += '<div class="cat-section-head"><div class="cat-dot" style="background:'+cat.color+'"></div><h2>'+cat.label+'</h2><span class="cat-count">'+catPkgs.length+' packages</span></div>';
+      html += '<div class="grid">';
+      html += catPkgs.map(c => renderCard(c, {linkable:true})).join('');
+      html += '</div></div>';
+    }
+    document.getElementById('regContent').innerHTML = html;
+  } else {
+    document.getElementById('regContent').innerHTML = '<div class="grid">' + pkgs.map(c => renderCard(c, {linkable:true})).join('') + '</div>';
+  }
+}
+
+function filterReg(cat, btn){
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = cat;
+  const pkgs = cat === 'all' ? PACKAGES : getPkgsByCategory(cat);
+  renderRegContent(pkgs);
+}
+
+function doRegSearch(){
+  const q = document.getElementById('regSearch').value.toLowerCase().trim();
+  if(!q){ currentFilter='all'; renderRegContent(PACKAGES); return; }
+  currentFilter = 'search';
+  const res = PACKAGES.filter(c =>
+    c.n.includes(q) || c.d.toLowerCase().includes(q) || (c.ld||'').toLowerCase().includes(q) ||
+    (c.t||[]).some(t => t.includes(q)) || c.c.includes(q) ||
+    (c.caps||[]).some(cap => cap.includes(q))
+  );
+  renderRegContent(res);
+}
+
+document.getElementById('regSearch').addEventListener('keyup', e => { if(e.key === 'Enter') doRegSearch() });
+document.getElementById('regSearch').addEventListener('input', e => { if(!e.target.value){ currentFilter='all'; renderRegContent(PACKAGES); }});
+
+renderRegContent(PACKAGES);
+</script>
+</body>
+</html>

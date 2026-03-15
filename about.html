@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — CLI Anything | Making All Software Agent-Native</title>
+<meta name="description" content="CLI Anything is an open-source project to make every piece of software usable by AI agents through standardized command-line interfaces.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script src="packages.js"></script>
+<script src="shared.js"></script>
+<script>
+document.body.innerHTML = renderNav('about') + `
+<div class="about-hero">
+  <h1>Making all software<br>agent-native</h1>
+  <p>CLI Anything is an open-source project to wrap every piece of software in a tested, documented command-line interface — so any AI agent can use it.</p>
+</div>
+
+<div class="about-grid">
+  <div class="about-card">
+    <h2>The problem</h2>
+    <p>AI agents are powerful, but they can only interact with software that has an API or CLI. Most software is locked behind GUIs. Screen scraping is brittle, platform-specific, and breaks with every update.</p>
+    <p style="margin-top:12px">The result: agents can write code and chat, but they can't edit images, process videos, manage databases, or use 99% of the world's software.</p>
+  </div>
+  <div class="about-card">
+    <h2>The solution</h2>
+    <p>CLI Anything wraps real software binaries in standardized command-line interfaces. Every wrapper calls the actual tool via subprocess — no simulation, no mocking.</p>
+    <p style="margin-top:12px">Each package ships with a machine-readable manifest, structured JSON output, and comprehensive tests. Install with pip, use from any agent.</p>
+  </div>
+  <div class="about-card">
+    <h2>Open source</h2>
+    <p>CLI Anything is fully open source. Browse the code, contribute packages, report issues, or fork the project. We believe the interface between agents and software should be a public good.</p>
+    <p style="margin-top:12px">Licensed under MIT. Contributions welcome.</p>
+  </div>
+  <div class="about-card">
+    <h2>The vision</h2>
+    <p>Every piece of software, from Photoshop to PostgreSQL, from Excel to FFmpeg, available to every AI agent through a single, consistent interface.</p>
+    <p style="margin-top:12px">One registry. One manifest standard. One install command. Any agent.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head" style="text-align:center;max-width:600px;margin:0 auto 48px">
+    <div class="section-eyebrow">By the numbers</div>
+    <div class="section-title">Growing every week</div>
+  </div>
+  <div class="metrics-inner" style="max-width:800px;margin:0 auto;border:1px solid var(--g200);border-radius:10px;display:grid;grid-template-columns:repeat(4,1fr)">
+    <div class="metric"><div class="metric-num">${PACKAGES.length}+</div><div class="metric-label">CLI packages</div></div>
+    <div class="metric"><div class="metric-num">${Object.keys(CATEGORIES).length}</div><div class="metric-label">Categories</div></div>
+    <div class="metric"><div class="metric-num">${PACKAGES.reduce((s,p)=>s+p.ts,0).toLocaleString()}</div><div class="metric-label">Tests passing</div></div>
+    <div class="metric"><div class="metric-num">${(['linux','macos','windows']).length}</div><div class="metric-label">Platforms</div></div>
+  </div>
+</div>
+
+<div class="cta">
+  <div class="cta-box">
+    <h2>Join the project</h2>
+    <p>Help us make every piece of software agent-native. Contribute a CLI wrapper, report issues, or spread the word.</p>
+    <div class="cta-actions">
+      <a href="cli/index.html" class="btn-white">Browse registry</a>
+      <a href="#" class="btn-ghost">GitHub</a>
+    </div>
+  </div>
+</div>
+` + renderFooter();
+</script>
+</body>
+</html>

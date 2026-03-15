@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentation — CLI Anything | Getting Started, Manifest Spec, Agent Integration</title>
+<meta name="description" content="CLI Anything documentation. Learn how to install CLI packages, create your own, understand the manifest spec, and integrate with AI agent frameworks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script src="packages.js"></script>
+<script src="shared.js"></script>
+<script>
+document.body.innerHTML = renderNav('docs') + `
+<div class="docs-layout">
+  <nav class="docs-nav">
+    <div class="docs-nav-group">Getting Started</div>
+    <a href="#introduction" class="active">Introduction</a>
+    <a href="#installation">Installation</a>
+    <a href="#quick-start">Quick start</a>
+    <div class="docs-nav-group">Specification</div>
+    <a href="#manifest">Manifest spec</a>
+    <a href="#capabilities">Capabilities</a>
+    <a href="#output-format">Output format</a>
+    <div class="docs-nav-group">Building</div>
+    <a href="#create-package">Create a package</a>
+    <a href="#testing">Testing</a>
+    <a href="#publishing">Publishing</a>
+    <div class="docs-nav-group">Integration</div>
+    <a href="#agent-integration">Agent integration</a>
+    <a href="#mcp-bridge">MCP bridge</a>
+  </nav>
+
+  <div class="docs-content">
+    <h1>CLI Anything Documentation</h1>
+    <p>Everything you need to install, create, and integrate CLI packages for AI agents.</p>
+
+    <h2 id="introduction">Introduction</h2>
+    <p>CLI Anything is an open-source registry of command-line interface wrappers for popular software. Each package wraps a real application — like Photoshop, FFmpeg, or Docker — in a tested, documented CLI that produces structured JSON output.</p>
+    <p>The goal: make every piece of software on earth usable by AI agents through a single, consistent interface.</p>
+
+    <h3>Why CLI?</h3>
+    <ul>
+      <li><strong>Deterministic</strong> — Same input produces same output. No pixel coordinates or timing issues.</li>
+      <li><strong>Cross-platform</strong> — Works on Linux, macOS, and Windows without modification.</li>
+      <li><strong>Composable</strong> — Pipe outputs between tools. Chain operations into workflows.</li>
+      <li><strong>Self-describing</strong> — Every command has --help, every package has a manifest.</li>
+    </ul>
+
+    <h2 id="installation">Installation</h2>
+    <p>CLI Anything packages are installed via pip:</p>
+    <pre><code>pip install cli-anything-gimp</code></pre>
+    <p>Each package declares its requirements in the manifest. The underlying software (e.g., GIMP, FFmpeg) must be installed separately.</p>
+    <pre><code># Install multiple packages
+pip install cli-anything-ffmpeg cli-anything-imagemagick cli-anything-docker</code></pre>
+
+    <h2 id="quick-start">Quick start</h2>
+    <p>After installing a package, use it from the command line:</p>
+    <pre><code># Search the registry
+clianything search --capability "resize images"
+
+# Install a package
+pip install cli-anything-gimp
+
+# Use it
+gimp-cli resize --input photo.png --width 1920 --output json
+
+# Output
+{"status": "ok", "file": "photo_1920.png", "width": 1920, "height": 1080}</code></pre>
+
+    <h2 id="manifest">Manifest spec</h2>
+    <p>Every CLI Anything package includes a <code>manifest.json</code> that describes its capabilities, requirements, and interface:</p>
+    <pre><code>{
+  "name": "cli-anything-gimp",
+  "version": "2.1.0",
+  "description": "Full GIMP image editing via CLI",
+  "capabilities": [
+    "image.open", "image.resize",
+    "image.filter", "image.export",
+    "layer.create", "layer.merge"
+  ],
+  "input_formats": ["png", "jpg", "psd", "tiff"],
+  "output": "json",
+  "platform": ["linux", "macos", "windows"],
+  "install": "pip install cli-anything-gimp",
+  "requires": ["gimp>=2.10"],
+  "tests_passed": 187,
+  "quality_score": 0.96,
+  "tags": ["image", "editing", "open-source"]
+}</code></pre>
+
+    <h3>Required fields</h3>
+    <table>
+      <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>name</code></td><td>string</td><td>Package name, prefixed with cli-anything-</td></tr>
+        <tr><td><code>version</code></td><td>string</td><td>Semver version string</td></tr>
+        <tr><td><code>description</code></td><td>string</td><td>One-line description of capabilities</td></tr>
+        <tr><td><code>capabilities</code></td><td>string[]</td><td>Dot-notation capability descriptors</td></tr>
+        <tr><td><code>platform</code></td><td>string[]</td><td>Supported platforms: linux, macos, windows</td></tr>
+        <tr><td><code>install</code></td><td>string</td><td>Install command</td></tr>
+        <tr><td><code>requires</code></td><td>string[]</td><td>System dependencies with version constraints</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Optional fields</h3>
+    <table>
+      <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>input_formats</code></td><td>string[]</td><td>Accepted input file formats</td></tr>
+        <tr><td><code>output</code></td><td>string</td><td>Output format (typically "json")</td></tr>
+        <tr><td><code>tests_passed</code></td><td>number</td><td>Number of passing tests</td></tr>
+        <tr><td><code>quality_score</code></td><td>number</td><td>Quality score from 0 to 1</td></tr>
+        <tr><td><code>tags</code></td><td>string[]</td><td>Searchable tags</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="capabilities">Capabilities</h2>
+    <p>Capabilities use dot-notation to describe what a CLI can do. This allows agents to search by function rather than tool name.</p>
+    <pre><code># Examples:
+image.resize      — Resize images
+video.transcode   — Convert video formats
+doc.convert       — Convert document formats
+query.execute     — Run database queries
+container.run     — Run containers
+message.send      — Send messages</code></pre>
+    <p>The first segment is the domain, the second is the action. Agents use this to discover the right tool for a task.</p>
+
+    <h2 id="output-format">Output format</h2>
+    <p>All CLI Anything commands support <code>--output json</code> for structured output that agents can parse:</p>
+    <pre><code>$ gimp-cli resize --input photo.png --width 800 --output json
+{
+  "status": "ok",
+  "input": "photo.png",
+  "output": "photo_800.png",
+  "width": 800,
+  "height": 533,
+  "format": "png",
+  "size_bytes": 245760
+}</code></pre>
+    <p>Error output follows the same structure:</p>
+    <pre><code>{
+  "status": "error",
+  "code": "FILE_NOT_FOUND",
+  "message": "Input file 'missing.png' does not exist"
+}</code></pre>
+
+    <h2 id="create-package">Create a package</h2>
+    <p>To create a new CLI Anything package:</p>
+    <ol>
+      <li>Use the <strong>Submit a CLI</strong> button on the website to auto-generate from a GitHub repo</li>
+      <li>Or build manually with Click (Python CLI framework)</li>
+    </ol>
+    <pre><code># cli.py
+import click
+import subprocess
+import json
+
+@click.group()
+def cli():
+    """CLI Anything wrapper for MyTool."""
+    pass
+
+@cli.command()
+@click.option('--input', '-i', required=True, help='Input file path')
+@click.option('--output', '-o', default='json', help='Output format')
+def process(input, output):
+    """Process a file with MyTool."""
+    result = subprocess.run(['mytool', 'process', input], capture_output=True, text=True)
+    if output == 'json':
+        click.echo(json.dumps({"status": "ok", "output": result.stdout.strip()}))
+    else:
+        click.echo(result.stdout)
+
+if __name__ == '__main__':
+    cli()</code></pre>
+
+    <h2 id="testing">Testing</h2>
+    <p>Write pytest tests for every command:</p>
+    <pre><code># test_cli.py
+from click.testing import CliRunner
+from cli import cli
+
+def test_process():
+    runner = CliRunner()
+    result = runner.invoke(cli, ['process', '--input', 'test.txt'])
+    assert result.exit_code == 0
+
+def test_json_output():
+    runner = CliRunner()
+    result = runner.invoke(cli, ['process', '--input', 'test.txt', '--output', 'json'])
+    data = json.loads(result.output)
+    assert data['status'] == 'ok'</code></pre>
+
+    <h2 id="publishing">Publishing</h2>
+    <p>Once your package passes tests:</p>
+    <ol>
+      <li>Ensure <code>manifest.json</code> is complete and accurate</li>
+      <li>Run the full test suite: <code>pytest test_cli.py -v</code></li>
+      <li>Submit via the website or open a PR on GitHub</li>
+    </ol>
+
+    <h2 id="agent-integration">Agent integration</h2>
+    <p>CLI Anything packages work with any agent that can execute shell commands:</p>
+    <pre><code># Python — using subprocess
+import subprocess, json
+
+result = subprocess.run(
+    ['gimp-cli', 'resize', '--input', 'photo.png', '--width', '800', '--output', 'json'],
+    capture_output=True, text=True
+)
+data = json.loads(result.stdout)
+print(data['output'])  # photo_800.png</code></pre>
+
+    <pre><code># Claude Code — natural language
+# "Resize all images in ./photos to 1920px wide"
+# Agent discovers gimp-cli, runs:
+$ gimp-cli resize --input ./photos/*.png --width 1920 --output json</code></pre>
+
+    <h2 id="mcp-bridge">MCP bridge</h2>
+    <p>CLI Anything can be exposed as an MCP (Model Context Protocol) server, making every CLI package available as a tool:</p>
+    <pre><code>{
+  "mcpServers": {
+    "cli-anything": {
+      "command": "clianything-mcp",
+      "args": ["--packages", "gimp,ffmpeg,docker"]
+    }
+  }
+}</code></pre>
+    <p>This allows Claude, Cursor, and other MCP-compatible agents to discover and use CLI packages automatically.</p>
+  </div>
+</div>
+` + renderFooter();
+</script>
+</body>
+</html>
