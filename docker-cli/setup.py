@@ -3,19 +3,21 @@ from setuptools import setup
 setup(
     name="cli-anything-docker",
     version="1.0.0",
-    description="Docker engine CLI — cli-anything engine",
-    long_description=open("README.md", encoding="utf-8").read(),
+    description="Docker Engine CLI - part of CLI Anything Hub",
+    long_description=open("README.md", encoding="utf-8").read() if __import__("os").path.exists("README.md") else "Docker Engine CLI wrapper for AI agents.",
     long_description_content_type="text/markdown",
     author="AgentPuter",
+    author_email="hello@agentputer.com",
     url="https://www.agentputer.com/cli-anything",
+    project_urls={
+        "GitHub": "https://github.com/chatjesus/CLI-Anything-Hub",
+        "Hub": "https://www.agentputer.com/cli-anything",
+    },
     py_modules=["docker_cli"],
-    install_requires=[
-        "click>=8.0",
-        "docker>=7.0",
-    ],
+    install_requires=['click>=8.0', 'docker>=7.0'],
     entry_points={
         "console_scripts": [
-            "docker-cli=docker_cli:cli",
+            "cli-anything-docker=docker_cli:cli",
         ],
     },
     python_requires=">=3.9",
@@ -23,5 +25,8 @@ setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "Topic :: Software Development :: Libraries",
     ],
 )

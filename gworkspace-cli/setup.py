@@ -1,21 +1,32 @@
 from setuptools import setup
+
 setup(
     name="cli-anything-gworkspace",
     version="1.0.0",
-    description="Google Workspace CLI for cli-anything engine (Drive/Gmail/Calendar/Sheets/Docs/Chat)",
+    description="Google Workspace Suite CLI - part of CLI Anything Hub",
+    long_description=open("README.md", encoding="utf-8").read() if __import__("os").path.exists("README.md") else "Google Workspace Suite CLI wrapper for AI agents.",
+    long_description_content_type="text/markdown",
     author="AgentPuter",
-    url="https://www.agentputer.com/cli-anything/gworkspace/",
-    py_modules=["gworkspace_cli"],
-    install_requires=[
-        "click>=8.0",
-        "google-auth>=2.0",
-        "google-auth-oauthlib>=1.0",
-    ],
-    extras_require={
-        "full": ["google-api-python-client>=2.0"],
+    author_email="hello@agentputer.com",
+    url="https://www.agentputer.com/cli-anything",
+    project_urls={
+        "GitHub": "https://github.com/chatjesus/CLI-Anything-Hub",
+        "Hub": "https://www.agentputer.com/cli-anything",
     },
+    py_modules=["gworkspace_cli"],
+    install_requires=['click>=8.0', 'google-auth>=2.0', 'google-auth-oauthlib>=1.0'],
     entry_points={
-        "console_scripts": ["gworkspace-cli=gworkspace_cli:cli"],
+        "console_scripts": [
+            "cli-anything-gworkspace=gworkspace_cli:cli",
+        ],
     },
     python_requires=">=3.9",
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "Topic :: Software Development :: Libraries",
+    ],
 )
