@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    background: #0d1117; 
+    display: flex; justify-content: center; align-items: center; 
+    min-height: 100vh; 
+    font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+  }
+  .frame {
+    width: 1270px; height: 760px;
+    background: #0d1117;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 40px 50px;
+  }
+  .badge {
+    font-family: -apple-system, sans-serif;
+    font-size: 13px; color: #8b949e; letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .title {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 26px; font-weight: 700; color: #e6edf3; margin-bottom: 36px;
+  }
+  .panels { display: flex; gap: 20px; width: 100%; }
+  .panel {
+    flex: 1; background: #161b22; border-radius: 10px;
+    border: 1px solid #30363d; overflow: hidden;
+  }
+  .panel-header {
+    height: 36px; display: flex; align-items: center; padding: 0 14px;
+    font-family: -apple-system, sans-serif;
+    font-size: 13px; font-weight: 600; color: #fff;
+    border-bottom: 1px solid #30363d;
+  }
+  .panel-header.slack { background: #611f69; }
+  .panel-header.stripe { background: #635bff; }
+  .panel-header.docker { background: #0db7ed; color: #fff; }
+  .panel-header .icon { margin-right: 8px; font-size: 15px; }
+  .panel-body { padding: 16px; font-size: 12.5px; line-height: 1.7; }
+  .label { color: #484f58; font-size: 11px; margin-top: 12px; margin-bottom: 4px; }
+  .label:first-child { margin-top: 0; }
+  .prompt { color: #3fb950; }
+  .cmd { color: #e6edf3; }
+  .json { color: #d2a8ff; }
+  .key { color: #79c0ff; }
+  .val { color: #a5d6ff; }
+  .str { color: #a5d6ff; }
+  .num { color: #d2a8ff; }
+  .bool { color: #ff7b72; }
+  .subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 17px; color: #e6edf3; margin-top: 32px;
+    font-weight: 500;
+  }
+  .sub2 {
+    font-family: -apple-system, sans-serif;
+    font-size: 14px; color: #484f58; margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="badge">Same interface, every tool</div>
+  <div class="title">Three CLIs. One Standard. Infinite Possibilities.</div>
+
+  <div class="panels">
+    <!-- Slack -->
+    <div class="panel">
+      <div class="panel-header slack"><span class="icon">💬</span> Slack CLI</div>
+      <div class="panel-body">
+        <div class="label">COMMAND</div>
+        <div><span class="prompt">$ </span><span class="cmd">cli-anything-slack \</span></div>
+        <div><span class="cmd">  --json message send \</span></div>
+        <div><span class="cmd">  #ops "Deploy v2.1 done"</span></div>
+        <div class="label">RESPONSE</div>
+        <div><span class="json">{</span></div>
+        <div>&nbsp;&nbsp;<span class="key">"ok"</span>: <span class="bool">true</span>,</div>
+        <div>&nbsp;&nbsp;<span class="key">"channel"</span>: <span class="str">"C0G9QF9GW"</span>,</div>
+        <div>&nbsp;&nbsp;<span class="key">"ts"</span>: <span class="str">"1742000.001"</span></div>
+        <div><span class="json">}</span></div>
+      </div>
+    </div>
+
+    <!-- Stripe -->
+    <div class="panel">
+      <div class="panel-header stripe"><span class="icon">💳</span> Stripe CLI</div>
+      <div class="panel-body">
+        <div class="label">COMMAND</div>
+        <div><span class="prompt">$ </span><span class="cmd">cli-anything-stripe \</span></div>
+        <div><span class="cmd">  --json customers list \</span></div>
+        <div><span class="cmd">  --limit 3</span></div>
+        <div class="label">RESPONSE</div>
+        <div><span class="json">{</span></div>
+        <div>&nbsp;&nbsp;<span class="key">"count"</span>: <span class="num">3</span>,</div>
+        <div>&nbsp;&nbsp;<span class="key">"customers"</span>: [</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;{<span class="key">"id"</span>: <span class="str">"cus_R4x"</span>}</div>
+        <div>&nbsp;&nbsp;]</div>
+        <div><span class="json">}</span></div>
+      </div>
+    </div>
+
+    <!-- Docker -->
+    <div class="panel">
+      <div class="panel-header docker"><span class="icon">🐳</span> Docker CLI</div>
+      <div class="panel-body">
+        <div class="label">COMMAND</div>
+        <div><span class="prompt">$ </span><span class="cmd">cli-anything-docker \</span></div>
+        <div><span class="cmd">  --json containers list \</span></div>
+        <div><span class="cmd">  --status running</span></div>
+        <div class="label">RESPONSE</div>
+        <div><span class="json">{</span></div>
+        <div>&nbsp;&nbsp;<span class="key">"count"</span>: <span class="num">5</span>,</div>
+        <div>&nbsp;&nbsp;<span class="key">"containers"</span>: [</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;{<span class="key">"name"</span>: <span class="str">"web"</span>}</div>
+        <div>&nbsp;&nbsp;]</div>
+        <div><span class="json">}</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subtitle">detect → schema → call → JSON</div>
+  <div class="sub2">Every CLI in the Hub follows the same 4-command interface</div>
+</div>
+</body></html>

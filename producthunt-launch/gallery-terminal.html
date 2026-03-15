@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    background: #0d1117; 
+    display: flex; justify-content: center; align-items: center; 
+    min-height: 100vh; 
+    font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', 'JetBrains Mono', monospace;
+  }
+  .frame {
+    width: 1270px; height: 760px;
+    background: #0d1117;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 40px;
+  }
+  .badge {
+    font-size: 13px; color: #8b949e; letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .title {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 28px; font-weight: 700; color: #e6edf3; margin-bottom: 40px;
+    text-align: center;
+  }
+  .terminal {
+    width: 820px;
+    background: #161b22;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  }
+  .term-bar {
+    height: 40px; background: #1c2128;
+    display: flex; align-items: center; padding: 0 16px;
+    border-bottom: 1px solid #30363d;
+  }
+  .dot { width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #febc2e; }
+  .dot-g { background: #28c840; }
+  .term-title { color: #8b949e; font-size: 12px; margin-left: 12px; }
+  .term-body { padding: 24px 28px; line-height: 1.8; font-size: 15px; }
+  .prompt { color: #3fb950; }
+  .cmd { color: #e6edf3; }
+  .output { color: #8b949e; }
+  .json { color: #d2a8ff; }
+  .success { color: #3fb950; }
+  .comment { color: #484f58; font-style: italic; }
+  .gap { height: 12px; }
+  .subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px; color: #484f58; margin-top: 32px; text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="badge">How it works</div>
+  <div class="title">Install → Detect → Call → JSON</div>
+
+  <div class="terminal">
+    <div class="term-bar">
+      <div class="dot dot-r"></div>
+      <div class="dot dot-y"></div>
+      <div class="dot dot-g"></div>
+      <div class="term-title">zsh — agent-workspace</div>
+    </div>
+    <div class="term-body">
+      <div><span class="comment"># Step 1: Install any CLI from the Hub</span></div>
+      <div><span class="prompt">$ </span><span class="cmd">pip install cli-anything-slack</span></div>
+      <div><span class="success">✓ </span><span class="output">Installed cli-anything-slack 1.0.0</span></div>
+      <div class="gap"></div>
+      <div><span class="comment"># Step 2: Agent checks connectivity</span></div>
+      <div><span class="prompt">$ </span><span class="cmd">cli-anything-slack detect</span></div>
+      <div><span class="json">{"status": "ok", "workspace": "MyTeam", "bot": "AgentBot"}</span></div>
+      <div class="gap"></div>
+      <div><span class="comment"># Step 3: Agent calls with structured output</span></div>
+      <div><span class="prompt">$ </span><span class="cmd">cli-anything-slack --json message send #general "Deploy done"</span></div>
+      <div><span class="json">{"ok": true, "ts": "1742000000.000100", "channel": "C0G9QF9GW"}</span></div>
+      <div class="gap"></div>
+      <div><span class="comment"># Works the same for 30+ tools: Stripe, Docker, GIMP, Blender...</span></div>
+    </div>
+  </div>
+
+  <div class="subtitle">One interface. Any software. Structured JSON output.</div>
+</div>
+</body></html>

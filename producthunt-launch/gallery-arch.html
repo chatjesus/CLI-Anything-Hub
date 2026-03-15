@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    background: #0d1117; 
+    display: flex; justify-content: center; align-items: center; 
+    min-height: 100vh; 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  .frame {
+    width: 1270px; height: 760px;
+    background: #0d1117;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 50px;
+  }
+  .badge {
+    font-size: 13px; color: #8b949e; letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .title {
+    font-size: 28px; font-weight: 700; color: #e6edf3; margin-bottom: 48px;
+  }
+  
+  .arch { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  
+  /* Top: Agent layer */
+  .layer { display: flex; gap: 16px; align-items: center; }
+  .agent-box {
+    background: #1f2937; border: 2px solid #3fb950; border-radius: 12px;
+    padding: 16px 32px; text-align: center;
+  }
+  .agent-box .label { color: #3fb950; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .agent-box .sub { color: #8b949e; font-size: 12px; }
+  
+  /* Arrow */
+  .arrow {
+    display: flex; flex-direction: column; align-items: center;
+    margin: 16px 0;
+  }
+  .arrow-line { width: 2px; height: 28px; background: #30363d; }
+  .arrow-head { color: #30363d; font-size: 18px; line-height: 1; }
+  .arrow-label { color: #8b949e; font-size: 11px; margin-top: 4px; letter-spacing: 1px; }
+  
+  /* Middle: Hub */
+  .hub-box {
+    background: #161b22; border: 2px solid #58a6ff; border-radius: 16px;
+    padding: 24px 48px; text-align: center;
+    min-width: 700px;
+  }
+  .hub-title { color: #58a6ff; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .hub-flow {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    margin-top: 12px;
+  }
+  .hub-step {
+    background: #21262d; border-radius: 8px; padding: 8px 18px;
+    color: #e6edf3; font-size: 14px; font-weight: 500;
+    font-family: 'SF Mono', 'Cascadia Code', monospace;
+  }
+  .hub-arrow { color: #484f58; font-size: 16px; }
+  
+  /* Bottom: Software layer */
+  .sw-grid { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+  .sw-box {
+    background: #21262d; border-radius: 10px; padding: 12px 20px;
+    text-align: center; min-width: 100px;
+    border: 1px solid #30363d;
+  }
+  .sw-icon { font-size: 24px; margin-bottom: 4px; }
+  .sw-name { color: #e6edf3; font-size: 12px; font-weight: 500; }
+  .sw-api { color: #484f58; font-size: 10px; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="badge">Architecture</div>
+  <div class="title">How CLI Anything Hub Works</div>
+  
+  <div class="arch">
+    <!-- Agent Layer -->
+    <div class="layer">
+      <div class="agent-box">
+        <div class="label">🤖 Your AI Agent</div>
+        <div class="sub">Claude · Cursor · GPT · Codex · OpenCode</div>
+      </div>
+    </div>
+    
+    <div class="arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-head">▼</div>
+    </div>
+    
+    <!-- Hub Layer -->
+    <div class="hub-box">
+      <div class="hub-title">CLI Anything Hub</div>
+      <div class="hub-flow">
+        <div class="hub-step">detect</div>
+        <div class="hub-arrow">→</div>
+        <div class="hub-step">schema</div>
+        <div class="hub-arrow">→</div>
+        <div class="hub-step">call</div>
+        <div class="hub-arrow">→</div>
+        <div class="hub-step" style="color:#3fb950">JSON</div>
+      </div>
+    </div>
+    
+    <div class="arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-head">▼</div>
+    </div>
+    
+    <!-- Software Layer -->
+    <div class="sw-grid">
+      <div class="sw-box"><div class="sw-icon">💬</div><div class="sw-name">Slack</div><div class="sw-api">Web API</div></div>
+      <div class="sw-box"><div class="sw-icon">💳</div><div class="sw-name">Stripe</div><div class="sw-api">Python SDK</div></div>
+      <div class="sw-box"><div class="sw-icon">🐳</div><div class="sw-name">Docker</div><div class="sw-api">Docker SDK</div></div>
+      <div class="sw-box"><div class="sw-icon">🎨</div><div class="sw-name">GIMP</div><div class="sw-api">Script-Fu</div></div>
+      <div class="sw-box"><div class="sw-icon">🧊</div><div class="sw-name">Blender</div><div class="sw-api">bpy</div></div>
+      <div class="sw-box"><div class="sw-icon">📝</div><div class="sw-name">Notion</div><div class="sw-api">REST API</div></div>
+      <div class="sw-box"><div class="sw-icon">🐙</div><div class="sw-name">GitHub</div><div class="sw-api">GraphQL</div></div>
+      <div class="sw-box"><div class="sw-icon">🦙</div><div class="sw-name">Ollama</div><div class="sw-api">REST API</div></div>
+      <div class="sw-box"><div class="sw-icon">📧</div><div class="sw-name">Gmail</div><div class="sw-api">Google API</div></div>
+      <div class="sw-box"><div class="sw-icon">🔷</div><div class="sw-name">Jira</div><div class="sw-api">REST API</div></div>
+    </div>
+  </div>
+</div>
+</body></html>

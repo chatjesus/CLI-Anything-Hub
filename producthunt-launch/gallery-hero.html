@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    background: #0d1117;
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, sans-serif;
+  }
+  .frame {
+    width: 1270px; height: 760px;
+    background: #0d1117;
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.03) 0%, transparent 70%),
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
+    background-size: 100% 100%, 24px 24px;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 60px;
+    position: relative;
+  }
+  
+  .logo-row {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 24px;
+  }
+  .logo-icon {
+    width: 48px; height: 48px;
+    background: #161b22; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid #30363d;
+  }
+  .logo-icon svg { width: 28px; height: 28px; }
+  .logo-text {
+    font-size: 22px; font-weight: 700; color: #e6edf3;
+    letter-spacing: -0.5px;
+  }
+  
+  h1 {
+    font-size: 56px; font-weight: 800; color: #e6edf3;
+    text-align: center; line-height: 1.15;
+    letter-spacing: -2px; margin-bottom: 20px;
+  }
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, #3fb950, #58a6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .sub {
+    font-size: 20px; color: #8b949e; text-align: center;
+    max-width: 600px; line-height: 1.6; margin-bottom: 36px;
+  }
+  
+  .install-cmd {
+    background: #161b22; border: 1px solid #30363d;
+    border-radius: 10px; padding: 14px 28px;
+    font-family: 'SF Mono', 'Cascadia Code', monospace;
+    font-size: 16px; color: #e6edf3; margin-bottom: 48px;
+  }
+  .install-cmd .prompt { color: #3fb950; }
+  .install-cmd .flag { color: #d2a8ff; }
+  
+  .tool-strip {
+    display: flex; align-items: center; gap: 24px;
+    opacity: 0.7;
+  }
+  .tool {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .tool-icon {
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tool-icon img { width: 32px; height: 32px; }
+  .tool-name { font-size: 11px; color: #484f58; font-weight: 500; }
+  
+  .badge-row {
+    position: absolute; bottom: 40px;
+    display: flex; gap: 16px; align-items: center;
+  }
+  .badge {
+    font-size: 12px; color: #484f58;
+    padding: 6px 14px; border: 1px solid #21262d;
+    border-radius: 20px;
+  }
+  .badge strong { color: #8b949e; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="logo-row">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#3fb950" stroke-width="2.5" stroke-linecap="round">
+        <polyline points="4 17 10 11 4 5"/>
+        <line x1="12" y1="19" x2="20" y2="19"/>
+      </svg>
+    </div>
+    <div class="logo-text">CLI Anything Hub</div>
+  </div>
+  
+  <h1>The software registry<br>built for <em>AI agents</em></h1>
+  
+  <p class="sub">Every application wrapped in a tested CLI. One install command. Structured JSON output. Works with any agent framework.</p>
+  
+  <div class="install-cmd">
+    <span class="prompt">$ </span>pip install <span class="flag">cli-anything-slack</span>
+  </div>
+  
+  <div class="tool-strip">
+    <div class="tool"><div class="tool-icon"><img src="https://cdn.simpleicons.org/slack/E01E5A" alt=""></div><div class="tool-name">Slack</div></div>
+    <div class="tool"><div class="tool-icon"><img src="https://cdn.simpleicons.org/stripe/635BFF" alt=""></div><div class="tool-name">Stripe</div></div>
+    <div class="tool"><div class="tool-icon"><img src="https://cdn.simpleicons.org/docker/2496ED" alt=""></div><div class="tool-name">Docker</div></div>
+    <div class="tool"><div class="tool-icon"><img src="https://cdn.simpleicons.org/gimp/5C5543" alt=""></div><div class="tool-name">GIMP</div></div>
+    <div class="tool"><div class="tool-icon"><img src="https://cdn.simpleicons.org/blender/E87D0D" alt=""></div><div class="tool-name">Blender</div></div>
+    <div class="tool"><div class="tool-icon"><img src="https://cdn.simpleicons.org/notion/fff" alt=""></div><div class="tool-name">Notion</div></div>
+    <div class="tool"><div class="tool-icon"><img src="https://cdn.simpleicons.org/github/fff" alt=""></div><div class="tool-name">GitHub</div></div>
+    <div class="tool"><div class="tool-icon"><img src="https://cdn.simpleicons.org/discord/5865F2" alt=""></div><div class="tool-name">Discord</div></div>
+    <div class="tool"><div class="tool-icon"><img src="https://cdn.simpleicons.org/telegram/26A5E4" alt=""></div><div class="tool-name">Telegram</div></div>
+    <div class="tool"><div class="tool-icon"><img src="https://cdn.simpleicons.org/ollama/fff" alt=""></div><div class="tool-name">Ollama</div></div>
+  </div>
+  
+  <div class="badge-row">
+    <div class="badge"><strong>30+</strong> CLIs ready</div>
+    <div class="badge"><strong>100+</strong> on roadmap</div>
+    <div class="badge"><strong>MIT</strong> open source</div>
+    <div class="badge"><strong>pip install</strong> any tool</div>
+  </div>
+</div>
+</body></html>

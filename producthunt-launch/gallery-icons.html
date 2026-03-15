@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    background: #0d1117;
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, sans-serif;
+  }
+  .frame {
+    width: 1270px; height: 760px;
+    background: #0d1117;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 40px 60px;
+  }
+  .header {
+    text-align: center; margin-bottom: 32px;
+  }
+  .badge {
+    font-size: 12px; color: #8b949e; letter-spacing: 3px;
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .title {
+    font-size: 28px; font-weight: 700; color: #e6edf3;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 12px;
+    width: 100%;
+  }
+  .cell {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 10px;
+    padding: 14px 8px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 8px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .cell.ready { border-color: #238636; }
+  .cell .icon { width: 28px; height: 28px; }
+  .cell .icon img { width: 100%; height: 100%; }
+  .cell .name { font-size: 10px; color: #8b949e; font-weight: 500; text-align: center; line-height: 1.2; }
+  .cell .check {
+    position: absolute; top: 6px; right: 6px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: #238636; color: #fff;
+    font-size: 8px; display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+  }
+  .cell.soon { opacity: 0.45; }
+  .cell.soon .name { color: #484f58; }
+  
+  .legend {
+    display: flex; gap: 24px; margin-top: 24px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12px; color: #8b949e;
+  }
+  .legend-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+  .legend-dot.green { background: #238636; }
+  .legend-dot.gray { background: #30363d; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="header">
+    <div class="badge">Hub Catalog</div>
+    <div class="title">30+ Agent-Ready CLIs — 100+ Planned</div>
+  </div>
+
+  <div class="grid">
+    <!-- Row 1: Creative -->
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/gimp/5C5543"></div><div class="name">GIMP</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/blender/E87D0D"></div><div class="name">Blender</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/inkscape/fff"></div><div class="name">Inkscape</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/audacity/0000CC"></div><div class="name">Audacity</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/obsstudio/302E31"></div><div class="name">OBS</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/kdenlive/527EB2"></div><div class="name">Kdenlive</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/diagrams.net/F08705"></div><div class="name">Draw.io</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/libreoffice/18A303"></div><div class="name">LibreOffice</div></div>
+    <div class="cell soon"><div class="icon"><img src="https://cdn.simpleicons.org/adobephotoshop/31A8FF"></div><div class="name">Photoshop</div></div>
+    <div class="cell soon"><div class="icon"><img src="https://cdn.simpleicons.org/figma/F24E1E"></div><div class="name">Figma</div></div>
+
+    <!-- Row 2: Communication -->
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/slack/E01E5A"></div><div class="name">Slack</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/discord/5865F2"></div><div class="name">Discord</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/telegram/26A5E4"></div><div class="name">Telegram</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/zoom/0B5CFF"></div><div class="name">Zoom</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/lark/3370FF"></div><div class="name">Feishu</div></div>
+    <div class="cell soon"><div class="icon"><img src="https://cdn.simpleicons.org/microsoftteams/6264A7"></div><div class="name">Teams</div></div>
+    <div class="cell soon"><div class="icon"><img src="https://cdn.simpleicons.org/whatsapp/25D366"></div><div class="name">WhatsApp</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/twilio/F22F46"></div><div class="name">Twilio</div></div>
+    <div class="cell soon"><div class="icon"><img src="https://cdn.simpleicons.org/x/fff"></div><div class="name">X/Twitter</div></div>
+    <div class="cell soon"><div class="icon"><img src="https://cdn.simpleicons.org/youtube/FF0000"></div><div class="name">YouTube</div></div>
+
+    <!-- Row 3: SaaS & Cloud -->
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/stripe/635BFF"></div><div class="name">Stripe</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/shopify/7AB55C"></div><div class="name">Shopify</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/salesforce/00A1E0"></div><div class="name">Salesforce</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/hubspot/FF7A59"></div><div class="name">HubSpot</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/jira/0052CC"></div><div class="name">Jira</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/vercel/fff"></div><div class="name">Vercel</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/cloudflare/F38020"></div><div class="name">Cloudflare</div></div>
+    <div class="cell soon"><div class="icon"><img src="https://cdn.simpleicons.org/paypal/003087"></div><div class="name">PayPal</div></div>
+    <div class="cell soon"><div class="icon"><img src="https://cdn.simpleicons.org/googleads/4285F4"></div><div class="name">Google Ads</div></div>
+    <div class="cell soon"><div class="icon"><img src="https://cdn.simpleicons.org/tiktok/fff"></div><div class="name">TikTok Ads</div></div>
+
+    <!-- Row 4: Dev Tools -->
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/docker/2496ED"></div><div class="name">Docker</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/github/fff"></div><div class="name">GitHub</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/notion/fff"></div><div class="name">Notion</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/ollama/fff"></div><div class="name">Ollama</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/gmail/EA4335"></div><div class="name">Gmail</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/googledrive/4285F4"></div><div class="name">Drive</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/googlesheets/34A853"></div><div class="name">Sheets</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/googlecalendar/4285F4"></div><div class="name">Calendar</div></div>
+    <div class="cell soon"><div class="icon"><img src="https://cdn.simpleicons.org/gitlab/FC6D26"></div><div class="name">GitLab</div></div>
+    <div class="cell soon"><div class="icon"><img src="https://cdn.simpleicons.org/visualstudiocode/007ACC"></div><div class="name">VS Code</div></div>
+
+    <!-- Row 5: Office & Misc -->
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/microsoftword/2B579A"></div><div class="name">Word</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/microsoftexcel/217346"></div><div class="name">Excel</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/microsoftpowerpoint/B7472A"></div><div class="name">PowerPoint</div></div>
+    <div class="cell ready"><div class="check">✓</div><div class="icon"><img src="https://cdn.simpleicons.org/microsoftoutlook/0078D4"></div><div class="name">Outlook</div></div>
+    <div class="cell soon"><div class="icon"><img src="https://cdn.simpleicons.org/ffmpeg/007808"></div><div class="name">FFmpeg</div></div>
+    <div class="cell soon"><div class="icon"><img src="https://cdn.simpleicons.org/googlechrome/4285F4"></div><div class="name">Chrome</div></div>
+    <div class="cell soon"><div class="icon"><img src="https://cdn.simpleicons.org/davinciresolve/233A51"></div><div class="name">DaVinci</div></div>
+    <div class="cell soon"><div class="icon"><img src="https://cdn.simpleicons.org/steam/fff"></div><div class="name">Steam</div></div>
+    <div class="cell soon"><div class="icon"><img src="https://cdn.simpleicons.org/minecraft/62B47A"></div><div class="name">Minecraft</div></div>
+    <div class="cell soon"><div class="icon"><img src="https://cdn.simpleicons.org/riotgames/D32936"></div><div class="name">Riot</div></div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot green"></div> Ready — pip install now</div>
+    <div class="legend-item"><div class="legend-dot gray"></div> Coming soon</div>
+  </div>
+</div>
+</body></html>
