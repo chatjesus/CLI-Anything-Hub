@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLI-Anything — 让所有软件 Agent 化</title>
+<style>
+  :root {
+    --cyan: #00d4ff;
+    --pink: #e94560;
+    --purple: #a78bfa;
+    --bg: #080818;
+    --bg2: #0d0d22;
+    --bg3: #111128;
+    --text: #e2e8f0;
+    --muted: #8892a4;
+    --border: rgba(0,212,255,0.15);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; overflow-x:hidden; }
+
+  /* ─ 粒子背景 ─ */
+  #canvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; opacity:0.4; }
+
+  section, header, footer { position:relative; z-index:1; }
+
+  /* ─ HERO ─ */
+  header {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 60px 20px;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,212,255,0.08) 0%, transparent 70%);
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 16px; border-radius: 20px;
+    border: 1px solid var(--border);
+    background: rgba(0,212,255,0.06);
+    color: var(--cyan); font-size: 13px; margin-bottom: 28px;
+    animation: fadeDown 0.6s ease;
+  }
+  .badge::before { content:''; width:8px; height:8px; border-radius:50%; background:var(--cyan); animation:pulse 1.5s infinite; }
+  h1 {
+    font-size: clamp(52px,8vw,108px);
+    font-weight: 900; letter-spacing: -3px; line-height: 1;
+    background: linear-gradient(135deg, #fff 0%, var(--cyan) 60%, var(--purple) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    animation: fadeDown 0.7s ease 0.1s both;
+  }
+  .tagline {
+    font-size: clamp(16px,2.5vw,24px); color: var(--muted);
+    margin: 20px 0 40px; max-width: 600px;
+    animation: fadeDown 0.7s ease 0.2s both;
+  }
+  .hero-stats {
+    display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
+    animation: fadeDown 0.7s ease 0.3s both;
+  }
+  .stat { text-align:center; }
+  .stat-num { font-size: 36px; font-weight: 800; color: var(--cyan); }
+  .stat-label { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .hero-btns { display:flex; gap:14px; margin-top:44px; flex-wrap:wrap; justify-content:center; animation: fadeDown 0.7s ease 0.4s both; }
+  .btn { padding:12px 28px; border-radius:8px; font-size:15px; font-weight:600; cursor:pointer; text-decoration:none; transition:all .2s; }
+  .btn-primary { background:var(--cyan); color:#080818; }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(0,212,255,0.4); }
+  .btn-outline { border:1px solid var(--border); color:var(--text); background:transparent; }
+  .btn-outline:hover { border-color:var(--cyan); color:var(--cyan); background:rgba(0,212,255,0.06); }
+
+  /* ─ SECTION 通用 ─ */
+  .section { padding: 100px 20px; max-width: 1200px; margin: 0 auto; }
+  .section-title {
+    font-size: clamp(28px,4vw,44px); font-weight: 800;
+    text-align: center; margin-bottom: 16px;
+  }
+  .section-sub { text-align:center; color:var(--muted); font-size:17px; margin-bottom: 60px; }
+  .highlight { color: var(--cyan); }
+
+  /* ─ WHY CLI ─ */
+  .why-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
+  .why-card {
+    padding: 28px; border-radius: 16px;
+    border: 1px solid var(--border);
+    background: linear-gradient(135deg, var(--bg2), var(--bg3));
+    transition: all .25s;
+  }
+  .why-card:hover { transform:translateY(-4px); border-color: rgba(0,212,255,0.4); box-shadow:0 20px 50px rgba(0,0,0,0.4); }
+  .why-icon { font-size:32px; margin-bottom:14px; }
+  .why-card h3 { font-size:17px; font-weight:700; margin-bottom:8px; }
+  .why-card p { font-size:14px; color:var(--muted); line-height:1.7; }
+
+  /* ─ 11大工具 ─ */
+  .tools-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:16px; }
+  .tool-card {
+    padding: 24px; border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    transition: all .25s; cursor:default;
+  }
+  .tool-card:hover { transform:translateY(-3px); border-color:rgba(0,212,255,0.35); }
+  .tool-header { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+  .tool-emoji { font-size:28px; }
+  .tool-name { font-size:16px; font-weight:700; }
+  .tool-cmd { font-size:11px; color:var(--cyan); font-family:monospace; }
+  .tool-desc { font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:12px; }
+  .tool-tests { display:inline-flex; align-items:center; gap:5px; font-size:12px; padding:3px 10px; border-radius:20px; background:rgba(0,212,255,0.08); color:var(--cyan); border:1px solid rgba(0,212,255,0.2); }
+  .tool-tests.pink { background:rgba(233,69,96,0.08); color:var(--pink); border-color:rgba(233,69,96,0.2); }
+  .tool-tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .tag { font-size:11px; padding:2px 8px; border-radius:10px; background:rgba(167,139,250,0.1); color:var(--purple); border:1px solid rgba(167,139,250,0.2); }
+
+  /* ─ 7阶段流水线 ─ */
+  .pipeline { display:flex; flex-direction:column; gap:0; max-width:700px; margin:0 auto; }
+  .pipe-item { display:flex; gap:20px; align-items:flex-start; position:relative; }
+  .pipe-item:not(:last-child)::after { content:''; position:absolute; left:20px; top:48px; bottom:-20px; width:2px; background:linear-gradient(to bottom,var(--cyan),transparent); }
+  .pipe-num { width:42px; height:42px; border-radius:50%; border:2px solid var(--cyan); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; color:var(--cyan); flex-shrink:0; background:var(--bg); }
+  .pipe-content { padding: 0 0 36px; }
+  .pipe-content h3 { font-size:16px; font-weight:700; margin-bottom:5px; }
+  .pipe-content p { font-size:14px; color:var(--muted); }
+
+  /* ─ 代码演示 ─ */
+  .demo-tabs { display:flex; gap:4px; margin-bottom:0; border-bottom:1px solid var(--border); }
+  .demo-tab { padding:10px 20px; font-size:13px; cursor:pointer; border-radius:8px 8px 0 0; color:var(--muted); transition:.2s; }
+  .demo-tab.active { background:var(--bg3); color:var(--cyan); }
+  .demo-pane { display:none; background:var(--bg3); border:1px solid var(--border); border-top:none; border-radius:0 0 14px 14px; overflow:hidden; }
+  .demo-pane.active { display:block; }
+  pre {
+    padding: 24px; overflow-x:auto;
+    font-family: 'Cascadia Code','Fira Code',Consolas,monospace; font-size:13.5px; line-height:1.7;
+  }
+  .kw { color:#ff79c6; } .fn { color:#50fa7b; } .str { color:#f1fa8c; }
+  .cm { color:#6272a4; font-style:italic; } .cn { color:var(--cyan); }
+  .op { color:#ff79c6; }
+
+  /* ─ 使用场景 ─ */
+  .use-cases { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; }
+  .use-card {
+    padding:28px; border-radius:16px; border:1px solid var(--border);
+    background:linear-gradient(135deg,var(--bg2),var(--bg3));
+    transition:.25s;
+  }
+  .use-card:hover { transform:translateY(-3px); border-color:rgba(0,212,255,0.35); }
+  .use-icon { font-size:36px; margin-bottom:14px; }
+  .use-card h3 { font-size:18px; font-weight:700; margin-bottom:10px; }
+  .use-card ul { list-style:none; }
+  .use-card li { font-size:14px; color:var(--muted); padding:5px 0; padding-left:18px; position:relative; }
+  .use-card li::before { content:'→'; position:absolute; left:0; color:var(--cyan); font-size:12px; top:6px; }
+
+  /* ─ 对比表 ─ */
+  .compare-table { width:100%; border-collapse:collapse; border-radius:14px; overflow:hidden; }
+  .compare-table th { background:var(--bg3); padding:14px 20px; text-align:left; font-size:13px; color:var(--muted); border-bottom:1px solid var(--border); }
+  .compare-table td { padding:14px 20px; font-size:14px; border-bottom:1px solid rgba(255,255,255,0.04); }
+  .compare-table tr:last-child td { border-bottom:none; }
+  .compare-table tr:hover td { background:rgba(0,212,255,0.03); }
+  .yes { color:#50fa7b; font-weight:600; }
+  .no { color:#ff5555; }
+  .partial { color:#f1fa8c; }
+
+  /* ─ LICENSE ─ */
+  .license-box {
+    text-align:center; padding:60px 40px; border-radius:20px;
+    border:1px solid var(--border);
+    background:linear-gradient(135deg,rgba(0,212,255,0.05),rgba(167,139,250,0.05));
+  }
+  .license-box h2 { font-size:48px; font-weight:900; color:var(--cyan); margin-bottom:12px; }
+  .license-box p { font-size:17px; color:var(--muted); max-width:500px; margin:0 auto 28px; }
+  .license-checks { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-top:28px; }
+  .lcheck { display:flex; align-items:center; gap:8px; font-size:15px; color:var(--text); }
+  .lcheck::before { content:'✓'; color:var(--cyan); font-weight:800; font-size:18px; }
+
+  /* ─ 快速开始 ─ */
+  .quickstart { max-width:800px; margin:0 auto; }
+  .step { display:flex; gap:20px; margin-bottom:32px; align-items:flex-start; }
+  .step-num { width:36px; height:36px; border-radius:8px; background:rgba(0,212,255,0.12); border:1px solid var(--cyan); display:flex; align-items:center; justify-content:center; font-weight:800; color:var(--cyan); flex-shrink:0; }
+  .step-body h3 { font-size:16px; font-weight:700; margin-bottom:8px; }
+  code.inline { background:var(--bg3); border:1px solid var(--border); padding:2px 8px; border-radius:5px; font-family:monospace; font-size:13px; color:var(--cyan); }
+
+  /* ─ FOOTER ─ */
+  footer { text-align:center; padding:40px 20px; border-top:1px solid var(--border); color:var(--muted); font-size:14px; }
+  footer a { color:var(--cyan); text-decoration:none; }
+
+  /* ─ 动画 ─ */
+  @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+  /* ─ 滚动动画 ─ */
+  .reveal { opacity:0; transform:translateY(30px); transition:all .6s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* ─ 导航 ─ */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:16px 40px; display:flex; align-items:center; justify-content:space-between;
+    background:rgba(8,8,24,0.85); backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-logo { font-size:18px; font-weight:800; color:var(--cyan); }
+  .nav-links { display:flex; gap:28px; }
+  .nav-links a { color:var(--muted); text-decoration:none; font-size:14px; transition:.2s; }
+  .nav-links a:hover { color:var(--cyan); }
+  .nav-badge { padding:6px 14px; border-radius:6px; background:var(--cyan); color:#080818; font-size:13px; font-weight:700; text-decoration:none; }
+
+  /* ─ 测试体系 ─ */
+  .test-layers { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-bottom:48px; }
+  .test-layer { padding:24px; border-radius:14px; border:1px solid var(--border); background:var(--bg2); }
+  .test-layer-icon { font-size:26px; margin-bottom:10px; }
+  .test-layer h3 { font-size:15px; font-weight:700; margin-bottom:6px; }
+  .test-layer p { font-size:13px; color:var(--muted); line-height:1.6; }
+  .test-layer .example { font-size:12px; font-family:monospace; color:var(--cyan); margin-top:10px; background:rgba(0,212,255,0.06); padding:8px 10px; border-radius:6px; border-left:2px solid var(--cyan); }
+  .test-results { background:var(--bg3); border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+  .test-results-header { padding:14px 24px; background:rgba(0,212,255,0.05); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px; }
+  .test-dot { width:10px; height:10px; border-radius:50%; }
+  .dot-r { background:#ff5555; } .dot-y { background:#f1fa8c; } .dot-g { background:#50fa7b; }
+  .test-results pre { padding:24px; font-size:13px; line-height:1.8; }
+  .pass { color:#50fa7b; } .total { color:var(--cyan); font-weight:700; } .bar { color:#555; }
+
+  /* ─ 个性化构建 ─ */
+  .build-flow { display:flex; gap:0; flex-wrap:wrap; align-items:stretch; margin:40px 0; }
+  .build-step {
+    flex:1; min-width:160px; padding:24px 20px; text-align:center;
+    background:var(--bg2); border:1px solid var(--border);
+    position:relative; transition:.25s;
+  }
+  .build-step:first-child { border-radius:14px 0 0 14px; }
+  .build-step:last-child { border-radius:0 14px 14px 0; }
+  .build-step:hover { background:var(--bg3); border-color:rgba(0,212,255,0.3); z-index:1; }
+  .build-step:not(:last-child)::after {
+    content:'→'; position:absolute; right:-14px; top:50%; transform:translateY(-50%);
+    font-size:20px; color:var(--cyan); z-index:2; font-weight:800;
+  }
+  .build-step-icon { font-size:30px; margin-bottom:10px; }
+  .build-step h4 { font-size:13px; font-weight:700; margin-bottom:6px; }
+  .build-step p { font-size:12px; color:var(--muted); line-height:1.5; }
+  .platform-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+  .ptab { padding:8px 18px; border-radius:8px; border:1px solid var(--border); font-size:13px; cursor:pointer; color:var(--muted); transition:.2s; }
+  .ptab.active { border-color:var(--cyan); color:var(--cyan); background:rgba(0,212,255,0.08); }
+  .ppane { display:none; }
+  .ppane.active { display:block; }
+  .refine-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-top:28px; }
+  .refine-card { padding:20px; border-radius:12px; border:1px solid var(--border); background:var(--bg2); }
+  .refine-card h4 { font-size:14px; font-weight:700; margin-bottom:6px; color:var(--cyan); }
+  .refine-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+  .targets-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:10px; margin-top:28px; }
+  .target-item { padding:12px 14px; border-radius:10px; border:1px solid var(--border); background:var(--bg2); font-size:13px; display:flex; align-items:center; gap:8px; color:var(--muted); transition:.2s; }
+  .target-item:hover { border-color:rgba(0,212,255,0.3); color:var(--text); }
+  .target-item span:first-child { font-size:18px; }
+</style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+
+<!-- 导航 -->
+<nav>
+  <div class="nav-logo">CLI-Anything</div>
+  <div class="nav-links">
+    <a href="#tools">工具集</a>
+    <a href="#pipeline">工作流</a>
+    <a href="#demo">代码示例</a>
+    <a href="#testing">测试体系</a>
+    <a href="#custom">个性化构建</a>
+    <a href="#usecases">使用场景</a>
+    <a href="#license">协议</a>
+  </div>
+  <a href="https://github.com/HKUDS/CLI-Anything" class="nav-badge" target="_blank">GitHub ↗</a>
+</nav>
+
+<!-- HERO -->
+<header>
+  <div class="badge">香港大学 HKUDS Lab · 2026 · 14k Stars</div>
+  <h1>CLI-Anything</h1>
+  <p class="tagline">一条命令，让任何软件变成 AI Agent 可直接操控的工具</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">11</div><div class="stat-label">预建工具</div></div>
+    <div class="stat"><div class="stat-num">1,508</div><div class="stat-label">测试全部通过</div></div>
+    <div class="stat"><div class="stat-num">14k+</div><div class="stat-label">GitHub Stars</div></div>
+    <div class="stat"><div class="stat-num">MIT</div><div class="stat-label">开源可商用</div></div>
+  </div>
+  <div class="hero-btns">
+    <a href="https://github.com/HKUDS/CLI-Anything" class="btn btn-primary" target="_blank">查看源码</a>
+    <a href="#tools" class="btn btn-outline">探索工具集 ↓</a>
+  </div>
+</header>
+
+<!-- WHY CLI -->
+<div class="section reveal">
+  <p class="section-title">为什么选择 <span class="highlight">CLI</span>？</p>
+  <p class="section-sub">CLI 是人类与 AI Agent 的通用接口，天然适合自动化</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🔗</div>
+      <h3>结构化 & 可组合</h3>
+      <p>文本命令与 LLM 输出格式完美匹配，支持链式调用复杂工作流，JSON 输出让 Agent 零解析成本。</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">⚡</div>
+      <h3>轻量 & 通用</h3>
+      <p>无额外依赖，跨平台运行，--help 自动文档让 Agent 自主发现能力，无需人工介绍。</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🎯</div>
+      <h3>调用真实软件</h3>
+      <p>LibreOffice 真正生成 PDF，Blender 真正渲染 3D，Inkscape 真正导出 SVG。零妥协，零玩具实现。</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔁</div>
+      <h3>双模式交互</h3>
+      <p>REPL 交互模式保持会话状态，子命令模式支持脚本和流水线，内置撤销/重做，满足所有场景。</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🧪</div>
+      <h3>生产级测试</h3>
+      <p>单元测试 + 真实软件 E2E 测试，1,508 个测试 100% 通过，魔术字节验证，绝非演示 Demo。</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📦</div>
+      <h3>一键安装</h3>
+      <p>pip install -e . 直接进入 PATH，cli-anything-gimp / blender / inkscape... 开箱即用。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 11大工具 -->
+<div id="tools" class="section reveal">
+  <p class="section-title">11 款 <span class="highlight">预建工具</span></p>
+  <p class="section-sub">覆盖创意、办公、通信、图表、AI 内容生成全领域</p>
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <div class="tool-emoji">🎨</div>
+        <div><div class="tool-name">GIMP</div><div class="tool-cmd">cli-anything-gimp</div></div>
+      </div>
+      <p class="tool-desc">图像编辑：裁剪、滤镜、图层合成、批量水印、格式转换，调用真实 Pillow + GEGL 后端。</p>
+      <span class="tool-tests">✓ 107 tests</span>
+      <div class="tool-tags"><span class="tag">图像处理</span><span class="tag">批量操作</span></div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <div class="tool-emoji">🧊</div>
+        <div><div class="tool-name">Blender</div><div class="tool-cmd">cli-anything-blender</div></div>
+      </div>
+      <p class="tool-desc">3D 建模与渲染：场景管理、物体添加、材质设置、CYCLES 光线追踪渲染，调用 bpy。</p>
+      <span class="tool-tests">✓ 208 tests</span>
+      <div class="tool-tags"><span class="tag">3D渲染</span><span class="tag">场景管理</span></div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <div class="tool-emoji">✏️</div>
+        <div><div class="tool-name">Inkscape</div><div class="tool-cmd">cli-anything-inkscape</div></div>
+      </div>
+      <p class="tool-desc">矢量图形：SVG 创建编辑、形状/文字/渐变/变换，导出 SVG/PNG/PDF，直接 XML 操作。</p>
+      <span class="tool-tests">✓ 202 tests</span>
+      <div class="tool-tags"><span class="tag">SVG设计</span><span class="tag">矢量图</span></div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <div class="tool-emoji">🎵</div>
+        <div><div class="tool-name">Audacity</div><div class="tool-cmd">cli-anything-audacity</div></div>
+      </div>
+      <p class="tool-desc">音频处理：剪辑、混音、降噪、均衡、格式转换（MP3/WAV/FLAC），调用 Python wave + sox。</p>
+      <span class="tool-tests">✓ 161 tests</span>
+      <div class="tool-tags"><span class="tag">音频编辑</span><span class="tag">格式转换</span></div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <div class="tool-emoji">📄</div>
+        <div><div class="tool-name">LibreOffice</div><div class="tool-cmd">cli-anything-libreoffice</div></div>
+      </div>
+      <p class="tool-desc">办公套件：Writer 文档、Calc 表格、Impress 演示，导出真实 PDF，支持 headless 模式。</p>
+      <span class="tool-tests">✓ 158 tests</span>
+      <div class="tool-tags"><span class="tag">文档生成</span><span class="tag">PDF导出</span></div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <div class="tool-emoji">📹</div>
+        <div><div class="tool-name">OBS Studio</div><div class="tool-cmd">cli-anything-obs-studio</div></div>
+      </div>
+      <p class="tool-desc">直播录屏：场景/源管理、录制控制、推流配置，通过 JSON 场景文件 + obs-websocket 操控。</p>
+      <span class="tool-tests">✓ 153 tests</span>
+      <div class="tool-tags"><span class="tag">直播</span><span class="tag">录屏</span></div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <div class="tool-emoji">🎞️</div>
+        <div><div class="tool-name">Kdenlive</div><div class="tool-cmd">cli-anything-kdenlive</div></div>
+      </div>
+      <p class="tool-desc">视频剪辑：时间线编辑、转场效果、字幕叠加、颜色分级，调用 MLT XML + melt 渲染器。</p>
+      <span class="tool-tests">✓ 155 tests</span>
+      <div class="tool-tags"><span class="tag">视频剪辑</span><span class="tag">特效</span></div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <div class="tool-emoji">🎬</div>
+        <div><div class="tool-name">Shotcut</div><div class="tool-cmd">cli-anything-shotcut</div></div>
+      </div>
+      <p class="tool-desc">视频编辑：多轨道时间线、滤镜链、画中画合成，直接操作 MLT XML 格式，melt 渲染。</p>
+      <span class="tool-tests">✓ 154 tests</span>
+      <div class="tool-tags"><span class="tag">视频合成</span><span class="tag">画中画</span></div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <div class="tool-emoji">📞</div>
+        <div><div class="tool-name">Zoom</div><div class="tool-cmd">cli-anything-zoom</div></div>
+      </div>
+      <p class="tool-desc">会议管理：创建/列出/删除会议、管理参会者、获取录制文件，调用 Zoom REST API (OAuth2)。</p>
+      <span class="tool-tests">✓ 22 tests</span>
+      <div class="tool-tags"><span class="tag">REST API</span><span class="tag">会议自动化</span></div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <div class="tool-emoji">📐</div>
+        <div><div class="tool-name">Draw.io</div><div class="tool-cmd">cli-anything-drawio</div></div>
+      </div>
+      <p class="tool-desc">流程图/架构图：mxGraph XML 操作、形状/连接线/样式管理，用 draw.io CLI 导出 PNG/SVG。</p>
+      <span class="tool-tests">✓ 138 tests</span>
+      <div class="tool-tags"><span class="tag">流程图</span><span class="tag">架构图</span></div>
+    </div>
+
+    <div class="tool-card" style="border-color:rgba(167,139,250,0.3)">
+      <div class="tool-header">
+        <div class="tool-emoji">✨</div>
+        <div><div class="tool-name">AnyGen</div><div class="tool-cmd">cli-anything-anygen</div></div>
+      </div>
+      <p class="tool-desc">AI 内容生成：幻灯片、文档、图表、网站一键生成，调用 AnyGen REST API (anygen.io)。</p>
+      <span class="tool-tests pink">✓ 50 tests</span>
+      <div class="tool-tags"><span class="tag">AI生成</span><span class="tag">幻灯片</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 7阶段流水线 -->
+<div id="pipeline" class="section reveal">
+  <p class="section-title">全自动 <span class="highlight">7 阶段</span> 流水线</p>
+  <p class="section-sub">一条命令，从源码分析到 PyPI 发布，全程自动化</p>
+  <div class="pipeline">
+    <div class="pipe-item"><div class="pipe-num">1</div><div class="pipe-content"><h3>🔍 分析</h3><p>扫描源码，映射 GUI 操作到底层 API，理解软件架构与能力边界。</p></div></div>
+    <div class="pipe-item"><div class="pipe-num">2</div><div class="pipe-content"><h3>📐 设计</h3><p>架构命令组、状态模型、JSON 输出格式，确保接口一致性与可扩展性。</p></div></div>
+    <div class="pipe-item"><div class="pipe-num">3</div><div class="pipe-content"><h3>🔨 实现</h3><p>构建 Click CLI，含 REPL 会话、JSON 输出、撤销/重做，代码质量生产级。</p></div></div>
+    <div class="pipe-item"><div class="pipe-num">4</div><div class="pipe-content"><h3>📋 规划测试</h3><p>生成 TEST.md，涵盖单元测试 + E2E 测试计划，包含真实软件调用验证。</p></div></div>
+    <div class="pipe-item"><div class="pipe-num">5</div><div class="pipe-content"><h3>🧪 编写测试</h3><p>实现完整测试套件，魔术字节校验、ZIP 结构验证、音频 RMS 检测，绝不信任 exit(0)。</p></div></div>
+    <div class="pipe-item"><div class="pipe-num">6</div><div class="pipe-content"><h3>📝 文档</h3><p>更新 TEST.md 记录测试结果，生成应用专属 SOP 文档，供 Agent 自主发现能力。</p></div></div>
+    <div class="pipe-item"><div class="pipe-num">7</div><div class="pipe-content"><h3>📦 发布</h3><p>创建 setup.py，pip install -e . 安装到 PATH，cli-anything-软件名 即可使用。</p></div></div>
+  </div>
+</div>
+
+<!-- 代码示例 -->
+<div id="demo" class="section reveal">
+  <p class="section-title"><span class="highlight">代码</span> 示例</p>
+  <p class="section-sub">三种使用方式，总有一种适合你</p>
+  <div style="max-width:860px;margin:0 auto">
+    <div class="demo-tabs">
+      <div class="demo-tab active" onclick="switchTab(0)">Python API（推荐）</div>
+      <div class="demo-tab" onclick="switchTab(1)">CLI 命令行</div>
+      <div class="demo-tab" onclick="switchTab(2)">AI Agent 对接</div>
+    </div>
+    <div class="demo-pane active">
+<pre><span class="cm"># 用 Python API 直接批量生成报告 → 导出 PDF</span>
+<span class="kw">from</span> <span class="cn">cli_anything.inkscape.core</span> <span class="kw">import</span> document, shapes, text, export
+
+<span class="cm"># 新建 A4 海报文档</span>
+proj = document.<span class="fn">create_document</span>(<span class="str">"poster"</span>, width=<span class="cn">1200</span>, height=<span class="cn">675</span>)
+
+<span class="cm"># 批量添加元素</span>
+shapes.<span class="fn">add_rect</span>(proj, x=<span class="cn">0</span>, y=<span class="cn">0</span>, width=<span class="cn">1200</span>, height=<span class="cn">675</span>, style=<span class="str">"fill:#0d0d1a"</span>)
+shapes.<span class="fn">add_circle</span>(proj, cx=<span class="cn">900</span>, cy=<span class="cn">337</span>, r=<span class="cn">200</span>, style=<span class="str">"fill:#00d4ff;opacity:0.1"</span>)
+text.<span class="fn">add_text</span>(proj, text=<span class="str">"CLI-Anything"</span>, x=<span class="cn">100</span>, y=<span class="cn">240</span>, font_size=<span class="cn">96</span>, fill=<span class="str">"#ffffff"</span>)
+
+<span class="cm"># 保存项目 & 用 Inkscape 真实渲染为 PNG</span>
+document.<span class="fn">save_document</span>(proj, <span class="str">"poster.json"</span>)
+export.<span class="fn">export_svg</span>(proj, <span class="str">"poster.svg"</span>)
+
+<span class="kw">from</span> <span class="cn">cli_anything.inkscape.utils.inkscape_backend</span> <span class="kw">import</span> export_svg_to_png
+export_svg_to_png(<span class="str">"poster.svg"</span>, <span class="str">"poster.png"</span>, width=<span class="cn">1200</span>, height=<span class="cn">675</span>)
+<span class="cm"># → poster.png 89KB, 1200×675, Inkscape 渲染</span></pre>
+    </div>
+    <div class="demo-pane">
+<pre><span class="cm"># REPL 交互模式（所有修改自动共享会话）</span>
+<span class="cn">$</span> cli-anything-inkscape
+
+inkscape<span class="op">></span> document new --width <span class="cn">1200</span> --height <span class="cn">675</span> -o poster.json
+inkscape<span class="op">></span> shape add-rect --x <span class="cn">0</span> --y <span class="cn">0</span> -w <span class="cn">1200</span> -h <span class="cn">675</span> -s <span class="str">"fill:#0d0d1a"</span>
+inkscape<span class="op">></span> text add -t <span class="str">"CLI-Anything"</span> --x <span class="cn">100</span> --y <span class="cn">240</span> --font-size <span class="cn">96</span> --fill <span class="str">"#ffffff"</span>
+inkscape<span class="op">></span> document save
+inkscape<span class="op">></span> export svg poster.svg --overwrite
+inkscape<span class="op">></span> exit
+
+<span class="cm"># LibreOffice — 生成 PDF 报告</span>
+<span class="cn">$</span> cli-anything-libreoffice document new -o report.json --type writer
+<span class="cn">$</span> cli-anything-libreoffice --project report.json writer add-heading -t <span class="str">"Q1 报告"</span> --level <span class="cn">1</span>
+<span class="cn">$</span> cli-anything-libreoffice --project report.json export render output.pdf -p pdf</pre>
+    </div>
+    <div class="demo-pane">
+<pre><span class="cm"># 与 AI Agent 对接：--json 返回结构化数据</span>
+<span class="kw">import</span> subprocess, json
+
+<span class="kw">def</span> <span class="fn">agent_query</span>(cmd):
+    result = subprocess.<span class="fn">run</span>(
+        [<span class="str">"cli-anything-inkscape"</span>, <span class="str">"--project"</span>, <span class="str">"design.json"</span>,
+         <span class="str">"--json"</span>] + cmd,
+        capture_output=<span class="cn">True</span>, text=<span class="cn">True</span>
+    )
+    <span class="kw">return</span> json.<span class="fn">loads</span>(result.stdout)
+
+<span class="cm"># Agent 读取文档当前状态</span>
+state = <span class="fn">agent_query</span>([<span class="str">"document"</span>, <span class="str">"info"</span>])
+<span class="cm"># → {"name":"design","counts":{"objects":12,"layers":3},...}</span>
+
+<span class="cm"># Agent 决策后执行操作</span>
+<span class="kw">if</span> state[<span class="str">"counts"</span>][<span class="str">"objects"</span>] < <span class="cn">5</span>:
+    <span class="fn">agent_query</span>([<span class="str">"shape"</span>, <span class="str">"add-circle"</span>,
+                  <span class="str">"--cx"</span>, <span class="str">"600"</span>, <span class="str">"--cy"</span>, <span class="str">"337"</span>, <span class="str">"--r"</span>, <span class="str">"100"</span>])
+
+<span class="cm"># --help 让 Agent 自主发现所有能力</span>
+caps = subprocess.<span class="fn">run</span>([<span class="str">"cli-anything-inkscape"</span>, <span class="str">"--help"</span>],
+                       capture_output=<span class="cn">True</span>, text=<span class="cn">True</span>).stdout</pre>
+    </div>
+  </div>
+</div>
+
+<!-- 使用场景 -->
+<div id="usecases" class="section reveal">
+  <p class="section-title">适用 <span class="highlight">场景</span></p>
+  <p class="section-sub">从个人自动化到企业级 AI 工作流，全面覆盖</p>
+  <div class="use-cases">
+    <div class="use-card">
+      <div class="use-icon">🤖</div>
+      <h3>AI Agent 工作流</h3>
+      <ul>
+        <li>让 ChatGPT / Claude 直接操控桌面软件</li>
+        <li>LLM 通过 JSON 读取软件状态，做出决策</li>
+        <li>替代脆弱的 GUI 截图自动化方案</li>
+        <li>构建端到端的无人干预内容生成管道</li>
+      </ul>
+    </div>
+    <div class="use-card">
+      <div class="use-icon">📊</div>
+      <h3>批量内容生成</h3>
+      <ul>
+        <li>循环生成数百张个性化海报/图片</li>
+        <li>批量将 Markdown 数据转为 PDF 报告</li>
+        <li>自动化生成产品演示 PPT</li>
+        <li>批量音视频格式转换与剪辑</li>
+      </ul>
+    </div>
+    <div class="use-card">
+      <div class="use-icon">🔗</div>
+      <h3>工具链整合</h3>
+      <ul>
+        <li>Inkscape 设计 → LibreOffice 排版 → PDF 交付</li>
+        <li>Audacity 处理音频 → Kdenlive 合并视频</li>
+        <li>Blender 渲染 → GIMP 后期处理 → 导出</li>
+        <li>将多个 API 封装成统一 CLI 工具链</li>
+      </ul>
+    </div>
+    <div class="use-card">
+      <div class="use-icon">🚀</div>
+      <h3>为自有软件生成 CLI</h3>
+      <ul>
+        <li>一条命令分析任意 GitHub 仓库</li>
+        <li>自动生成完整 CLI + 测试 + 文档</li>
+        <li>迭代 /refine 扩展覆盖范围</li>
+        <li>让你的软件天然支持 AI Agent 调用</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 测试体系 ══ -->
+<div id="testing" class="section reveal">
+  <p class="section-title"><span class="highlight">四层</span> 测试体系</p>
+  <p class="section-sub">不信任 exit(0)，每一层都验证真实输出</p>
+
+  <div class="test-layers">
+    <div class="test-layer">
+      <div class="test-layer-icon">🔬</div>
+      <h3>Layer 1 · 单元测试</h3>
+      <p>用合成数据隔离测试每个核心函数，覆盖边界条件、参数校验、异常路径。</p>
+      <div class="example">test_core.py → 项目创建、图层操作、滤镜参数、样式解析</div>
+    </div>
+    <div class="test-layer">
+      <div class="test-layer-icon">📁</div>
+      <h3>Layer 2 · E2E 原生测试</h3>
+      <p>测试项目文件生成流水线：验证文件格式合法性，不调用真实软件。</p>
+      <div class="example">验证 ODF ZIP 结构 · MLT XML 合法性 · SVG 标签完整性</div>
+    </div>
+    <div class="test-layer">
+      <div class="test-layer-icon">🖥️</div>
+      <h3>Layer 3 · E2E 真实后端</h3>
+      <p>调用真实软件执行并验证输出产物，检查魔术字节、像素值、音频 RMS。</p>
+      <div class="example">LibreOffice→PDF 验证 %PDF- · Blender→PNG 像素分析 · sox 音频时长</div>
+    </div>
+    <div class="test-layer">
+      <div class="test-layer-icon">⌨️</div>
+      <h3>Layer 4 · CLI 子进程测试</h3>
+      <p>以 subprocess.run 方式调用已安装命令，验证 JSON 输出格式与返回码。</p>
+      <div class="example">cli-anything-gimp --json project new → 解析 JSON 断言字段</div>
+    </div>
+  </div>
+
+  <!-- 测试数据终端 -->
+  <div class="test-results">
+    <div class="test-results-header">
+      <span class="test-dot dot-r"></span><span class="test-dot dot-y"></span><span class="test-dot dot-g"></span>
+      <span style="font-size:13px;color:var(--muted);margin-left:8px">terminal — pytest 测试汇总</span>
+    </div>
+    <pre>
+<span class="bar">================================ Test Summary ================================</span>
+<span class="pass">gimp          107 passed  ✅</span>  <span style="color:#6272a4">(64 unit + 43 e2e)</span>
+<span class="pass">blender       208 passed  ✅</span>  <span style="color:#6272a4">(150 unit + 58 e2e)</span>
+<span class="pass">inkscape      202 passed  ✅</span>  <span style="color:#6272a4">(148 unit + 54 e2e)</span>
+<span class="pass">audacity      161 passed  ✅</span>  <span style="color:#6272a4">(107 unit + 54 e2e)</span>
+<span class="pass">libreoffice   158 passed  ✅</span>  <span style="color:#6272a4">(89 unit + 69 e2e)</span>
+<span class="pass">obs-studio    153 passed  ✅</span>  <span style="color:#6272a4">(116 unit + 37 e2e)</span>
+<span class="pass">kdenlive      155 passed  ✅</span>  <span style="color:#6272a4">(111 unit + 44 e2e)</span>
+<span class="pass">shotcut       154 passed  ✅</span>  <span style="color:#6272a4">(110 unit + 44 e2e)</span>
+<span class="pass">zoom           22 passed  ✅</span>  <span style="color:#6272a4">(22 unit + 0 e2e)</span>
+<span class="pass">drawio        138 passed  ✅</span>  <span style="color:#6272a4">(116 unit + 22 e2e)</span>
+<span class="pass">anygen         50 passed  ✅</span>  <span style="color:#6272a4">(40 unit + 10 e2e)</span>
+<span class="bar">──────────────────────────────────────────────────────────────────────────────</span>
+<span class="total">TOTAL        1,508 passed  ✅   100% pass rate</span>
+<span style="color:#6272a4">             1,073 unit tests  +  435 end-to-end tests</span>
+    </pre>
+  </div>
+
+  <!-- 测试验证规则说明 -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:28px">
+    <div style="padding:18px;border-radius:12px;border:1px solid var(--border);background:var(--bg2)">
+      <h4 style="font-size:14px;font-weight:700;margin-bottom:8px;color:#f1fa8c">⚠ 关键原则：绝不降级</h4>
+      <p style="font-size:13px;color:var(--muted);line-height:1.6">后端缺失时测试直接 <strong style="color:#ff5555">FAIL</strong>，而不是 SKIP。确保 CLI 功能的真实性，防止假通过蒙混过关。</p>
+    </div>
+    <div style="padding:18px;border-radius:12px;border:1px solid var(--border);background:var(--bg2)">
+      <h4 style="font-size:14px;font-weight:700;margin-bottom:8px;color:#f1fa8c">⚠ 输出验证规则</h4>
+      <p style="font-size:13px;color:var(--muted);line-height:1.6">PDF 验证 <code style="color:var(--cyan);font-size:12px">%PDF-</code> 魔术字节；ZIP/OOXML 验证目录结构；PNG 抽样像素值；音频检测 RMS 电平。</p>
+    </div>
+    <div style="padding:18px;border-radius:12px;border:1px solid var(--border);background:var(--bg2)">
+      <h4 style="font-size:14px;font-weight:700;margin-bottom:8px;color:#f1fa8c">⚠ 时码精度陷阱</h4>
+      <p style="font-size:13px;color:var(--muted);line-height:1.6">非整数帧率（29.97fps）累积误差用 <code style="color:var(--cyan);font-size:12px">round()</code> 而非 <code style="color:var(--cyan);font-size:12px">int()</code>，测试允许 ±1 帧容差。</p>
+    </div>
+    <div style="padding:18px;border-radius:12px;border:1px solid var(--border);background:var(--bg2)">
+      <h4 style="font-size:14px;font-weight:700;margin-bottom:8px;color:#f1fa8c">⚠ 渲染间隙问题</h4>
+      <p style="font-size:13px;color:var(--muted);line-height:1.6">GUI 软件在渲染时才应用效果，CLI 生成项目文件后必须调用真实渲染器，不能用 Pillow 替代 GIMP。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 个性化构建 ══ -->
+<div id="custom" class="section reveal">
+  <p class="section-title">为 <span class="highlight">任意软件</span> 构建 CLI</p>
+  <p class="section-sub">不只是 11 款预建工具，任何有源码的软件都能一键变成 Agent 工具</p>
+
+  <!-- 流程图 -->
+  <div class="build-flow">
+    <div class="build-step">
+      <div class="build-step-icon">📁</div>
+      <h4>准备目标</h4>
+      <p>本地代码库<br>或 GitHub URL</p>
+    </div>
+    <div class="build-step">
+      <div class="build-step-icon">🤖</div>
+      <h4>运行命令</h4>
+      <p>/cli-anything<br>./your-software</p>
+    </div>
+    <div class="build-step">
+      <div class="build-step-icon">🔍</div>
+      <h4>源码分析</h4>
+      <p>自动映射 API<br>理解架构</p>
+    </div>
+    <div class="build-step">
+      <div class="build-step-icon">🔨</div>
+      <h4>自动生成</h4>
+      <p>Click CLI<br>+ REPL + JSON</p>
+    </div>
+    <div class="build-step">
+      <div class="build-step-icon">🧪</div>
+      <h4>生成测试</h4>
+      <p>单元 + E2E<br>全部验证</p>
+    </div>
+    <div class="build-step">
+      <div class="build-step-icon">📦</div>
+      <h4>安装发布</h4>
+      <p>pip install<br>进入 PATH</p>
+    </div>
+  </div>
+
+  <!-- 平台命令 -->
+  <p style="font-size:16px;font-weight:700;margin-bottom:14px">选择你的 AI 平台</p>
+  <div class="platform-tabs">
+    <div class="ptab active" onclick="switchPlatform(0)">Claude Code</div>
+    <div class="ptab" onclick="switchPlatform(1)">OpenCode</div>
+    <div class="ptab" onclick="switchPlatform(2)">Codex</div>
+    <div class="ptab" onclick="switchPlatform(3)">Qodercli</div>
+  </div>
+
+  <div class="ppane active" id="pp0">
+<pre style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:20px;font-size:13.5px;line-height:1.8"><span class="cm"># Step 1: 添加 CLI-Anything 插件市场</span>
+<span class="cn">/plugin marketplace add</span> HKUDS/CLI-Anything
+<span class="cn">/plugin install</span> cli-anything
+
+<span class="cm"># Step 2: 为任意软件生成 CLI（全 7 阶段）</span>
+<span class="cn">/cli-anything:cli-anything</span> ./my-software
+<span class="cn">/cli-anything:cli-anything</span> https://github.com/user/repo
+
+<span class="cm"># Step 3: 迭代优化（间隙分析 + 扩展覆盖）</span>
+<span class="cn">/cli-anything:refine</span> ./my-software
+<span class="cn">/cli-anything:refine</span> ./my-software <span class="str">"批量处理和滤镜功能"</span>
+
+<span class="cm"># Step 4: 验证与测试</span>
+<span class="cn">/cli-anything:test</span> ./my-software
+<span class="cn">/cli-anything:validate</span> ./my-software</pre>
+  </div>
+
+  <div class="ppane" id="pp1">
+<pre style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:20px;font-size:13.5px;line-height:1.8"><span class="cm"># 复制命令文件到 OpenCode 命令目录</span>
+cp CLI-Anything/opencode-commands/*.md ~/.config/opencode/commands/
+cp CLI-Anything/cli-anything-plugin/HARNESS.md ~/.config/opencode/commands/
+
+<span class="cm"># 生成 CLI（效果与 Claude Code 一致）</span>
+<span class="cn">/cli-anything</span> ./my-software
+<span class="cn">/cli-anything</span> https://github.com/user/repo
+
+<span class="cm"># 迭代精化</span>
+<span class="cn">/cli-anything-refine</span> ./my-software <span class="str">"画中画合成工作流"</span>
+
+<span class="cm"># 列出已生成的所有 CLI</span>
+<span class="cn">/cli-anything-list</span></pre>
+  </div>
+
+  <div class="ppane" id="pp2">
+<pre style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:20px;font-size:13.5px;line-height:1.8"><span class="cm"># 安装 Codex Skill</span>
+git clone https://github.com/HKUDS/CLI-Anything.git
+
+<span class="cm"># Windows PowerShell</span>
+.\CLI-Anything\codex-skill\scripts\install.ps1
+
+<span class="cm"># 安装后重启 Codex，用自然语言描述任务</span>
+<span class="str">"Use CLI-Anything to build a harness for ./my-software"</span>
+<span class="str">"Use CLI-Anything to refine ./shotcut for picture-in-picture"</span>
+<span class="str">"Use CLI-Anything to validate ./libreoffice"</span></pre>
+  </div>
+
+  <div class="ppane" id="pp3">
+<pre style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:20px;font-size:13.5px;line-height:1.8"><span class="cm"># 注册插件</span>
+git clone https://github.com/HKUDS/CLI-Anything.git
+bash CLI-Anything/qoder-plugin/setup-qodercli.sh
+
+<span class="cm"># 重启 Qodercli 后使用</span>
+<span class="cn">/cli-anything:cli-anything</span> ./my-software
+<span class="cn">/cli-anything:refine</span> ./my-software <span class="str">"批量处理"</span>
+<span class="cn">/cli-anything:validate</span> ./my-software</pre>
+  </div>
+
+  <!-- /refine 命令详解 -->
+  <p style="font-size:16px;font-weight:700;margin:36px 0 14px">迭代优化：<code style="color:var(--cyan);font-size:14px">/refine</code> 命令</p>
+  <div class="refine-cards">
+    <div class="refine-card">
+      <h4>广度优化</h4>
+      <p>自动分析当前 CLI 与软件全部能力之间的差距，识别未覆盖的功能模块，增量实现新命令。</p>
+      <div style="margin-top:10px;font-family:monospace;font-size:12px;color:var(--muted)">/refine ./gimp</div>
+    </div>
+    <div class="refine-card">
+      <h4>聚焦优化</h4>
+      <p>指定特定功能领域进行深度覆盖，精准补充目标场景的命令、测试和文档。</p>
+      <div style="margin-top:10px;font-family:monospace;font-size:12px;color:var(--muted)">/refine ./gimp "批量图像处理与滤镜"</div>
+    </div>
+    <div class="refine-card">
+      <h4>非破坏性</h4>
+      <p>每次 refine 都是增量操作，不会删除已有命令，可多次运行，持续提升覆盖率。</p>
+      <div style="margin-top:10px;font-family:monospace;font-size:12px;color:var(--muted)">可反复运行 → 逐步达到 100% 覆盖</div>
+    </div>
+    <div class="refine-card">
+      <h4>自动更新测试</h4>
+      <p>新增命令自动补充对应测试用例，TEST.md 同步更新，保持文档与代码一致。</p>
+      <div style="margin-top:10px;font-family:monospace;font-size:12px;color:var(--muted)">/test ./gimp → 重跑并更新 TEST.md</div>
+    </div>
+  </div>
+
+  <!-- 可构建目标示例 -->
+  <p style="font-size:16px;font-weight:700;margin:36px 0 14px">可构建的目标类型（不限于此）</p>
+  <div class="targets-grid">
+    <div class="target-item"><span>🤖</span>Stable Diffusion WebUI</div>
+    <div class="target-item"><span>🎨</span>ComfyUI</div>
+    <div class="target-item"><span>📝</span>WordPress</div>
+    <div class="target-item"><span>📚</span>Calibre</div>
+    <div class="target-item"><span>📓</span>Joplin</div>
+    <div class="target-item"><span>🗒️</span>Logseq</div>
+    <div class="target-item"><span>📊</span>JupyterLab</div>
+    <div class="target-item"><span>🔍</span>Apache Superset</div>
+    <div class="target-item"><span>🗄️</span>DBeaver</div>
+    <div class="target-item"><span>🚀</span>Jenkins</div>
+    <div class="target-item"><span>🐙</span>Gitea</div>
+    <div class="target-item"><span>📐</span>FreeCAD</div>
+    <div class="target-item"><span>🗺️</span>QGIS</div>
+    <div class="target-item"><span>🎵</span>LMMS / Ardour</div>
+    <div class="target-item"><span>🖥️</span>VSCodium</div>
+    <div class="target-item"><span>☁️</span>NextCloud</div>
+    <div class="target-item"><span>📈</span>Grafana</div>
+    <div class="target-item"><span>💬</span>Mattermost</div>
+    <div class="target-item"><span>🏢</span>Odoo Community</div>
+    <div class="target-item"><span>✏️</span>你的项目 ...</div>
+  </div>
+
+  <!-- 注意事项 -->
+  <div style="margin-top:32px;padding:20px 24px;border-radius:12px;border:1px solid rgba(241,250,140,0.2);background:rgba(241,250,140,0.04)">
+    <p style="font-size:14px;font-weight:700;color:#f1fa8c;margin-bottom:10px">⚠ 使用前须知</p>
+    <ul style="list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px">
+      <li style="font-size:13px;color:var(--muted);padding-left:16px;position:relative"><span style="position:absolute;left:0;color:#f1fa8c">·</span>需要 Claude Opus / Sonnet 等前沿模型，小模型生成质量较差</li>
+      <li style="font-size:13px;color:var(--muted);padding-left:16px;position:relative"><span style="position:absolute;left:0;color:#f1fa8c">·</span>依赖软件源码，仅有编译二进制的项目覆盖率会下降</li>
+      <li style="font-size:13px;color:var(--muted);padding-left:16px;position:relative"><span style="position:absolute;left:0;color:#f1fa8c">·</span>首次生成可能不完整，通常需 /refine 1~3 次达到生产质量</li>
+      <li style="font-size:13px;color:var(--muted);padding-left:16px;position:relative"><span style="position:absolute;left:0;color:#f1fa8c">·</span>Windows 需安装 Git for Windows（含 bash + cygpath）或 WSL</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 对比表 -->
+<div class="section reveal">
+  <p class="section-title">方案 <span class="highlight">对比</span></p>
+  <p class="section-sub">CLI-Anything vs 现有方案</p>
+  <div style="overflow-x:auto">
+  <table class="compare-table">
+    <tr>
+      <th>特性</th>
+      <th>GUI 截图自动化</th>
+      <th>有限 REST API</th>
+      <th>CLI-Anything ✨</th>
+    </tr>
+    <tr>
+      <td>调用真实软件</td>
+      <td class="yes">✓</td>
+      <td class="partial">部分</td>
+      <td class="yes">✓ 完整功能</td>
+    </tr>
+    <tr>
+      <td>稳定性</td>
+      <td class="no">✗ 像素点击易碎</td>
+      <td class="yes">✓</td>
+      <td class="yes">✓ 命令级稳定</td>
+    </tr>
+    <tr>
+      <td>结构化输出</td>
+      <td class="no">✗ 需 OCR</td>
+      <td class="yes">✓ JSON</td>
+      <td class="yes">✓ 内置 --json</td>
+    </tr>
+    <tr>
+      <td>Agent 自主发现能力</td>
+      <td class="no">✗</td>
+      <td class="partial">需阅读文档</td>
+      <td class="yes">✓ --help 自描述</td>
+    </tr>
+    <tr>
+      <td>安装成本</td>
+      <td class="partial">中等</td>
+      <td class="partial">API Key</td>
+      <td class="yes">✓ pip install</td>
+    </tr>
+    <tr>
+      <td>功能覆盖率</td>
+      <td class="partial">~80%（依赖 UI）</td>
+      <td class="no">~20%（API 限制）</td>
+      <td class="yes">✓ 接近 100%</td>
+    </tr>
+    <tr>
+      <td>开源可商用</td>
+      <td class="partial">各异</td>
+      <td class="partial">各异</td>
+      <td class="yes">✓ MIT License</td>
+    </tr>
+  </table>
+  </div>
+</div>
+
+<!-- 快速开始 -->
+<div class="section reveal">
+  <p class="section-title"><span class="highlight">快速</span> 开始</p>
+  <p class="section-sub">3 步上手，5 分钟跑通</p>
+  <div class="quickstart">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>克隆仓库</h3>
+        <pre style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;margin-top:8px"><span class="cn">git clone</span> https://github.com/HKUDS/CLI-Anything.git
+<span class="cn">cd</span> CLI-Anything</pre>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>安装目标工具（以 Inkscape 为例）</h3>
+        <pre style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;margin-top:8px"><span class="cm"># 安装 Inkscape 桌面软件</span>
+winget install Inkscape.Inkscape
+<span class="cm"># 安装 CLI 工具</span>
+<span class="cn">cd</span> inkscape/agent-harness
+pip install -e .</pre>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>开始使用</h3>
+        <pre style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;margin-top:8px"><span class="cm"># 进入 REPL 交互</span>
+cli-anything-inkscape
+
+<span class="cm"># 或直接命令行</span>
+cli-anything-inkscape document new -o my.json
+cli-anything-inkscape --project my.json shape add-circle --cx 400 --cy 300 --r 100
+
+<span class="cm"># 运行测试</span>
+python -m pytest cli_anything/inkscape/tests/ -v</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LICENSE -->
+<div id="license" class="section reveal">
+  <div class="license-box">
+    <h2>MIT License</h2>
+    <p>完全开源，自由使用、修改和商业分发，仅需保留原始版权声明。</p>
+    <div class="license-checks">
+      <span class="lcheck">个人使用</span>
+      <span class="lcheck">商业用途</span>
+      <span class="lcheck">修改源码</span>
+      <span class="lcheck">二次分发</span>
+      <span class="lcheck">闭源集成</span>
+    </div>
+    <div style="margin-top:32px">
+      <a href="https://github.com/HKUDS/CLI-Anything" class="btn btn-primary" target="_blank">⭐ Star on GitHub</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>CLI-Anything · HKUDS Lab · Hong Kong University · 2026</p>
+  <p style="margin-top:8px"><a href="https://github.com/HKUDS/CLI-Anything">github.com/HKUDS/CLI-Anything</a> · MIT License</p>
+</footer>
+
+<script>
+// ─ 粒子背景 ─
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+resize(); window.addEventListener('resize', resize);
+for (let i = 0; i < 80; i++) particles.push({
+  x: Math.random()*canvas.width, y: Math.random()*canvas.height,
+  vx: (Math.random()-.5)*.3, vy: (Math.random()-.5)*.3,
+  r: Math.random()*1.5+.5, a: Math.random()*.6+.2
+});
+function drawParticles() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if(p.x<0) p.x=canvas.width; if(p.x>canvas.width) p.x=0;
+    if(p.y<0) p.y=canvas.height; if(p.y>canvas.height) p.y=0;
+    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle = `rgba(0,212,255,${p.a})`; ctx.fill();
+  });
+  // 连线
+  for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++) {
+    const d = Math.hypot(particles[i].x-particles[j].x, particles[i].y-particles[j].y);
+    if(d<120) {
+      ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y);
+      ctx.strokeStyle = `rgba(0,212,255,${(1-d/120)*.15})`; ctx.lineWidth=.5; ctx.stroke();
+    }
+  }
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// ─ 代码 Tab ─
+const panes = document.querySelectorAll('.demo-pane');
+const tabs = document.querySelectorAll('.demo-tab');
+function switchTab(i) {
+  panes.forEach(p=>p.classList.remove('active'));
+  tabs.forEach(t=>t.classList.remove('active'));
+  panes[i].classList.add('active'); tabs[i].classList.add('active');
+}
+
+// ─ 滚动显现 ─
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+reveals.forEach(r => observer.observe(r));
+
+// ─ 平台 Tab ─
+const ppanes = document.querySelectorAll('.ppane');
+const ptabs = document.querySelectorAll('.ptab');
+function switchPlatform(i) {
+  ppanes.forEach(p=>p.classList.remove('active'));
+  ptabs.forEach(t=>t.classList.remove('active'));
+  ppanes[i].classList.add('active'); ptabs[i].classList.add('active');
+}
+
+// ─ 平滑滚动 ─
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
