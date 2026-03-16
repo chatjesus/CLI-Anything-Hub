@@ -11,6 +11,9 @@ const CATEGORIES={
   database:{label:'Database',color:'#b45309'},
   cloud:{label:'Cloud / Infra',color:'#0f766e'},
   browser:{label:'Browser',color:'#c2410c'},
+  media:{label:'Media / Entertainment',color:'#7c3aed'},
+  gaming:{label:'Gaming',color:'#059669'},
+  lifestyle:{label:'Lifestyle / Services',color:'#d946ef'},
 };
 const CATKEYS=Object.keys(CATEGORIES);
 
@@ -389,6 +392,253 @@ const PACKAGES=[
     caps:["deployment.list","deployment.get","deployment.cancel","project.list","domain.list","env.manage"],
     cmds:["vercel-cli deployments list --project my-app --limit 10","vercel-cli deployments get dpl_xxxxx","vercel-cli projects list --limit 20","vercel-cli env add --project my-app --key API_URL --value https://api.example.com --target production"],
     plat:["linux","macos","windows"],req:["vercel-token"],inf:["json"],outf:["json"]},
+
+  // ── Media / Entertainment ──
+  {n:"spotify",v:"1.0.0",d:"Spotify music streaming. Search tracks, manage playlists, control playback, get recommendations.",ld:"Spotify Web API wrapper. Search music, manage playlists, control playback, get artist info, and generate recommendations.",c:"media",t:["music","streaming","api"],dl:"5.4K",ts:167,logo:S+"spotify/1DB954",q:.93,
+    caps:["track.search","playlist.create","playlist.manage","playback.control","artist.info","recommend.get"],
+    cmds:["spotify-cli search 'bohemian rhapsody' --type track --output json","spotify-cli playlist create --name 'Workout Mix'"],
+    plat:["linux","macos","windows"],req:["spotify-api-credentials"],inf:["json"],outf:["json"]},
+
+  {n:"youtube",v:"1.0.0",d:"YouTube video platform. Search videos, manage channels, upload content, retrieve analytics.",ld:"YouTube Data API wrapper. Search videos, manage playlists, upload content, retrieve channel analytics and comments.",c:"media",t:["video","streaming","google"],dl:"6.8K",ts:189,logo:S+"youtube/FF0000",q:.94,
+    caps:["video.search","video.upload","playlist.manage","channel.info","comment.list","analytics.get"],
+    cmds:["youtube-cli search 'machine learning tutorial' --max-results 10 --output json","youtube-cli upload --file video.mp4 --title 'Demo'"],
+    plat:["linux","macos","windows"],req:["google-api-credentials"],inf:["mp4","json"],outf:["json"]},
+
+  {n:"twitch",v:"1.0.0",d:"Twitch live streaming platform. Stream management, chat, clips, channel analytics.",ld:"Twitch API wrapper. Manage streams, read chat, create clips, get channel info, and retrieve viewer analytics.",c:"media",t:["streaming","live","gaming"],dl:"3.1K",ts:134,logo:S+"twitch/9146FF",q:.90,
+    caps:["stream.info","chat.read","clip.create","channel.manage","analytics.get","user.info"],
+    cmds:["twitch-cli stream info --channel shroud --output json","twitch-cli clips create --channel shroud"],
+    plat:["linux","macos","windows"],req:["twitch-api-credentials"],inf:["json"],outf:["json"]},
+
+  {n:"tiktok",v:"1.0.0",d:"TikTok content platform. Video upload, analytics, user management, content discovery.",ld:"TikTok for Business API wrapper. Upload videos, manage content, retrieve analytics, and discover trending content.",c:"media",t:["video","social","tiktok"],dl:"2.8K",ts:98,logo:S+"tiktok/000000",q:.87,
+    caps:["video.upload","video.list","analytics.get","user.info","trending.discover"],
+    cmds:["tiktok-cli upload --file dance.mp4 --caption 'New dance' --output json","tiktok-cli analytics --days 30"],
+    plat:["linux","macos","windows"],req:["tiktok-api-credentials"],inf:["mp4","json"],outf:["json"]},
+
+  {n:"x",v:"1.0.0",d:"X (Twitter) social platform. Post tweets, manage timeline, search, handle DMs and lists.",ld:"X/Twitter API v2 wrapper. Post tweets, read timelines, search content, manage lists, handle direct messages.",c:"media",t:["social","twitter","api"],dl:"4.5K",ts:156,logo:S+"x/000000",q:.92,
+    caps:["tweet.post","tweet.search","timeline.read","dm.send","list.manage","user.info"],
+    cmds:["x-cli tweet 'Hello from CLI Anything!' --output json","x-cli search 'AI agents' --max 20 --output json"],
+    plat:["linux","macos","windows"],req:["x-api-credentials"],inf:["json","txt"],outf:["json"]},
+
+  {n:"vlc",v:"1.0.0",d:"VLC media player automation. Playback control, transcoding, streaming, playlist management.",ld:"Control VLC via CLI and HTTP interface. Play media, transcode formats, set up streaming servers, and manage playlists.",c:"media",t:["media","player","transcode"],dl:"2.1K",ts:112,logo:S+"vlcmediaplayer/FF8800",q:.89,
+    caps:["media.play","media.transcode","stream.start","playlist.manage","subtitle.add"],
+    cmds:["vlc-cli play video.mp4","vlc-cli transcode --input video.avi --format mp4 --codec h264"],
+    plat:["linux","macos","windows"],req:["vlc>=3.0"],inf:["mp4","avi","mkv","mp3","flac"],outf:["mp4","webm","mp3"]},
+
+  // ── Gaming ──
+  {n:"steam",v:"1.0.0",d:"Steam gaming platform. Library management, game installation, workshop mods, friend activity.",ld:"Steam Web API and SteamCMD wrapper. Manage game library, install games, download workshop mods, track friend activity.",c:"gaming",t:["games","store","valve"],dl:"4.2K",ts:145,logo:S+"steam/000000",q:.91,
+    caps:["game.install","game.list","workshop.download","friend.list","achievement.get","market.search"],
+    cmds:["steam-cli library list --output json","steam-cli install --appid 730","steam-cli workshop download --id 123456"],
+    plat:["linux","macos","windows"],req:["steamcmd"],inf:["json"],outf:["json"]},
+
+  {n:"minecraft",v:"1.0.0",d:"Minecraft server management. Start/stop servers, manage worlds, plugins, player administration.",ld:"Minecraft server management CLI. Start, stop, configure servers, manage worlds and plugins, handle player whitelist and bans.",c:"gaming",t:["games","server","minecraft"],dl:"3.5K",ts:123,logo:null,q:.89,
+    caps:["server.start","server.stop","world.manage","plugin.install","player.manage","backup.create"],
+    cmds:["minecraft-cli server start --version 1.20 --memory 4G","minecraft-cli world backup --name survival"],
+    plat:["linux","macos","windows"],req:["java>=17"],inf:["json"],outf:["json"]},
+
+  {n:"roblox",v:"1.0.0",d:"Roblox development platform. Publish experiences, manage assets, analytics, moderation.",ld:"Roblox Open Cloud API wrapper. Publish places, manage assets and data stores, retrieve analytics, handle moderation.",c:"gaming",t:["games","development","roblox"],dl:"2.1K",ts:87,logo:null,q:.86,
+    caps:["place.publish","asset.upload","datastore.manage","analytics.get","user.info"],
+    cmds:["roblox-cli publish --place-id 123 --file game.rbxlx","roblox-cli assets list --output json"],
+    plat:["linux","macos","windows"],req:["roblox-api-key"],inf:["rbxlx","json"],outf:["json"]},
+
+  {n:"xbox",v:"1.0.0",d:"Xbox Live platform. Achievements, friends, game clips, profile management.",ld:"Xbox Live API wrapper. Retrieve achievements, manage friends list, access game clips, and view profile information.",c:"gaming",t:["games","xbox","microsoft"],dl:"1.5K",ts:78,logo:S+"xbox/107C10",q:.85,
+    caps:["achievement.list","friend.list","clip.list","profile.get","presence.check"],
+    cmds:["xbox-cli achievements list --gamertag Player123 --output json","xbox-cli friends list --output json"],
+    plat:["linux","macos","windows"],req:["xbox-api-key"],inf:["json"],outf:["json"]},
+
+  {n:"epic",v:"1.0.0",d:"Epic Games Store. Library management, free games tracking, friend activity.",ld:"Epic Games Store API wrapper. Manage game library, track free game offers, view friend activity and achievements.",c:"gaming",t:["games","store","epic"],dl:"1.2K",ts:67,logo:S+"epicgames/313131",q:.84,
+    caps:["game.list","free.track","friend.list","achievement.get"],
+    cmds:["epic-cli library list --output json","epic-cli free-games --output json"],
+    plat:["linux","macos","windows"],req:["epic-api-credentials"],inf:["json"],outf:["json"]},
+
+  {n:"battlenet",v:"1.0.0",d:"Battle.net gaming platform. WoW, Diablo, Overwatch API. Character data, achievements, leaderboards.",ld:"Blizzard Battle.net API wrapper. Access WoW characters, Diablo profiles, Overwatch stats, and game-specific leaderboards.",c:"gaming",t:["games","blizzard","mmo"],dl:"1.8K",ts:89,logo:S+"battledotnet/148EFF",q:.87,
+    caps:["wow.character","diablo.profile","overwatch.stats","leaderboard.get","game.info"],
+    cmds:["battlenet-cli wow character --realm Illidan --name Arthas --output json"],
+    plat:["linux","macos","windows"],req:["battlenet-api-key"],inf:["json"],outf:["json"]},
+
+  {n:"gog",v:"1.0.0",d:"GOG.com gaming platform. DRM-free game library, downloads, user data.",ld:"GOG Galaxy API wrapper. Manage DRM-free game library, download games, access user data and achievements.",c:"gaming",t:["games","drm-free","gog"],dl:"890",ts:56,logo:S+"gogdotcom/86328A",q:.83,
+    caps:["game.list","game.download","achievement.get","user.info"],
+    cmds:["gog-cli library list --output json","gog-cli download --game-id 123"],
+    plat:["linux","macos","windows"],req:["gog-api-token"],inf:["json"],outf:["json"]},
+
+  {n:"chess",v:"1.0.0",d:"Chess.com platform. Player stats, game history, puzzles, leaderboards.",ld:"Chess.com public API wrapper. Retrieve player profiles, game archives, daily puzzles, club info, and leaderboards.",c:"gaming",t:["chess","games","api"],dl:"1.1K",ts:78,logo:S+"chessdotcom/81B64A",q:.86,
+    caps:["player.stats","game.archive","puzzle.daily","club.info","leaderboard.get"],
+    cmds:["chess-cli player stats --username hikaru --output json","chess-cli puzzle daily --output json"],
+    plat:["linux","macos","windows"],req:[],inf:["json"],outf:["json"]},
+
+  {n:"lichess",v:"1.0.0",d:"Lichess open-source chess. Games, puzzles, tournaments, analysis board.",ld:"Lichess API wrapper. Access games, puzzles, tournaments, user profiles, and analysis tools on the open-source chess platform.",c:"gaming",t:["chess","open-source","games"],dl:"780",ts:67,logo:S+"lichess/000000",q:.85,
+    caps:["game.list","puzzle.get","tournament.list","user.info","analysis.board"],
+    cmds:["lichess-cli games --username DrNykterstein --max 10 --output json"],
+    plat:["linux","macos","windows"],req:[],inf:["json"],outf:["json","pgn"]},
+
+  {n:"cs2",v:"1.0.0",d:"Counter-Strike 2 stats. Player profiles, match history, weapon stats, leaderboards.",ld:"CS2 stats API wrapper. Retrieve player profiles, match history, weapon statistics, and competitive leaderboards.",c:"gaming",t:["games","fps","valve"],dl:"1.3K",ts:78,logo:S+"counterstrike/000000",q:.85,
+    caps:["player.stats","match.history","weapon.stats","leaderboard.get"],
+    cmds:["cs2-cli player stats --steamid 76561198xxxx --output json"],
+    plat:["linux","macos","windows"],req:["steam-api-key"],inf:["json"],outf:["json"]},
+
+  {n:"fortnite",v:"1.0.0",d:"Fortnite game stats. Player stats, item shop, news, tournament info.",ld:"Fortnite API wrapper. Retrieve player statistics, current item shop, game news, and tournament information.",c:"gaming",t:["games","battle-royale","epic"],dl:"1.6K",ts:67,logo:null,q:.84,
+    caps:["player.stats","shop.items","news.get","tournament.info"],
+    cmds:["fortnite-cli stats --player Ninja --output json","fortnite-cli shop --output json"],
+    plat:["linux","macos","windows"],req:["fortnite-api-key"],inf:["json"],outf:["json"]},
+
+  {n:"valheim",v:"1.0.0",d:"Valheim dedicated server management. Start/stop, world config, player admin, mod management.",ld:"Valheim dedicated server CLI. Start, stop, and configure servers, manage worlds, handle player administration and mods.",c:"gaming",t:["games","server","survival"],dl:"670",ts:45,logo:null,q:.82,
+    caps:["server.start","server.stop","world.config","player.manage","mod.install"],
+    cmds:["valheim-cli server start --world MyWorld --port 2456","valheim-cli mods install ValheimPlus"],
+    plat:["linux","macos","windows"],req:["steamcmd"],inf:["json"],outf:["json"]},
+
+  {n:"speedrun",v:"1.0.0",d:"Speedrun.com platform. Leaderboards, runs, games, categories, and player records.",ld:"Speedrun.com API wrapper. Browse leaderboards, view submitted runs, search games and categories, track personal bests.",c:"gaming",t:["speedrunning","leaderboards","games"],dl:"450",ts:34,logo:null,q:.81,
+    caps:["leaderboard.get","run.list","game.search","category.list","player.records"],
+    cmds:["speedrun-cli leaderboard --game sms --category any --output json"],
+    plat:["linux","macos","windows"],req:[],inf:["json"],outf:["json"]},
+
+  {n:"hoyoverse",v:"1.0.0",d:"HoYoverse games. Genshin Impact, Star Rail character stats, events, redemption codes.",ld:"HoYoverse API wrapper. Retrieve Genshin Impact and Honkai Star Rail character data, daily check-ins, events, and redeem codes.",c:"gaming",t:["games","gacha","hoyoverse"],dl:"1.4K",ts:67,logo:null,q:.84,
+    caps:["character.list","daily.checkin","event.list","code.redeem","stats.get"],
+    cmds:["hoyoverse-cli genshin characters --output json","hoyoverse-cli daily checkin"],
+    plat:["linux","macos","windows"],req:["hoyoverse-cookie"],inf:["json"],outf:["json"]},
+
+  // ── Image / Design (additions) ──
+  {n:"krita",v:"1.0.0",d:"Krita digital painting. Brush engine, layer management, animation, batch export.",ld:"Open-source digital painting application. Script brush operations, manage layers, create frame animations, and batch export.",c:"image",t:["painting","digital-art","open-source"],dl:"1.5K",ts:98,logo:S+"krita/3BABFF",q:.88,
+    caps:["image.open","layer.manage","brush.apply","animation.create","export.batch"],
+    cmds:["krita-cli export --input painting.kra --format png --dpi 300","krita-cli batch --dir ./art --format webp"],
+    plat:["linux","macos","windows"],req:["krita>=5.0"],inf:["kra","png","jpg","tiff"],outf:["png","jpg","webp","tiff"]},
+
+  // ── Developer Tools (additions) ──
+  {n:"gitlab",v:"1.0.0",d:"GitLab DevOps platform. Repos, merge requests, CI/CD pipelines, issues, releases.",ld:"GitLab REST API wrapper. Manage repositories, merge requests, CI/CD pipelines, issues, and create releases.",c:"dev",t:["git","ci-cd","devops"],dl:"4.8K",ts:198,logo:S+"gitlab/FC6D26",q:.94,
+    caps:["repo.manage","mr.create","pipeline.trigger","issue.create","release.create","runner.manage"],
+    cmds:["gitlab-cli mr create --title 'Feature X' --source feature --target main --output json","gitlab-cli pipeline trigger --ref main"],
+    plat:["linux","macos","windows"],req:["gitlab-token"],inf:["json"],outf:["json"]},
+
+  {n:"jetbrains",v:"1.0.0",d:"JetBrains IDE automation. Plugin management, project inspection, code formatting, build tools.",ld:"Automate JetBrains IDEs (IntelliJ, PyCharm, WebStorm). Manage plugins, inspect projects, run code analysis, and format code.",c:"dev",t:["ide","jetbrains","development"],dl:"2.8K",ts:134,logo:S+"jetbrains/000000",q:.90,
+    caps:["plugin.install","project.inspect","code.format","analysis.run","build.trigger"],
+    cmds:["jetbrains-cli plugin install python-community --output json","jetbrains-cli inspect --project ./myapp"],
+    plat:["linux","macos","windows"],req:["jetbrains-ide"],inf:["json"],outf:["json"]},
+
+  {n:"obsidian",v:"1.0.0",d:"Obsidian knowledge base. Note creation, search, graph operations, plugin management.",ld:"Obsidian vault management. Create and search notes, manage tags, explore knowledge graph, and handle plugins.",c:"dev",t:["notes","knowledge","markdown"],dl:"2.3K",ts:112,logo:S+"obsidian/7C3AED",q:.89,
+    caps:["note.create","note.search","tag.manage","graph.query","plugin.manage","vault.info"],
+    cmds:["obsidian-cli create --title 'Meeting Notes' --content '# Agenda' --tags meeting","obsidian-cli search 'project plan'"],
+    plat:["linux","macos","windows"],req:["obsidian>=1.0"],inf:["md","json"],outf:["json","md"]},
+
+  {n:"7zip",v:"1.0.0",d:"7-Zip archive management. Compress, extract, list, test archives in 30+ formats.",ld:"7-Zip CLI wrapper. Create and extract archives in 7z, ZIP, TAR, GZIP, and 30+ formats with encryption and split support.",c:"dev",t:["compression","archive","utility"],dl:"3.2K",ts:156,logo:null,q:.92,
+    caps:["archive.create","archive.extract","archive.list","archive.test","format.convert"],
+    cmds:["7zip-cli compress --input ./folder --output archive.7z --level ultra","7zip-cli extract --input archive.zip --output ./out"],
+    plat:["linux","macos","windows"],req:["7zip>=21"],inf:["7z","zip","tar","gz","rar","bz2"],outf:["7z","zip","tar","gz"]},
+
+  // ── AI / ML (additions) ──
+  {n:"comfyui",v:"1.0.0",d:"ComfyUI node-based AI image generation. Workflow execution, model management, queue control.",ld:"ComfyUI API wrapper. Execute node-based image generation workflows, manage models, control the generation queue.",c:"ai",t:["generation","nodes","diffusion"],dl:"4.1K",ts:134,logo:null,q:.90,
+    caps:["workflow.execute","model.list","queue.manage","image.generate","history.get"],
+    cmds:["comfyui-cli run --workflow workflow.json --output ./results","comfyui-cli models list --output json"],
+    plat:["linux","macos","windows"],req:["comfyui","python>=3.10"],inf:["json","png"],outf:["png","jpg","webp","json"]},
+
+  {n:"openai",v:"1.0.0",d:"OpenAI API. Chat completions, embeddings, image generation, audio transcription, fine-tuning.",ld:"OpenAI REST API wrapper. Run chat completions (GPT-4), generate embeddings, create images (DALL-E), transcribe audio (Whisper), and manage fine-tuning jobs.",c:"ai",t:["llm","gpt","api"],dl:"8.9K",ts:234,logo:S+"openai/412991",q:.96,
+    caps:["chat.complete","embedding.create","image.generate","audio.transcribe","finetune.manage","model.list"],
+    cmds:["openai-cli chat 'Explain quantum computing' --model gpt-4o --output json","openai-cli image generate 'a cat in space' --size 1024x1024"],
+    plat:["linux","macos","windows"],req:["openai-api-key"],inf:["json","txt","mp3","wav"],outf:["json","png"]},
+
+  // ── Cloud / Infra (additions) ──
+  {n:"dropbox",v:"1.0.0",d:"Dropbox cloud storage. File upload/download, sharing, folder management, search.",ld:"Dropbox API wrapper. Upload, download, and share files, manage folders, search content, and handle team operations.",c:"cloud",t:["storage","files","cloud"],dl:"2.8K",ts:123,logo:S+"dropbox/0061FF",q:.90,
+    caps:["file.upload","file.download","file.share","folder.manage","search.content"],
+    cmds:["dropbox-cli upload --local report.pdf --remote /Reports/report.pdf","dropbox-cli list /Documents --output json"],
+    plat:["linux","macos","windows"],req:["dropbox-api-token"],inf:["*"],outf:["json"]},
+
+  {n:"onedrive",v:"1.0.0",d:"Microsoft OneDrive cloud storage. File operations, sharing, sync, search.",ld:"OneDrive/SharePoint API wrapper via Microsoft Graph. Upload, download, share files, manage folders, and search content.",c:"cloud",t:["storage","microsoft","cloud"],dl:"2.4K",ts:112,logo:null,q:.89,
+    caps:["file.upload","file.download","file.share","folder.manage","search.content","sync.status"],
+    cmds:["onedrive-cli upload --local doc.pdf --remote /Documents/doc.pdf","onedrive-cli list /Documents --output json"],
+    plat:["linux","macos","windows"],req:["microsoft-365"],inf:["*"],outf:["json"]},
+
+  {n:"gdrive",v:"1.0.0",d:"Google Drive file management. Upload, download, share, organize, and search files.",ld:"Google Drive API wrapper. Upload, download, share, and organize files. Search by name or content, manage permissions.",c:"cloud",t:["storage","google","cloud"],dl:"3.5K",ts:145,logo:S+"googledrive/4285F4",q:.92,
+    caps:["file.upload","file.download","file.share","folder.manage","search.content","permission.set"],
+    cmds:["gdrive-cli upload report.pdf --folder 'Shared Reports' --output json","gdrive-cli list --query 'type=pdf' --output json"],
+    plat:["linux","macos","windows"],req:["google-api-credentials"],inf:["*"],outf:["json"]},
+
+  {n:"sendgrid",v:"1.0.0",d:"SendGrid email delivery. Send transactional emails, manage templates, track delivery stats.",ld:"SendGrid API wrapper. Send transactional and marketing emails, manage templates, track delivery and engagement statistics.",c:"cloud",t:["email","delivery","api"],dl:"2.1K",ts:98,logo:S+"sendgrid/4A154B",q:.89,
+    caps:["email.send","template.manage","stats.get","contact.manage","bounce.list"],
+    cmds:["sendgrid-cli send --to user@example.com --subject 'Welcome' --template welcome-template","sendgrid-cli stats --days 30 --output json"],
+    plat:["linux","macos","windows"],req:["sendgrid-api-key"],inf:["json","html"],outf:["json"]},
+
+  {n:"mailchimp",v:"1.0.0",d:"Mailchimp email marketing. Campaigns, audiences, templates, automation, analytics.",ld:"Mailchimp API wrapper. Create and send campaigns, manage audiences, design templates, set up automations, and view analytics.",c:"cloud",t:["email","marketing","automation"],dl:"2.5K",ts:112,logo:S+"mailchimp/FFE01B",q:.90,
+    caps:["campaign.create","campaign.send","audience.manage","template.list","automation.manage","report.get"],
+    cmds:["mailchimp-cli campaign create --subject 'Newsletter' --list-id abc123 --output json","mailchimp-cli audience list --output json"],
+    plat:["linux","macos","windows"],req:["mailchimp-api-key"],inf:["json","html"],outf:["json"]},
+
+  {n:"zendesk",v:"1.0.0",d:"Zendesk customer support. Tickets, users, organizations, macros, search.",ld:"Zendesk Support API wrapper. Create and manage tickets, handle users and organizations, apply macros, and search content.",c:"cloud",t:["support","helpdesk","crm"],dl:"2.8K",ts:134,logo:S+"zendesk/03363D",q:.91,
+    caps:["ticket.create","ticket.update","ticket.list","user.manage","org.manage","search.content"],
+    cmds:["zendesk-cli ticket create --subject 'Bug report' --priority high --output json","zendesk-cli tickets list --status open --output json"],
+    plat:["linux","macos","windows"],req:["zendesk-api-credentials"],inf:["json"],outf:["json"]},
+
+  {n:"gads",v:"1.0.0",d:"Google Ads management. Campaigns, ad groups, keywords, reporting, budget control.",ld:"Google Ads API wrapper. Manage campaigns, ad groups, keywords, view performance reports, and control budgets.",c:"cloud",t:["advertising","google","marketing"],dl:"2.1K",ts:98,logo:S+"googleads/4285F4",q:.88,
+    caps:["campaign.list","campaign.create","adgroup.manage","keyword.manage","report.generate","budget.set"],
+    cmds:["gads-cli campaigns list --output json","gads-cli report --type performance --start 2026-01-01 --end 2026-03-01"],
+    plat:["linux","macos","windows"],req:["google-ads-credentials"],inf:["json"],outf:["json","csv"]},
+
+  {n:"gplay",v:"1.0.0",d:"Google Play Console. App management, releases, reviews, performance metrics.",ld:"Google Play Developer API wrapper. Manage apps, create releases, respond to reviews, and track performance metrics.",c:"cloud",t:["mobile","android","google"],dl:"1.8K",ts:87,logo:S+"googleplay/414141",q:.87,
+    caps:["app.list","release.create","review.list","review.reply","metrics.get"],
+    cmds:["gplay-cli apps list --output json","gplay-cli reviews list --app com.example.app --output json"],
+    plat:["linux","macos","windows"],req:["google-play-credentials"],inf:["json","apk","aab"],outf:["json"]},
+
+  // ── Lifestyle / Services ──
+  {n:"airbnb",v:"1.0.0",d:"Airbnb listing management. Property listings, reservations, pricing, guest communication.",ld:"Airbnb API wrapper. Manage property listings, handle reservations, adjust pricing, and communicate with guests.",c:"lifestyle",t:["travel","rental","hospitality"],dl:"1.8K",ts:78,logo:S+"airbnb/FF5A5F",q:.86,
+    caps:["listing.manage","reservation.list","pricing.set","message.send","review.get"],
+    cmds:["airbnb-cli listings list --output json","airbnb-cli reservations --status upcoming --output json"],
+    plat:["linux","macos","windows"],req:["airbnb-api-credentials"],inf:["json"],outf:["json"]},
+
+  {n:"booking",v:"1.0.0",d:"Booking.com partner API. Property management, reservations, availability, rates.",ld:"Booking.com Connectivity API wrapper. Manage properties, handle reservations, set availability and rates.",c:"lifestyle",t:["travel","hotel","booking"],dl:"1.2K",ts:67,logo:S+"bookingdotcom/003580",q:.84,
+    caps:["property.manage","reservation.list","availability.set","rate.update"],
+    cmds:["booking-cli reservations list --from 2026-03-01 --output json","booking-cli availability set --room-id 123 --date 2026-04-01"],
+    plat:["linux","macos","windows"],req:["booking-api-credentials"],inf:["json"],outf:["json"]},
+
+  {n:"uber-eats",v:"1.0.0",d:"Uber Eats delivery platform. Store management, orders, menus, delivery tracking.",ld:"Uber Eats API wrapper. Manage restaurant stores, handle orders, update menus, and track delivery status.",c:"lifestyle",t:["food","delivery","restaurant"],dl:"1.5K",ts:67,logo:S+"ubereats/06C167",q:.84,
+    caps:["store.manage","order.list","order.accept","menu.update","delivery.track"],
+    cmds:["ubereats-cli orders list --status pending --output json","ubereats-cli menu update --store-id abc --file menu.json"],
+    plat:["linux","macos","windows"],req:["uber-api-credentials"],inf:["json"],outf:["json"]},
+
+  {n:"doordash",v:"1.0.0",d:"DoorDash delivery platform. Store operations, orders, menu management, delivery logistics.",ld:"DoorDash Drive API wrapper. Manage store operations, handle orders, update menus, and coordinate delivery logistics.",c:"lifestyle",t:["food","delivery","restaurant"],dl:"1.1K",ts:56,logo:S+"doordash/FF3008",q:.83,
+    caps:["order.list","order.create","delivery.create","store.info"],
+    cmds:["doordash-cli orders list --output json","doordash-cli delivery create --pickup '123 Main St' --dropoff '456 Oak Ave'"],
+    plat:["linux","macos","windows"],req:["doordash-api-key"],inf:["json"],outf:["json"]},
+
+  {n:"yelp",v:"1.0.0",d:"Yelp business platform. Business search, reviews, ratings, categories.",ld:"Yelp Fusion API wrapper. Search businesses, read reviews, get ratings, browse categories, and view business details.",c:"lifestyle",t:["reviews","business","local"],dl:"1.8K",ts:89,logo:S+"yelp/D32323",q:.87,
+    caps:["business.search","business.details","review.list","category.list","autocomplete.search"],
+    cmds:["yelp-cli search 'sushi' --location 'San Francisco' --output json","yelp-cli business get --id north-india-restaurant-sf"],
+    plat:["linux","macos","windows"],req:["yelp-api-key"],inf:["json"],outf:["json"]},
+
+  {n:"grab",v:"1.0.0",d:"Grab super-app API. Ride-hailing, food delivery, payments in Southeast Asia.",ld:"Grab API wrapper. Manage ride bookings, food delivery orders, and payment transactions across Southeast Asia.",c:"lifestyle",t:["ride-hailing","food","southeast-asia"],dl:"890",ts:45,logo:S+"grab/00B14F",q:.82,
+    caps:["ride.book","ride.status","food.order","payment.process"],
+    cmds:["grab-cli ride book --pickup '1.290,103.851' --dropoff '1.300,103.860' --output json"],
+    plat:["linux","macos","windows"],req:["grab-api-credentials"],inf:["json"],outf:["json"]},
+
+  {n:"meituan",v:"1.0.0",d:"Meituan platform. Food delivery, hotel booking, local services in China.",ld:"Meituan Open Platform API wrapper. Manage restaurant orders, hotel bookings, and local service listings.",c:"lifestyle",t:["food","delivery","china"],dl:"1.3K",ts:56,logo:null,q:.83,
+    caps:["order.list","order.manage","store.info","delivery.track"],
+    cmds:["meituan-cli orders list --status new --output json"],
+    plat:["linux","macos","windows"],req:["meituan-api-credentials"],inf:["json"],outf:["json"]},
+
+  {n:"eleme",v:"1.0.0",d:"Ele.me food delivery. Restaurant management, orders, menus for China market.",ld:"Ele.me Open Platform API wrapper. Manage restaurant info, handle orders, update menus, and track deliveries.",c:"lifestyle",t:["food","delivery","china"],dl:"980",ts:45,logo:null,q:.82,
+    caps:["order.list","order.manage","menu.update","store.info"],
+    cmds:["eleme-cli orders list --output json","eleme-cli menu update --store-id 123 --file menu.json"],
+    plat:["linux","macos","windows"],req:["eleme-api-credentials"],inf:["json"],outf:["json"]},
+
+  {n:"didi",v:"1.0.0",d:"DiDi ride-hailing platform. Ride management, driver operations, trip analytics.",ld:"DiDi Open Platform API wrapper. Manage ride requests, track trips, and access analytics for China's leading ride platform.",c:"lifestyle",t:["ride-hailing","transport","china"],dl:"1.1K",ts:45,logo:null,q:.82,
+    caps:["ride.request","ride.status","trip.history","driver.info"],
+    cmds:["didi-cli ride request --pickup '39.9,116.4' --dropoff '39.95,116.45' --output json"],
+    plat:["linux","macos","windows"],req:["didi-api-credentials"],inf:["json"],outf:["json"]},
+
+  {n:"kfc",v:"1.0.0",d:"KFC ordering API. Menu browsing, order placement, store locator, promotions.",ld:"KFC delivery/ordering API wrapper. Browse menus, place orders, locate stores, and view current promotions.",c:"lifestyle",t:["food","restaurant","fast-food"],dl:"560",ts:34,logo:null,q:.80,
+    caps:["menu.browse","order.place","store.locate","promotion.list"],
+    cmds:["kfc-cli menu --store-id 123 --output json","kfc-cli stores near --lat 40.7 --lng -74.0 --output json"],
+    plat:["linux","macos","windows"],req:["kfc-api-credentials"],inf:["json"],outf:["json"]},
+
+  {n:"mcdonalds",v:"1.0.0",d:"McDonald's ordering API. Menu, orders, store locator, deals and promotions.",ld:"McDonald's API wrapper. Browse menus, place orders, find nearby stores, and discover current deals and promotions.",c:"lifestyle",t:["food","restaurant","fast-food"],dl:"670",ts:34,logo:null,q:.80,
+    caps:["menu.browse","order.place","store.locate","deal.list"],
+    cmds:["mcdonalds-cli menu --output json","mcdonalds-cli stores near --lat 40.7 --lng -74.0 --output json"],
+    plat:["linux","macos","windows"],req:["mcdonalds-api-credentials"],inf:["json"],outf:["json"]},
+
+  {n:"refine",v:"1.0.0",d:"Refine development framework. CRUD app scaffolding, data provider management, deployment.",ld:"Refine.dev CLI wrapper. Scaffold CRUD applications, manage data providers, configure authentication, and deploy.",c:"dev",t:["framework","crud","react"],dl:"1.2K",ts:67,logo:null,q:.84,
+    caps:["project.create","resource.add","provider.configure","build.run","deploy.trigger"],
+    cmds:["refine-cli create my-app --preset antd","refine-cli resource add products --output json"],
+    plat:["linux","macos","windows"],req:["node>=18"],inf:["json"],outf:["json"]},
+
+  {n:"riot",v:"1.0.0",d:"Riot Games API. League of Legends, Valorant, TFT stats, match history, rankings.",ld:"Riot Games API wrapper. Access League of Legends, Valorant, and TFT player stats, match history, and rankings.",c:"gaming",t:["games","esports","riot"],dl:"1.8K",ts:89,logo:S+"riotgames/D32936",q:.87,
+    caps:["summoner.get","match.history","ranking.get","champion.info","valorant.stats"],
+    cmds:["riot-cli lol summoner --name Faker --region kr --output json","riot-cli valorant stats --name Player#TAG"],
+    plat:["linux","macos","windows"],req:["riot-api-key"],inf:["json"],outf:["json"]},
 ];
 
 // Helpers
@@ -397,6 +647,6 @@ function getPkgsByCategory(cat){return PACKAGES.filter(p=>p.c===cat)}
 function getCatLabel(cat){return CATEGORIES[cat]?.label||cat}
 function getCatColor(cat){return CATEGORIES[cat]?.color||'#6366f1'}
 function getIconClass(cat){
-  const map={image:'img',video:'vid','3d':'d3',office:'ofc',dev:'dev',ai:'ai',comm:'com',database:'db',cloud:'cld',browser:'brw'};
+  const map={image:'img',video:'vid','3d':'d3',office:'ofc',dev:'dev',ai:'ai',comm:'com',database:'db',cloud:'cld',browser:'brw',media:'med',gaming:'gam',lifestyle:'lif'};
   return map[cat]||'dev';
 }

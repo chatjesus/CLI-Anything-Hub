@@ -106,6 +106,7 @@ body{font-family:var(--sans);color:var(--g900);background:var(--white);line-heig
 .card-icon.img{background:#6366f1}.card-icon.vid{background:#ea580c}.card-icon.d3{background:#0891b2}
 .card-icon.ofc{background:#16a34a}.card-icon.dev{background:#4f46e5}.card-icon.ai{background:#9333ea}
 .card-icon.com{background:#0284c7}.card-icon.db{background:#b45309}.card-icon.cld{background:#0f766e}.card-icon.brw{background:#c2410c}
+.card-icon.med{background:#7c3aed}.card-icon.gam{background:#059669}.card-icon.lif{background:#d946ef}
 .card-name{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--g900)}
 .card-ver{font-family:var(--mono);font-size:11px;color:var(--g500)}
 .card-desc{font-size:13px;color:var(--g600);line-height:1.55;margin-bottom:14px;min-height:40px}
