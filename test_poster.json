@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "name": "untitled",
+  "document": {
+    "width": 1920.0,
+    "height": 1080.0,
+    "units": "px",
+    "viewBox": "0 0 1920.0 1080.0",
+    "background": "#ffffff"
+  },
+  "objects": [],
+  "layers": [
+    {
+      "id": "layer1",
+      "name": "Layer 1",
+      "visible": true,
+      "locked": false,
+      "opacity": 1.0,
+      "objects": []
+    }
+  ],
+  "gradients": [],
+  "metadata": {
+    "created": "2026-03-15T11:55:00.154485",
+    "modified": "2026-03-15T11:55:00.154485",
+    "software": "inkscape-cli 1.0"
+  }
+}
