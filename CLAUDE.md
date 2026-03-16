@@ -38,12 +38,15 @@ CLI Anything (clianything.ai) is a website that CLI-ifies all world's software a
 ## 10 Categories
 image (Image/Design), video (Video/Audio), 3d (3D/Gaming), office (Office/Docs), dev (Developer Tools), ai (AI/ML), comm (Communication), database (Database), cloud (Cloud/Infra), browser (Browser)
 
-## Design Decisions
+## CRITICAL Design Rules (DO NOT CHANGE)
+- **LIGHT THEME ONLY** — White background (#fff), dark text (#212529). NO dark theme, NO dark backgrounds, NO neon colors, NO green-on-black terminal aesthetics. The user explicitly rejected dark/geeky AI themes ("减少AI感"). Design inspired by **Linear and Stripe** — clean, professional, minimal.
 - **No API key in frontend** — User said "填写key这个动作不安全". API key stored as Cloudflare Worker secret.
-- **Light theme** — User said "减少AI感", wants professional look not typical dark AI theme.
+- **IBM Plex Sans/Mono fonts** — Professional look. No monospace-heavy layouts.
+- **No gradients, no glows, no emoji** — Clean borders, subtle shadows only.
 - **SEO-first** — Each software gets its own detail page for search indexing with JSON-LD.
 - **file:// compatible** — All pages work when opened locally without a server.
 - **Real app icons** — User wants real software icons, not generic ones. Use Simple Icons CDN.
+- **Color palette**: --white:#fff, --g50:#f8f9fa through --g900:#212529, --blue:#2563eb (accent). See style.css :root for full palette.
 
 ## Key Files to Know
 - `packages.js` — Edit this to add/remove/modify CLI packages. Each package has: n(name), v(version), d(description), ld(long description), c(category), t(tags), dl(downloads), ts(tests), logo, q(quality score), caps(capabilities), cmds(example commands), plat(platforms), req(requirements), inf(input formats), outf(output formats)
