@@ -1,0 +1,64 @@
+# CLI-Anything robots.txt
+# AI crawler whitelist for Generative Engine Optimization (GEO)
+
+User-agent: *
+Allow: /
+
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Google AI
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# Amazon
+User-agent: Amazonbot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Meta
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Microsoft / Bing
+User-agent: Bingbot
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+# Common Crawl (LLM training data)
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://www.agentputer.com/cli-anything/sitemap.xml
+Sitemap: https://clianything.ai/sitemap.xml
+
+# llms.txt for AI engine discovery
+# https://www.agentputer.com/cli-anything/llms.txt
+# https://clianything.ai/llms.txt

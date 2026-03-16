@@ -95,3 +95,36 @@ python3 -m cli.audacity_cli --project project.json label add 30.0 -e 60.0 --text
 # Export
 python3 -m cli.audacity_cli --project project.json export render episode1.wav --preset wav
 ```
+
+---
+
+## For AI Agents
+
+This tool is designed for AI agents (Claude, ChatGPT, Copilot, Cursor, Codex).
+
+- All commands support `--json` for structured machine-readable output
+- `detect` command verifies software availability before use
+- Predictable exit codes: 0 (success), 1 (error), 2 (usage error)
+- Part of [CLI-Anything Hub](https://www.agentputer.com/cli-anything/) — 130+ agent-ready CLIs
+
+## FAQ
+
+### How do I install cli-anything-audacity?
+
+```bash
+pip install cli-anything-audacity
+```
+
+Requires Python 3.9+.
+
+### Can AI agents use this tool?
+
+Yes. All commands support the `--json` flag for structured output that LLMs can parse directly. This tool is listed on the [CLI-Anything Hub](https://www.agentputer.com/cli-anything/audacity/).
+
+### How do I check if the software is available?
+
+```bash
+cli-anything-audacity detect --json
+```
+
+Returns a JSON object with installation status and version information.

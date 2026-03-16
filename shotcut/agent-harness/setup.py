@@ -16,11 +16,31 @@ setup(
     version="1.0.0",
     author="cli-anything contributors",
     author_email="",
-    description="CLI harness for Shotcut - Video editing and rendering via melt/ffmpeg. Requires: melt (apt install melt), ffmpeg (apt install ffmpeg)",
+    description="CLI harness for Shotcut - Video editing and rendering via melt/ffmpeg. Requires: melt (apt install melt), ffmpeg (apt install ffmpeg). AI-agent-friendly, JSON output, works with Claude/ChatGPT/Copilot",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/HKUDS/CLI-Anything",
+    project_urls={
+        "Documentation": "https://www.agentputer.com/cli-anything/shotcut/",
+        "GitHub": "https://github.com/chatjesus/CLI-Anything-Hub",
+        "Hub": "https://www.agentputer.com/cli-anything",
+        "Agent Guide": "https://www.agentputer.com/cli-anything/docs.html",
+    },
+
     packages=find_namespace_packages(include=["cli_anything.*"]),
+    keywords=[
+        "cli",
+        "shotcut",
+        "automation",
+        "ai-agent",
+        "agent-native",
+        "cli-anything",
+        "json-output",
+        "llm-tools",
+        "command-line",
+        "video",
+    ],
+
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
@@ -31,6 +51,7 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
+        "Topic :: Scientific/Engineering :: Artificial Intelligence",
     ],
     python_requires=">=3.10",
     install_requires=[

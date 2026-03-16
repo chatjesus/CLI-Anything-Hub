@@ -1,0 +1,37 @@
+{
+  "name": "cli-anything",
+  "description": "130+ agent-ready CLI wrappers for popular desktop apps, cloud APIs, and SaaS platforms. Every tool supports --json output, detect command, and pip install.",
+  "version": "1.0.0",
+  "homepage": "https://agentputer.com/cli-anything/",
+  "repository": "https://github.com/chatjesus/CLI-Anything-Hub",
+  "auth": {
+    "type": "none",
+    "note": "Most tools are local-first. Cloud API tools require their respective API tokens set as environment variables."
+  },
+  "tools_endpoint": "https://agentputer.com/cli-anything/cli/index.html",
+  "documentation": "https://agentputer.com/cli-anything/docs.html",
+  "llms_txt": "https://agentputer.com/cli-anything/llms.txt",
+  "install_pattern": "pip install cli-anything-{tool_name}",
+  "available_tools": [
+    "gimp", "blender", "inkscape",
+    "obs-studio", "audacity", "shotcut", "kdenlive",
+    "ms365", "libreoffice", "notion", "gworkspace", "feishu",
+    "slack", "discord", "telegram", "zoom",
+    "docker", "github",
+    "ollama",
+    "stripe", "shopify", "salesforce", "hubspot", "jira",
+    "vercel", "cloudflare", "twilio",
+    "drawio", "anygen"
+  ],
+  "capabilities": {
+    "json_output": true,
+    "detect_command": true,
+    "version_command": true,
+    "exit_codes": {
+      "success": 0,
+      "error": 1,
+      "usage_error": 2
+    }
+  },
+  "contact": "hello@agentputer.com"
+}

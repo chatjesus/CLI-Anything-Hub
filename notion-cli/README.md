@@ -84,3 +84,36 @@ $ notion-cli --json search "weekly report" --type page
 export NOTION_TOKEN=secret_xxxx
 python test_notion.py <parent_page_id>
 ```
+
+---
+
+## For AI Agents
+
+This tool is designed for AI agents (Claude, ChatGPT, Copilot, Cursor, Codex).
+
+- All commands support `--json` for structured machine-readable output
+- `detect` command verifies software availability before use
+- Predictable exit codes: 0 (success), 1 (error), 2 (usage error)
+- Part of [CLI-Anything Hub](https://www.agentputer.com/cli-anything/) — 130+ agent-ready CLIs
+
+## FAQ
+
+### How do I install cli-anything-notion?
+
+```bash
+pip install cli-anything-notion
+```
+
+Requires Python 3.9+.
+
+### Can AI agents use this tool?
+
+Yes. All commands support the `--json` flag for structured output that LLMs can parse directly. This tool is listed on the [CLI-Anything Hub](https://www.agentputer.com/cli-anything/notion/).
+
+### How do I check if the software is available?
+
+```bash
+cli-anything-notion detect --json
+```
+
+Returns a JSON object with installation status and version information.

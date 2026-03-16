@@ -1,0 +1,66 @@
+# CLI-Anything
+
+> CLI-Anything is an open-source collection of 130+ agent-ready CLI wrappers that turn popular desktop applications, cloud APIs, and SaaS platforms into command-line tools. Every CLI supports --json output, a detect command, and pip install. Built for AI agents (Claude, ChatGPT, Copilot, Cursor, Codex).
+
+## Core Documentation
+- [Quick Start](https://www.agentputer.com/cli-anything/docs.html): Install any CLI tool via pip, configure credentials, run commands with --json output
+- [Full Tool Registry](https://www.agentputer.com/cli-anything/cli/index.html): Browse 130+ CLI tools by category with search and filters
+- [About CLI-Anything](https://www.agentputer.com/cli-anything/about.html): Mission, architecture, and open source philosophy
+- [GitHub Repository](https://github.com/chatjesus/CLI-Anything-Hub): Source code, monorepo structure, contribution guide
+
+## Image & Design Tools
+- [GIMP CLI](https://www.agentputer.com/cli-anything/gimp/): Batch image processing, filters, watermarks, format conversion — pip install cli-anything-gimp
+- [Blender CLI](https://www.agentputer.com/cli-anything/blender/): 3D scene management, headless rendering via bpy — pip install cli-anything-blender
+- [Inkscape CLI](https://www.agentputer.com/cli-anything/inkscape/): SVG creation, vector editing, multi-format export — pip install cli-anything-inkscape
+
+## Video & Audio Tools
+- [OBS Studio CLI](https://www.agentputer.com/cli-anything/obs-studio/): Live streaming and recording control via obs-websocket — pip install cli-anything-obs-studio
+- [Audacity CLI](https://www.agentputer.com/cli-anything/audacity/): Audio editing, noise reduction, format conversion — pip install cli-anything-audacity
+- [Shotcut CLI](https://www.agentputer.com/cli-anything/shotcut/): Video editing via MLT XML — pip install cli-anything-shotcut
+- [Kdenlive CLI](https://www.agentputer.com/cli-anything/kdenlive/): Video editing via MLT XML — pip install cli-anything-kdenlive
+
+## Office & Productivity Tools
+- [Microsoft 365 CLI](https://www.agentputer.com/cli-anything/ms365/): Word, Excel, PowerPoint, Outlook COM automation — pip install cli-anything-ms365
+- [LibreOffice CLI](https://www.agentputer.com/cli-anything/libreoffice/): Writer, Calc, Impress headless document conversion — pip install cli-anything-libreoffice
+- [Notion CLI](https://www.agentputer.com/cli-anything/notion/): Pages, databases, blocks via Notion REST API — pip install cli-anything-notion
+- [Google Workspace CLI](https://www.agentputer.com/cli-anything/gworkspace/): Drive, Gmail, Calendar, Sheets, Docs — pip install cli-anything-gworkspace
+- [Feishu CLI](https://www.agentputer.com/cli-anything/feishu/): Messages, docs, calendar via Feishu Open API — pip install cli-anything-feishu
+
+## Communication Tools
+- [Slack CLI](https://www.agentputer.com/cli-anything/slack/): Messages, channels, files via Slack Web API — pip install cli-anything-slack
+- [Discord CLI](https://www.agentputer.com/cli-anything/discord/): Guilds, channels, webhooks via Discord REST API v10 — pip install cli-anything-discord
+- [Telegram CLI](https://www.agentputer.com/cli-anything/telegram/): Bot messages, groups, polls via Telegram Bot API — pip install cli-anything-telegram
+- [Zoom CLI](https://www.agentputer.com/cli-anything/zoom/): Meeting management via Zoom REST API — pip install cli-anything-zoom
+
+## Development Tools
+- [Docker CLI](https://www.agentputer.com/cli-anything/docker/): Container lifecycle, images, volumes via Docker SDK — pip install cli-anything-docker
+- [GitHub CLI](https://www.agentputer.com/cli-anything/github/): Issues, PRs, Actions, releases via GitHub REST API — pip install cli-anything-github
+
+## AI & Automation Tools
+- [Ollama CLI](https://www.agentputer.com/cli-anything/ollama/): Local LLM management, chat, embeddings via Ollama REST API — pip install cli-anything-ollama
+
+## SaaS & Business Tools
+- [Stripe CLI](https://www.agentputer.com/cli-anything/stripe/): Payments, subscriptions, refunds via Stripe SDK — pip install cli-anything-stripe
+- [Shopify CLI](https://www.agentputer.com/cli-anything/shopify/): Products, orders, inventory via Shopify Admin API — pip install cli-anything-shopify
+- [Salesforce CLI](https://www.agentputer.com/cli-anything/salesforce/): SOQL queries, leads, opportunities via Salesforce REST API — pip install cli-anything-salesforce
+- [HubSpot CLI](https://www.agentputer.com/cli-anything/hubspot/): Contacts, deals, workflows via HubSpot CRM API — pip install cli-anything-hubspot
+- [Jira CLI](https://www.agentputer.com/cli-anything/jira/): Issues, sprints, JQL queries via Atlassian REST API — pip install cli-anything-jira
+
+## Cloud & Infrastructure Tools
+- [Vercel CLI](https://www.agentputer.com/cli-anything/vercel/): Deployments, domains, environment variables via Vercel API — pip install cli-anything-vercel
+- [Cloudflare CLI](https://www.agentputer.com/cli-anything/cloudflare/): DNS, Workers, R2, D1 via Cloudflare REST API — pip install cli-anything-cloudflare
+- [Twilio CLI](https://www.agentputer.com/cli-anything/twilio/): SMS, voice calls, WhatsApp via Twilio SDK — pip install cli-anything-twilio
+
+## Diagrams & Utilities
+- [Draw.io CLI](https://www.agentputer.com/cli-anything/drawio/): Flowcharts and architecture diagrams via mxGraph XML — pip install cli-anything-drawio
+- [AnyGen CLI](https://www.agentputer.com/cli-anything/anygen/): Universal content generation API — pip install cli-anything-anygen
+
+## Installation
+- [PyPI Search](https://pypi.org/search/?q=cli-anything): All packages follow the naming pattern cli-anything-{software}
+- Install any tool: `pip install cli-anything-{software}`
+- Every tool supports: `detect` (check availability), `version` (show version), `--json` (structured output)
+
+## Optional
+- [Architecture Overview](https://www.agentputer.com/cli-anything/docs.html): How CLI-Anything works — manifest spec, MCP bridge, agent integration
+- [Showcase](https://www.agentputer.com/cli-anything/showcase.html): Featured use cases and demo workflows
+- [Submit a CLI](https://github.com/chatjesus/CLI-Anything-Hub/issues/new?labels=cli-submission): Contribute a new CLI wrapper to the Hub

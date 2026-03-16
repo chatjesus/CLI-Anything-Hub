@@ -23,7 +23,7 @@ long_description = README.read_text(encoding="utf-8") if README.exists() else ""
 setup(
     name="cli-anything-blender",
     version="1.0.0",
-    description="CLI harness for Blender - run 3D modeling, animation, and rendering via blender --background --python",
+    description="CLI harness for Blender - run 3D modeling, animation, and rendering via blender --background --python. AI-agent-friendly, JSON output, works with Claude/ChatGPT/Copilot",
     long_description=long_description,
     long_description_content_type="text/markdown",
 
@@ -32,8 +32,10 @@ setup(
     url="https://github.com/HKUDS/CLI-Anything",
 
     project_urls={
-        "Source": "https://github.com/HKUDS/CLI-Anything",
-        "Tracker": "https://github.com/HKUDS/CLI-Anything/issues",
+        "Documentation": "https://www.agentputer.com/cli-anything/blender/",
+        "GitHub": "https://github.com/chatjesus/CLI-Anything-Hub",
+        "Hub": "https://www.agentputer.com/cli-anything",
+        "Agent Guide": "https://www.agentputer.com/cli-anything/docs.html",
     },
 
     license="MIT",
@@ -69,6 +71,11 @@ setup(
         "3d",
         "rendering",
         "automation",
+        "ai-agent",
+        "agent-native",
+        "cli-anything",
+        "json-output",
+        "llm-tools",
     ],
 
     classifiers=[
@@ -82,5 +89,6 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
+        "Topic :: Scientific/Engineering :: Artificial Intelligence",
     ],
 )
