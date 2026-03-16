@@ -319,6 +319,76 @@ const PACKAGES=[
     caps:["page.navigate","page.screenshot","performance.profile","cookie.manage"],
     cmds:["safari-cli screenshot --url https://example.com --output page.png","safari-cli profile --url https://example.com --output perf.json"],
     plat:["macos"],req:["safari>=17"],inf:["url"],outf:["png","json"]},
+
+  // ── New: Video / Audio ──
+  {n:"shotcut",v:"1.0.0",d:"Open-source video editor. Timeline editing, 17 built-in filters, multi-format rendering via MLT.",ld:"CLI for Shotcut video editor. Create and manipulate MLT XML projects, add tracks, place clips, apply video/audio filters, set transitions, and render via melt or ffmpeg.",c:"video",t:["video","editing","open-source"],dl:"1.2K",ts:144,logo:S+"shotcut/115C77",q:.88,
+    caps:["project.create","timeline.edit","clip.add","filter.apply","export.render","media.probe"],
+    cmds:["shotcut-cli project new --profile hd1080p30","shotcut-cli timeline add-clip video.mp4 --track 1 --in 00:00:05.000 --out 00:00:15.000","shotcut-cli filter add brightness --track 1 --clip 0 --param level=1.15","shotcut-cli export render output.mp4 --preset h264-high"],
+    plat:["linux","macos","windows"],req:["shotcut>=22","ffmpeg"],inf:["mp4","mov","mkv","webm","avi"],outf:["mp4","webm","mkv","gif","prores"]},
+
+  // ── New: Office / Docs ──
+  {n:"wps-office",v:"1.0.0",d:"WPS Office automation via COM. Writer, Spreadsheets, Presentation — create, edit, export to PDF.",ld:"Automate WPS Office programmatically. Control WPS Writer, Spreadsheets (ET), and Presentation (WPP). Create documents, write cells, export to PDF, and convert between formats.",c:"office",t:["office","wps","documents"],dl:"2.3K",ts:156,logo:null,q:.90,
+    caps:["writer.create","writer.edit","writer.export","calc.write","calc.read","impress.create","convert.pdf"],
+    cmds:["wps-cli writer new --output report.docx --title 'Q4 Report'","wps-cli calc write-cell data.xlsx --cell A1 --value 'Revenue' --sheet Sheet1","wps-cli impress new --output slides.pptx --title 'Strategy'","wps-cli writer to-pdf report.docx --output report.pdf"],
+    plat:["windows"],req:["wps-office>=12"],inf:["docx","xlsx","pptx","doc","xls"],outf:["docx","xlsx","pptx","pdf"]},
+
+  {n:"ms365",v:"1.0.0",d:"Microsoft 365 unified CLI. Word, Excel, PowerPoint, Outlook automation via COM interface.",ld:"Unified CLI for Microsoft 365 Office automation. Control Word, Excel, PowerPoint, and Outlook programmatically — create documents, read/write cells, export to PDF, send emails, and manage calendar.",c:"office",t:["microsoft","office","unified"],dl:"7.5K",ts:312,logo:null,q:.95,
+    caps:["word.create","word.edit","excel.write","excel.read","powerpoint.create","outlook.send","outlook.calendar","convert.pdf"],
+    cmds:["ms365-cli word new --output report.docx --title 'Q4 Report'","ms365-cli excel write-cell data.xlsx --cell A1 --value 'Revenue'","ms365-cli powerpoint new --output deck.pptx --title 'Strategy'","ms365-cli outlook send --to user@company.com --subject 'Update' --body 'See attached'"],
+    plat:["windows","macos"],req:["microsoft-365"],inf:["docx","xlsx","pptx","csv"],outf:["docx","xlsx","pptx","pdf"]},
+
+  {n:"google-workspace",v:"1.0.0",d:"Google Workspace unified CLI. Drive, Gmail, Calendar, Sheets, Docs, and Chat in one tool.",ld:"Unified CLI for Google Workspace APIs. Manage Google Drive files, send Gmail, schedule Calendar events, read/write Sheets, create Docs, and send Chat messages. Supports OAuth2 and service accounts.",c:"office",t:["google","workspace","cloud"],dl:"4.2K",ts:198,logo:S+"google/4285F4",q:.93,
+    caps:["drive.manage","gmail.send","gmail.search","calendar.events","sheets.read","sheets.write","docs.create","chat.send"],
+    cmds:["gworkspace-cli drive list --limit 20","gworkspace-cli gmail send --to user@example.com --subject 'Report' --body 'Attached'","gworkspace-cli calendar events --days 7","gworkspace-cli sheets read SPREADSHEET_ID 'Sheet1!A1:C10'"],
+    plat:["linux","macos","windows"],req:["google-api-credentials"],inf:["json","csv"],outf:["json","csv","pdf"]},
+
+  // ── New: Communication ──
+  {n:"feishu",v:"1.0.0",d:"Feishu/Lark enterprise platform. Messaging, documents, calendar, group management via open API.",ld:"CLI for Feishu (Lark) open platform. Send messages and rich cards, manage groups, create documents, schedule calendar events, query users, and send notification cards with severity levels.",c:"comm",t:["messaging","enterprise","feishu"],dl:"1.8K",ts:134,logo:S+"lark/00D6B9",q:.89,
+    caps:["message.send","card.send","group.manage","doc.create","calendar.manage","user.search","notify.send"],
+    cmds:["feishu-cli msg send --to OPEN_ID --text 'Hello from CLI'","feishu-cli msg send-card --to CHAT_ID --title 'Deploy Complete' --body 'v2.1 is live' --color green","feishu-cli cal list --start 2026-01-01 --end 2026-01-07","feishu-cli doc create --title 'Meeting Notes' --content '# Agenda'"],
+    plat:["linux","macos","windows"],req:["feishu-app-credentials"],inf:["json","md"],outf:["json"]},
+
+  {n:"twilio",v:"1.0.0",d:"Twilio communications API. Send SMS, make voice calls, send WhatsApp messages, manage phone numbers.",ld:"CLI for Twilio REST API. Send SMS and WhatsApp messages, initiate voice calls with TwiML, list message and call history, and manage owned phone numbers.",c:"comm",t:["sms","voice","api"],dl:"2.4K",ts:112,logo:S+"twilio/F22F46",q:.90,
+    caps:["sms.send","sms.list","call.make","call.list","whatsapp.send","number.list"],
+    cmds:["twilio-cli sms send --to +15551234567 --from +15559876543 --body 'Hello from CLI'","twilio-cli calls make --to +15551234567 --from +15559876543 --twiml '<Response><Say>Hello</Say></Response>'","twilio-cli whatsapp send --to +15551234567 --body 'Hello via WhatsApp'"],
+    plat:["linux","macos","windows"],req:["twilio-credentials"],inf:["txt","json"],outf:["json"]},
+
+  // ── New: AI / ML ──
+  {n:"ollama",v:"1.0.0",d:"Ollama local LLM management. Pull models, generate text, multi-turn chat, embeddings.",ld:"CLI for Ollama local LLM server. Manage models (pull, list, delete, copy), run single-turn text generation, multi-turn ChatML conversations, and generate embedding vectors. JSON-first output for agent integration.",c:"ai",t:["llm","local","inference"],dl:"6.8K",ts:178,logo:S+"ollama/000000",q:.94,
+    caps:["model.list","model.pull","model.delete","generate.text","chat.multi","embeddings.generate","server.detect"],
+    cmds:["ollama-cli list --json","ollama-cli pull llama3.2","ollama-cli run llama3.2 'Explain quantum computing in one sentence'","ollama-cli chat llama3.2 --message 'system:You are a concise assistant' --message 'user:What is 2+2?'","ollama-cli embeddings nomic-embed-text 'Hello world' --json"],
+    plat:["linux","macos","windows"],req:["ollama"],inf:["txt","json"],outf:["json","txt"]},
+
+  {n:"anygen",v:"1.0.0",d:"AnyGen AI content generation. Create slides, documents, diagrams, websites, and data reports via API.",ld:"CLI for AnyGen cloud content generation platform. Create professional presentations (PPTX), documents (DOCX), SmartDraw diagrams, websites, storybooks, and data analysis reports. Full async workflow: create task, poll status, download output.",c:"ai",t:["generation","slides","documents"],dl:"1.5K",ts:98,q:.87,
+    caps:["task.create","task.poll","task.download","file.upload","session.manage","prepare.analyze"],
+    cmds:["anygen-cli task run --operation slide --prompt 'Create a quarterly business review' --output ./","anygen-cli task create --operation doc --prompt 'Write a PRD for a mobile app'","anygen-cli task create --operation smart_draw --prompt 'Architecture diagram for microservices'","anygen-cli task status TASK_ID"],
+    plat:["linux","macos","windows"],req:["anygen-api-key"],inf:["pdf","json","txt"],outf:["pptx","docx","drawio","png"]},
+
+  // ── New: Cloud / Infra ──
+  {n:"hubspot",v:"1.0.0",d:"HubSpot CRM management. Contacts, deals, companies — search, create, and manage CRM records.",ld:"CLI for HubSpot CRM REST API. Manage contacts (list, search, create), deals (list, create with pipeline stages), and companies (list, search by domain). Full JSON output for agent integration.",c:"cloud",t:["crm","sales","marketing"],dl:"1.9K",ts:87,logo:S+"hubspot/FF7A59",q:.88,
+    caps:["contact.list","contact.search","contact.create","deal.list","deal.create","company.search"],
+    cmds:["hubspot-cli contacts list --limit 10","hubspot-cli contacts search --email john@example.com","hubspot-cli deals create --name 'Enterprise Deal' --amount 50000 --stage appointmentscheduled","hubspot-cli companies search --domain acme.com"],
+    plat:["linux","macos","windows"],req:["hubspot-api-key"],inf:["json"],outf:["json"]},
+
+  {n:"salesforce",v:"1.0.0",d:"Salesforce CRM operations. SOQL queries, record CRUD on any sObject, schema exploration.",ld:"CLI for Salesforce REST API. Execute SOQL queries, perform CRUD operations on any sObject (Account, Contact, Lead, Opportunity), and explore object schemas. Supports OAuth2 and access token auth.",c:"cloud",t:["crm","enterprise","salesforce"],dl:"3.1K",ts:134,logo:S+"salesforce/00A1E0",q:.91,
+    caps:["query.soql","record.get","record.create","record.update","record.delete","objects.list"],
+    cmds:["salesforce-cli query 'SELECT Id, Name FROM Account LIMIT 10'","salesforce-cli record create Contact --data '{\"FirstName\":\"Jane\",\"LastName\":\"Doe\"}'","salesforce-cli record get Account 001xx000003ABCDEF","salesforce-cli objects list"],
+    plat:["linux","macos","windows"],req:["salesforce-credentials"],inf:["json"],outf:["json"]},
+
+  {n:"shopify",v:"1.0.0",d:"Shopify e-commerce management. Products, orders, customers, and inventory operations.",ld:"CLI for Shopify Admin REST API. Manage products (list, create, update), orders (list, get), customers (list, search), and inventory levels. Full JSON output for agent workflows.",c:"cloud",t:["ecommerce","shopify","retail"],dl:"2.6K",ts:112,logo:S+"shopify/7AB55C",q:.89,
+    caps:["product.list","product.create","product.update","order.list","order.get","customer.list","inventory.list"],
+    cmds:["shopify-cli products list --limit 10 --status active","shopify-cli products create --title 'New T-Shirt' --price 29.99 --sku 'TSH-001'","shopify-cli orders list --limit 5 --status any","shopify-cli customers list --limit 10"],
+    plat:["linux","macos","windows"],req:["shopify-access-token"],inf:["json"],outf:["json"]},
+
+  {n:"stripe",v:"1.0.0",d:"Stripe payment API. Customers, payment intents, subscriptions, refunds, and product management.",ld:"CLI for Stripe payment API. Manage customers, create and confirm payment intents, handle subscriptions and refunds, and manage products with pricing. Built on Stripe Python SDK with JSON output.",c:"cloud",t:["payments","fintech","stripe"],dl:"3.8K",ts:156,logo:S+"stripe/635BFF",q:.92,
+    caps:["customer.manage","payment.create","payment.confirm","subscription.manage","refund.create","product.create"],
+    cmds:["stripe-cli customer create --email customer@example.com --name 'Jane Doe'","stripe-cli payment create --amount 5000 --currency usd --customer cus_xxx","stripe-cli subscription list --customer cus_xxx --status active","stripe-cli refund create --payment-intent-id pi_xxx --amount 1000"],
+    plat:["linux","macos","windows"],req:["stripe-api-key"],inf:["json"],outf:["json"]},
+
+  {n:"vercel",v:"1.0.0",d:"Vercel deployment platform. Manage deployments, projects, domains, and environment variables.",ld:"CLI for Vercel REST API. List and inspect deployments, manage projects and domains, configure environment variables. Supports team scope and provides JSON output for agent integration.",c:"cloud",t:["deployment","hosting","vercel"],dl:"3.2K",ts:123,logo:S+"vercel/000000",q:.90,
+    caps:["deployment.list","deployment.get","deployment.cancel","project.list","domain.list","env.manage"],
+    cmds:["vercel-cli deployments list --project my-app --limit 10","vercel-cli deployments get dpl_xxxxx","vercel-cli projects list --limit 20","vercel-cli env add --project my-app --key API_URL --value https://api.example.com --target production"],
+    plat:["linux","macos","windows"],req:["vercel-token"],inf:["json"],outf:["json"]},
 ];
 
 // Helpers
