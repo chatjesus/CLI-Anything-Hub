@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CLI Anything — The Software Registry Built for AI Agents</title>
-<meta name="description" content="CLI Anything is an open-source registry of CLI wrappers for popular software. Install tested, documented command-line interfaces for 55+ applications. Built for AI agents.">
+<meta name="description" content="CLI Anything is an open-source registry of CLI wrappers for popular software. Install tested, documented command-line interfaces for 120+ applications. Built for AI agents.">
 <meta name="keywords" content="CLI, command line, AI agents, software registry, GIMP CLI, FFmpeg CLI, Docker CLI, Photoshop CLI, Microsoft Office CLI, automation, agent tools">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,11 +55,25 @@
 <!-- ═══════ Metrics ═══════ -->
 <div class="metrics">
   <div class="metrics-inner" id="metricsBar">
-    <div class="metric"><div class="metric-num" id="metricPkgs">55+</div><div class="metric-label">CLI packages</div></div>
-    <div class="metric"><div class="metric-num">12,400+</div><div class="metric-label">Monthly installs</div></div>
+    <div class="metric"><div class="metric-num" id="metricPkgs">120+</div><div class="metric-label">CLI packages</div></div>
+    <div class="metric"><div class="metric-num" id="metricInstalls">12,400+</div><div class="metric-label">Monthly installs</div></div>
     <div class="metric"><div class="metric-num" id="metricTests">9,200+</div><div class="metric-label">Tests passing</div></div>
-    <div class="metric"><div class="metric-num">10</div><div class="metric-label">Categories</div></div>
+    <div class="metric"><div class="metric-num" id="metricCats">13</div><div class="metric-label">Categories</div></div>
   </div>
+</div>
+
+<!-- ═══════ Tools Strip ═══════ -->
+<div class="tools-strip">
+  <div class="tools-strip-label">120+ software CLI wrappers and growing</div>
+  <div class="tools-strip-inner">
+    <div class="tools-track" id="toolsTrack"></div>
+  </div>
+</div>
+
+<!-- ═══════ Category Overview ═══════ -->
+<div class="cat-overview">
+  <div class="cat-overview-title">Browse by category</div>
+  <div class="cat-grid" id="catGrid"></div>
 </div>
 
 <!-- ═══════ How it works ═══════ -->
@@ -375,7 +389,9 @@
 <script>
 /* ── Dynamic metrics ── */
 document.getElementById('metricPkgs').textContent = PACKAGES.length + '+';
+document.getElementById('metricInstalls').textContent = (PACKAGES.reduce((s,p) => s + parseInt(String(p.dl).replace(/[^\d]/g,''),10), 0)/1000).toFixed(0) + 'K+';
 document.getElementById('metricTests').textContent = PACKAGES.reduce((s,p) => s + p.ts, 0).toLocaleString() + '+';
+document.getElementById('metricCats').textContent = Object.keys(CATEGORIES).length;
 
 /* ── Populate category select ── */
 const catSelect = document.getElementById('f_cat');
@@ -394,8 +410,8 @@ for(const [key, cat] of Object.entries(CATEGORIES)){
 }
 tabsEl.innerHTML = tabsHTML;
 
-/* Show first 20 packages on homepage */
-const HOMEPAGE_LIMIT = 20;
+/* Show more packages on homepage */
+const HOMEPAGE_LIMIT = 40;
 let currentHomePkgs = PACKAGES.slice(0, HOMEPAGE_LIMIT);
 
 function render(items){
@@ -427,6 +443,31 @@ document.getElementById('searchInput').addEventListener('keyup', e => { if(e.key
 document.getElementById('searchInput').addEventListener('input', e => { if(!e.target.value) render(PACKAGES.slice(0, HOMEPAGE_LIMIT)) });
 
 render(currentHomePkgs);
+
+/* ── Tools scroll strip ── */
+(function(){
+  const strip = document.getElementById('toolsTrack');
+  const toolPkgs = PACKAGES.filter(p => p.logo);
+  let html = '';
+  // Duplicate for seamless infinite scroll
+  for(let r=0; r<2; r++){
+    toolPkgs.forEach(p => {
+      html += '<div class="tool-item"><img src="'+p.logo+'" alt="'+p.n+'" onerror="this.parentNode.style.display=\'none\'"><span>'+p.n+'</span></div>';
+    });
+  }
+  strip.innerHTML = html;
+})();
+
+/* ── Category overview ── */
+(function(){
+  const grid = document.getElementById('catGrid');
+  let html = '';
+  for(const [key, cat] of Object.entries(CATEGORIES)){
+    const count = getPkgsByCategory(key).length;
+    html += '<a class="cat-card" href="cli/index.html#'+key+'"><div class="cat-dot" style="background:'+cat.color+'"></div><div><div class="cat-card-name">'+cat.label+'</div><div class="cat-card-count">'+count+' CLIs</div></div></a>';
+  }
+  grid.innerHTML = html;
+})();
 
 /* ── Terminal animation ── */
 const lines=[

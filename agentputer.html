@@ -29,7 +29,6 @@ body{font-family:var(--sans);color:var(--g900);background:var(--white);line-heig
 .nav-inner{max-width:var(--max);margin:0 auto;padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--g900);font-weight:700;font-size:16px}
 .nav-logo svg{width:24px;height:24px}
-.nav-logo span{color:var(--blue);font-weight:400;font-size:12px;background:var(--blue-light);padding:2px 8px;border-radius:4px;margin-left:4px}
 .nav-links{display:flex;align-items:center;gap:24px}
 .nav-links a{font-size:14px;color:var(--g600);text-decoration:none;font-weight:500;transition:color .15s}
 .nav-links a:hover{color:var(--g900)}
@@ -38,7 +37,7 @@ body{font-family:var(--sans);color:var(--g900);background:var(--white);line-heig
 
 /* Hero */
 .hero{max-width:var(--max);margin:0 auto;padding:100px 32px 80px;text-align:center}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--blue);margin-bottom:24px;border:1px solid rgba(37,99,235,.2);padding:6px 16px;border-radius:20px;background:var(--blue-light)}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--g600);margin-bottom:24px;border:1px solid var(--g300);padding:6px 16px;border-radius:20px;background:transparent}
 .hero-badge svg{width:14px;height:14px}
 .hero h1{font-size:clamp(40px,6vw,64px);font-weight:700;line-height:1.08;letter-spacing:-.04em;color:var(--g900);margin-bottom:24px}
 .hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -116,9 +115,9 @@ body{font-family:var(--sans);color:var(--g900);background:var(--white);line-heig
 
 /* CTA */
 .cta{max-width:var(--max);margin:0 auto;padding:40px 32px 100px}
-.cta-box{background:var(--g900);border-radius:16px;padding:64px 48px;text-align:center;color:var(--white)}
-.cta-box h2{font-size:clamp(28px,4vw,38px);font-weight:700;letter-spacing:-.02em;margin-bottom:14px}
-.cta-box p{font-size:16px;color:var(--g500);margin-bottom:36px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7}
+.cta-box{background:var(--g100);border:1px solid var(--g200);border-radius:16px;padding:64px 48px;text-align:center;color:var(--g900)}
+.cta-box h2{font-size:clamp(28px,4vw,38px);font-weight:700;letter-spacing:-.02em;margin-bottom:14px;color:var(--g900)}
+.cta-box p{font-size:16px;color:var(--g600);margin-bottom:36px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7}
 .cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .btn-white{background:var(--white);color:var(--g900);font-size:14px;font-weight:600;padding:12px 24px;border-radius:8px;text-decoration:none;transition:opacity .15s}
 .btn-white:hover{opacity:.9}
@@ -126,12 +125,12 @@ body{font-family:var(--sans);color:var(--g900);background:var(--white);line-heig
 .btn-ghost:hover{border-color:var(--g500);color:var(--white)}
 
 /* Footer */
-.footer{border-top:1px solid var(--g200);padding:32px}
+.footer{border-top:1px solid var(--g100);padding:32px}
 .footer-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-.footer-copy{font-size:13px;color:var(--g500)}
+.footer-copy{font-size:13px;color:var(--g400)}
 .footer-links{display:flex;gap:20px}
-.footer-links a{font-size:13px;color:var(--g500);text-decoration:none;transition:color .15s}
-.footer-links a:hover{color:var(--g900)}
+.footer-links a{font-size:13px;color:var(--g400);text-decoration:none;transition:color .15s}
+.footer-links a:hover{color:var(--g700)}
 
 /* Responsive */
 @media(max-width:900px){
@@ -162,7 +161,6 @@ body{font-family:var(--sans);color:var(--g900);background:var(--white);line-heig
     <a href="agentputer.html" class="nav-logo">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
       AgentPuter
-      <span>2026</span>
     </a>
     <div class="nav-links">
       <a href="index.html">CLI Anything</a>
@@ -329,8 +327,8 @@ body{font-family:var(--sans);color:var(--g900);background:var(--white);line-heig
     <h2>Give your agent superpowers</h2>
     <p>120+ software tools, one pip install. Open source, MIT licensed. Start building agent workflows in minutes.</p>
     <div class="cta-actions">
-      <a href="cli/index.html" class="btn-white">Browse CLI tools</a>
-      <a href="#" class="btn-ghost">View on GitHub</a>
+      <a href="cli/index.html" class="btn btn-primary">Browse CLI tools</a>
+      <a href="#" class="btn btn-outline">View on GitHub</a>
     </div>
   </div>
 </div>
@@ -352,7 +350,7 @@ body{font-family:var(--sans);color:var(--g900);background:var(--white);line-heig
 // Tools scroll strip
 const S='https://cdn.simpleicons.org/';
 const tools=[
-  {n:'Slack',i:S+'slack/4A154B'},{n:'Discord',i:S+'discord/5865F2'},{n:'Docker',i:S+'docker/2496ED'},
+  {n:'Slack',i:'https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/slack.svg'},{n:'Discord',i:S+'discord/5865F2'},{n:'Docker',i:S+'docker/2496ED'},
   {n:'GitHub',i:S+'github/181717'},{n:'Notion',i:S+'notion/000000'},{n:'Figma',i:S+'figma/F24E1E'},
   {n:'FFmpeg',i:S+'ffmpeg/007808'},{n:'Blender',i:S+'blender/E87D0D'},{n:'GIMP',i:S+'gimp/5C5543'},
   {n:'Telegram',i:S+'telegram/26A5E4'},{n:'Redis',i:S+'redis/DC382D'},{n:'Kubernetes',i:S+'kubernetes/326CE5'},

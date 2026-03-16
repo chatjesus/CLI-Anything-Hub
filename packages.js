@@ -1,5 +1,6 @@
 /* CLI Anything — Package Registry Data */
 const S='https://cdn.simpleicons.org/';
+const J='https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/';
 const CATEGORIES={
   image:{label:'Image / Design',color:'#6366f1'},
   video:{label:'Video / Audio',color:'#ea580c'},
@@ -24,12 +25,12 @@ const PACKAGES=[
     cmds:["gimp-cli resize --input photo.png --width 1920","gimp-cli filter --input photo.png --type sharpen","gimp-cli export --input photo.psd --format png"],
     plat:["linux","macos","windows"],req:["gimp>=2.10"],inf:["png","jpg","psd","tiff","bmp","webp"],outf:["png","jpg","webp","tiff"]},
 
-  {n:"photoshop",v:"1.0.0",d:"Adobe Photoshop automation via CLI. Layer operations, filters, batch processing, format conversion.",ld:"Wraps Adobe Photoshop's scripting interface (ExtendScript/UXP) to provide command-line access to professional image editing workflows.",c:"image",t:["adobe","image","editing"],dl:"6.1K",ts:210,logo:null,q:.94,
+  {n:"photoshop",v:"1.0.0",d:"Adobe Photoshop automation via CLI. Layer operations, filters, batch processing, format conversion.",ld:"Wraps Adobe Photoshop's scripting interface (ExtendScript/UXP) to provide command-line access to professional image editing workflows.",c:"image",t:["adobe","image","editing"],dl:"6.1K",ts:210,logo:J+"adobephotoshop.svg",q:.94,
     caps:["image.open","image.resize","image.filter","image.export","layer.create","layer.style","image.crop","image.adjust"],
     cmds:["photoshop-cli resize --input banner.psd --width 1200 --output json","photoshop-cli export --input design.psd --format png --layers all","photoshop-cli batch --dir ./images --action resize --width 800"],
     plat:["macos","windows"],req:["photoshop>=2024"],inf:["psd","png","jpg","tiff","raw"],outf:["psd","png","jpg","webp","tiff"]},
 
-  {n:"illustrator",v:"1.0.0",d:"Adobe Illustrator vector editing via CLI. Path operations, artboard management, SVG/PDF export.",ld:"Command-line access to Illustrator's vector editing engine. Create, modify, and export vector graphics programmatically.",c:"image",t:["adobe","vector","design"],dl:"2.3K",ts:134,logo:null,q:.91,
+  {n:"illustrator",v:"1.0.0",d:"Adobe Illustrator vector editing via CLI. Path operations, artboard management, SVG/PDF export.",ld:"Command-line access to Illustrator's vector editing engine. Create, modify, and export vector graphics programmatically.",c:"image",t:["adobe","vector","design"],dl:"2.3K",ts:134,logo:J+"adobeillustrator.svg",q:.91,
     caps:["vector.create","vector.edit","artboard.manage","path.combine","text.set","export.svg","export.pdf"],
     cmds:["illustrator-cli export --input logo.ai --format svg","illustrator-cli artboard --input file.ai --list --output json"],
     plat:["macos","windows"],req:["illustrator>=2024"],inf:["ai","svg","eps","pdf"],outf:["svg","pdf","png","eps"]},
@@ -49,7 +50,7 @@ const PACKAGES=[
     cmds:["imagemagick-cli resize --input photo.jpg --width 800 --height 600","imagemagick-cli convert --input *.png --format webp --quality 85"],
     plat:["linux","macos","windows"],req:["imagemagick>=7"],inf:["png","jpg","gif","tiff","webp","bmp","svg"],outf:["png","jpg","gif","webp","tiff"]},
 
-  {n:"canva",v:"1.0.0",d:"Canva design automation. Create designs from templates, export assets, manage brand kits.",ld:"Wraps Canva's Connect API to automate design creation, template management, and asset export for teams.",c:"image",t:["design","templates","branding"],dl:"1.8K",ts:87,q:.88,
+  {n:"canva",v:"1.0.0",d:"Canva design automation. Create designs from templates, export assets, manage brand kits.",ld:"Wraps Canva's Connect API to automate design creation, template management, and asset export for teams.",c:"image",t:["design","templates","branding"],dl:"1.8K",ts:87,logo:J+"canva.svg",q:.88,
     caps:["design.create","template.list","asset.export","brand.manage"],
     cmds:["canva-cli create --template poster --text 'Hello World' --output poster.png","canva-cli export --design-id abc --format pdf"],
     plat:["linux","macos","windows"],req:["canva-api-token"],inf:["canva"],outf:["png","pdf","jpg","mp4"]},
@@ -70,12 +71,12 @@ const PACKAGES=[
     cmds:["obs-cli stream start --service twitch","obs-cli scene switch --name 'Game Capture'","obs-cli record start --output ./recordings"],
     plat:["linux","macos","windows"],req:["obs-studio>=28"],inf:[],outf:["mp4","mkv","flv"]},
 
-  {n:"premiere-pro",v:"1.0.0",d:"Adobe Premiere Pro video editing. Timeline operations, effects, rendering, and export automation.",ld:"Automate Premiere Pro workflows. Import media, arrange timelines, apply effects, and render final output via CLI.",c:"video",t:["adobe","video","editing"],dl:"3.4K",ts:156,logo:null,q:.91,
+  {n:"premiere-pro",v:"1.0.0",d:"Adobe Premiere Pro video editing. Timeline operations, effects, rendering, and export automation.",ld:"Automate Premiere Pro workflows. Import media, arrange timelines, apply effects, and render final output via CLI.",c:"video",t:["adobe","video","editing"],dl:"3.4K",ts:156,logo:J+"adobepremierepro.svg",q:.91,
     caps:["project.create","timeline.arrange","effect.apply","render.export","media.import","transition.add"],
     cmds:["premiere-cli render --project video.prproj --format mp4 --preset 'YouTube 1080p'","premiere-cli import --project video.prproj --files ./clips/*.mp4"],
     plat:["macos","windows"],req:["premiere-pro>=2024"],inf:["prproj","mp4","mov","mxf"],outf:["mp4","mov","mxf","prores"]},
 
-  {n:"after-effects",v:"1.0.0",d:"Adobe After Effects motion graphics. Composition rendering, expression control, template-based generation.",ld:"Render After Effects compositions via CLI. Control expressions, swap assets, and batch render motion graphics templates.",c:"video",t:["adobe","motion","vfx"],dl:"2.7K",ts:121,logo:null,q:.89,
+  {n:"after-effects",v:"1.0.0",d:"Adobe After Effects motion graphics. Composition rendering, expression control, template-based generation.",ld:"Render After Effects compositions via CLI. Control expressions, swap assets, and batch render motion graphics templates.",c:"video",t:["adobe","motion","vfx"],dl:"2.7K",ts:121,logo:J+"adobeaftereffects.svg",q:.89,
     caps:["comp.render","expression.set","asset.swap","template.render","output.configure"],
     cmds:["aftereffects-cli render --project intro.aep --comp 'Main' --format mp4","aftereffects-cli template --project mogrt.aep --text 'Breaking News' --output news.mp4"],
     plat:["macos","windows"],req:["after-effects>=2024"],inf:["aep","mogrt"],outf:["mp4","mov","gif","png-sequence"]},
@@ -85,7 +86,7 @@ const PACKAGES=[
     cmds:["kdenlive-cli render --project edit.kdenlive --format mp4 --quality high"],
     plat:["linux","macos","windows"],req:["kdenlive>=22"],inf:["kdenlive","mp4","mov"],outf:["mp4","webm","mkv"]},
 
-  {n:"davinci-resolve",v:"1.0.0",d:"DaVinci Resolve editing and color grading. Timeline, color wheels, Fusion, and Fairlight via CLI.",ld:"Professional video editing and color grading. Control timelines, color grading wheels, Fusion VFX, and Fairlight audio.",c:"video",t:["video","color-grading","editing"],dl:"2.9K",ts:167,q:.92,
+  {n:"davinci-resolve",v:"1.0.0",d:"DaVinci Resolve editing and color grading. Timeline, color wheels, Fusion, and Fairlight via CLI.",ld:"Professional video editing and color grading. Control timelines, color grading wheels, Fusion VFX, and Fairlight audio.",c:"video",t:["video","color-grading","editing"],dl:"2.9K",ts:167,logo:S+"davinciresolve/233A51",q:.92,
     caps:["timeline.edit","color.grade","fusion.compose","fairlight.mix","render.export","media.import"],
     cmds:["resolve-cli render --project film.drp --timeline 'Final Cut' --format prores","resolve-cli color --input clip.mp4 --lut cinematic.cube"],
     plat:["linux","macos","windows"],req:["davinci-resolve>=18"],inf:["drp","mp4","mov","mxf","braw"],outf:["mp4","prores","dnxhd","mov"]},
@@ -112,22 +113,22 @@ const PACKAGES=[
     plat:["linux","macos","windows"],req:["godot>=4.0"],inf:["godot","tscn","tres"],outf:["exe","app","apk","html5"]},
 
   // ── Office / Docs ──
-  {n:"microsoft-word",v:"1.0.0",d:"Microsoft Word document automation. Create, edit, format documents, mail merge, PDF export.",ld:"Automate Word via Office JS/COM API. Create documents from templates, apply formatting, run mail merge, and export to PDF.",c:"office",t:["microsoft","documents","word"],dl:"8.2K",ts:234,logo:null,q:.95,
+  {n:"microsoft-word",v:"1.0.0",d:"Microsoft Word document automation. Create, edit, format documents, mail merge, PDF export.",ld:"Automate Word via Office JS/COM API. Create documents from templates, apply formatting, run mail merge, and export to PDF.",c:"office",t:["microsoft","documents","word"],dl:"8.2K",ts:234,logo:J+"microsoftword.svg",q:.95,
     caps:["doc.create","doc.edit","format.apply","template.use","mailmerge.run","export.pdf","table.insert","image.insert"],
     cmds:["word-cli create --template report.dotx --data data.json --output report.docx","word-cli export --input document.docx --format pdf","word-cli mailmerge --template letter.docx --data contacts.csv"],
     plat:["macos","windows"],req:["microsoft-365"],inf:["docx","dotx","doc","rtf"],outf:["docx","pdf","html","rtf"]},
 
-  {n:"microsoft-excel",v:"1.0.0",d:"Microsoft Excel spreadsheet automation. Data manipulation, formulas, charts, pivot tables, CSV import/export.",ld:"Full Excel automation. Read/write cells, create charts, build pivot tables, run macros, and convert between formats.",c:"office",t:["microsoft","spreadsheet","data"],dl:"9.5K",ts:278,logo:null,q:.96,
+  {n:"microsoft-excel",v:"1.0.0",d:"Microsoft Excel spreadsheet automation. Data manipulation, formulas, charts, pivot tables, CSV import/export.",ld:"Full Excel automation. Read/write cells, create charts, build pivot tables, run macros, and convert between formats.",c:"office",t:["microsoft","spreadsheet","data"],dl:"9.5K",ts:278,logo:J+"microsoftexcel.svg",q:.96,
     caps:["sheet.read","sheet.write","chart.create","pivot.build","formula.set","macro.run","format.convert","data.filter"],
     cmds:["excel-cli read --input sales.xlsx --sheet 'Q1' --range A1:D100 --output json","excel-cli chart --input data.xlsx --type bar --range B2:D10 --output chart.png","excel-cli convert --input data.csv --format xlsx"],
     plat:["macos","windows"],req:["microsoft-365"],inf:["xlsx","xls","csv","tsv"],outf:["xlsx","csv","pdf","json"]},
 
-  {n:"microsoft-powerpoint",v:"1.0.0",d:"Microsoft PowerPoint automation. Create presentations, apply themes, add content, export slides.",ld:"Automate PowerPoint workflows. Build presentations from templates, insert text/images/charts, apply animations, and export.",c:"office",t:["microsoft","presentation","slides"],dl:"5.8K",ts:189,logo:null,q:.93,
+  {n:"microsoft-powerpoint",v:"1.0.0",d:"Microsoft PowerPoint automation. Create presentations, apply themes, add content, export slides.",ld:"Automate PowerPoint workflows. Build presentations from templates, insert text/images/charts, apply animations, and export.",c:"office",t:["microsoft","presentation","slides"],dl:"5.8K",ts:189,logo:J+"microsoftpowerpoint.svg",q:.93,
     caps:["slide.create","slide.edit","theme.apply","content.insert","animation.add","export.pdf","export.images"],
     cmds:["powerpoint-cli create --template pitch.potx --data content.json --output deck.pptx","powerpoint-cli export --input slides.pptx --format pdf","powerpoint-cli export --input slides.pptx --format png --slides all"],
     plat:["macos","windows"],req:["microsoft-365"],inf:["pptx","potx","ppt"],outf:["pptx","pdf","png","jpg"]},
 
-  {n:"microsoft-outlook",v:"1.0.0",d:"Microsoft Outlook email automation. Send/read emails, manage calendar, contacts, and folders.",ld:"Automate Outlook via Graph API. Send and search emails, manage calendar events, organize contacts and folders.",c:"office",t:["microsoft","email","calendar"],dl:"4.3K",ts:156,logo:null,q:.92,
+  {n:"microsoft-outlook",v:"1.0.0",d:"Microsoft Outlook email automation. Send/read emails, manage calendar, contacts, and folders.",ld:"Automate Outlook via Graph API. Send and search emails, manage calendar events, organize contacts and folders.",c:"office",t:["microsoft","email","calendar"],dl:"4.3K",ts:156,logo:J+"microsoftoutlook.svg",q:.92,
     caps:["mail.send","mail.read","mail.search","calendar.create","calendar.list","contact.manage","folder.organize"],
     cmds:["outlook-cli send --to user@email.com --subject 'Report' --body-file report.html --attach data.xlsx","outlook-cli calendar list --start 2026-03-01 --end 2026-03-31 --output json"],
     plat:["macos","windows"],req:["microsoft-365"],inf:["eml","msg","ics"],outf:["json","eml","ics"]},
@@ -147,7 +148,7 @@ const PACKAGES=[
     cmds:["gsheets-cli read --id abc123 --range 'Sheet1!A1:D100' --output json","gsheets-cli write --id abc123 --range A1 --data data.csv"],
     plat:["linux","macos","windows"],req:["google-api-credentials"],inf:["csv","json"],outf:["csv","json","xlsx","pdf"]},
 
-  {n:"keynote",v:"1.1.0",d:"Presentation creation, slide management, theme application, export to PDF, PPTX, and images.",ld:"macOS Keynote automation via AppleScript. Create presentations, manage slides, apply themes, and export to multiple formats.",c:"office",t:["presentations","macos","slides"],dl:"1.2K",ts:89,q:.87,
+  {n:"keynote",v:"1.1.0",d:"Presentation creation, slide management, theme application, export to PDF, PPTX, and images.",ld:"macOS Keynote automation via AppleScript. Create presentations, manage slides, apply themes, and export to multiple formats.",c:"office",t:["presentations","macos","slides"],dl:"1.2K",ts:89,logo:J+"apple.svg",q:.87,
     caps:["slide.create","slide.edit","theme.apply","export.pdf","export.pptx","export.images"],
     cmds:["keynote-cli export --input presentation.key --format pdf","keynote-cli create --template modern --data slides.json"],
     plat:["macos"],req:["keynote>=13"],inf:["key"],outf:["pdf","pptx","png","jpg"]},
@@ -157,18 +158,18 @@ const PACKAGES=[
     cmds:["notion-cli query --database-id abc123 --filter '{\"Status\":\"Done\"}' --output json","notion-cli create-page --parent abc --title 'Meeting Notes' --content notes.md"],
     plat:["linux","macos","windows"],req:["notion-api-token"],inf:["md","json"],outf:["json","md"]},
 
-  {n:"pandoc",v:"1.9.0",d:"Universal document converter. Markdown, LaTeX, DOCX, HTML, PDF, EPUB inter-conversion.",ld:"The universal document converter. Convert between 40+ document formats including Markdown, LaTeX, Word, HTML, PDF, and EPUB.",c:"office",t:["documents","conversion","markdown"],dl:"3.6K",ts:167,q:.95,
+  {n:"pandoc",v:"1.9.0",d:"Universal document converter. Markdown, LaTeX, DOCX, HTML, PDF, EPUB inter-conversion.",ld:"The universal document converter. Convert between 40+ document formats including Markdown, LaTeX, Word, HTML, PDF, and EPUB.",c:"office",t:["documents","conversion","markdown"],dl:"3.6K",ts:167,logo:J+"pandoc.svg",q:.95,
     caps:["doc.convert","template.apply","filter.run","metadata.set","toc.generate","cite.process"],
     cmds:["pandoc-cli convert --input paper.md --format pdf --template academic","pandoc-cli convert --input book.epub --format docx"],
     plat:["linux","macos","windows"],req:["pandoc>=3.0"],inf:["md","tex","docx","html","epub","rst"],outf:["pdf","docx","html","epub","tex"]},
 
   // ── Communication ──
-  {n:"slack",v:"1.6.0",d:"Message sending, channel management, file handling, conversation search, webhook integration.",ld:"Full Slack API wrapper. Send messages, manage channels, upload files, search conversations, and configure webhooks.",c:"comm",t:["messaging","workspace","api"],dl:"3.1K",ts:142,logo:S+"slack/4A154B",q:.92,
+  {n:"slack",v:"1.6.0",d:"Message sending, channel management, file handling, conversation search, webhook integration.",ld:"Full Slack API wrapper. Send messages, manage channels, upload files, search conversations, and configure webhooks.",c:"comm",t:["messaging","workspace","api"],dl:"3.1K",ts:142,logo:J+"slack.svg",q:.92,
     caps:["message.send","message.search","channel.create","channel.list","file.upload","user.list","webhook.send"],
     cmds:["slack-cli send --channel '#general' --text 'Deploy complete'","slack-cli search --query 'bug report' --output json"],
     plat:["linux","macos","windows"],req:["slack-bot-token"],inf:["txt","json"],outf:["json"]},
 
-  {n:"microsoft-teams",v:"1.0.0",d:"Microsoft Teams automation. Send messages, manage channels, schedule meetings, handle files.",ld:"Automate Teams via Graph API. Post messages, create channels, schedule meetings, and manage team files.",c:"comm",t:["microsoft","messaging","meetings"],dl:"5.2K",ts:178,logo:null,q:.91,
+  {n:"microsoft-teams",v:"1.0.0",d:"Microsoft Teams automation. Send messages, manage channels, schedule meetings, handle files.",ld:"Automate Teams via Graph API. Post messages, create channels, schedule meetings, and manage team files.",c:"comm",t:["microsoft","messaging","meetings"],dl:"5.2K",ts:178,logo:J+"microsoftteams.svg",q:.91,
     caps:["message.send","channel.create","meeting.schedule","file.share","team.manage","chat.create"],
     cmds:["teams-cli send --team 'Engineering' --channel 'General' --text 'Build passed'","teams-cli meeting --title 'Standup' --time '2026-03-16T10:00' --attendees team.txt"],
     plat:["linux","macos","windows"],req:["microsoft-365"],inf:["txt","json"],outf:["json"]},
@@ -209,7 +210,7 @@ const PACKAGES=[
     cmds:["docker-cli compose up --file docker-compose.yml --detach","docker-cli build --tag myapp:latest --output json"],
     plat:["linux","macos","windows"],req:["docker>=20"],inf:["Dockerfile","docker-compose.yml"],outf:["json"]},
 
-  {n:"vscode",v:"1.0.0",d:"VS Code automation. Extension management, settings, workspace operations, task running.",ld:"Automate Visual Studio Code. Install extensions, modify settings, manage workspaces, run tasks, and control the editor.",c:"dev",t:["editor","ide","extensions"],dl:"4.5K",ts:189,logo:null,q:.94,
+  {n:"vscode",v:"1.0.0",d:"VS Code automation. Extension management, settings, workspace operations, task running.",ld:"Automate Visual Studio Code. Install extensions, modify settings, manage workspaces, run tasks, and control the editor.",c:"dev",t:["editor","ide","extensions"],dl:"4.5K",ts:189,logo:J+"visualstudiocode.svg",q:.94,
     caps:["extension.install","extension.list","settings.modify","workspace.open","task.run","diff.view"],
     cmds:["vscode-cli extension install ms-python.python","vscode-cli settings set editor.fontSize 14 --output json"],
     plat:["linux","macos","windows"],req:["vscode>=1.80"],inf:["json"],outf:["json"]},
@@ -282,7 +283,7 @@ const PACKAGES=[
     plat:["linux","macos","windows"],req:["redis>=7"],inf:[],outf:["json"]},
 
   // ── Cloud / Infra ──
-  {n:"aws-cli",v:"2.0.0",d:"AWS service management. S3, EC2, Lambda, CloudFormation, IAM — unified structured output.",ld:"Enhanced AWS CLI wrapper. Manage S3 buckets, EC2 instances, Lambda functions, and CloudFormation stacks with JSON output.",c:"cloud",t:["aws","cloud","infrastructure"],dl:"8.9K",ts:345,logo:S+"amazonwebservices/232F3E",q:.97,
+  {n:"aws-cli",v:"2.0.0",d:"AWS service management. S3, EC2, Lambda, CloudFormation, IAM — unified structured output.",ld:"Enhanced AWS CLI wrapper. Manage S3 buckets, EC2 instances, Lambda functions, and CloudFormation stacks with JSON output.",c:"cloud",t:["aws","cloud","infrastructure"],dl:"8.9K",ts:345,logo:J+"amazonwebservices.svg",q:.97,
     caps:["s3.sync","ec2.manage","lambda.deploy","cf.deploy","iam.manage","rds.manage","cloudwatch.query"],
     cmds:["aws-cli s3 sync --source ./build --bucket my-app --delete","aws-cli lambda deploy --function api --zip package.zip --output json"],
     plat:["linux","macos","windows"],req:["aws-cli>=2"],inf:["json","yaml"],outf:["json"]},
@@ -292,7 +293,7 @@ const PACKAGES=[
     cmds:["gcloud-cli run deploy --image gcr.io/myapp --region us-central1 --output json","gcloud-cli bigquery --query 'SELECT * FROM dataset.table LIMIT 100' --output json"],
     plat:["linux","macos","windows"],req:["gcloud-sdk"],inf:["json","yaml"],outf:["json"]},
 
-  {n:"azure-cli",v:"1.0.0",d:"Microsoft Azure management. VMs, Storage, Functions, AKS, and resource group operations.",ld:"Enhanced Azure CLI. Manage Virtual Machines, Blob Storage, Azure Functions, AKS clusters, and resource groups.",c:"cloud",t:["azure","cloud","infrastructure"],dl:"5.1K",ts:234,logo:null,q:.94,
+  {n:"azure-cli",v:"1.0.0",d:"Microsoft Azure management. VMs, Storage, Functions, AKS, and resource group operations.",ld:"Enhanced Azure CLI. Manage Virtual Machines, Blob Storage, Azure Functions, AKS clusters, and resource groups.",c:"cloud",t:["azure","cloud","infrastructure"],dl:"5.1K",ts:234,logo:J+"microsoftazure.svg",q:.94,
     caps:["vm.manage","storage.sync","function.deploy","aks.manage","resource.group","sql.manage"],
     cmds:["azure-cli function deploy --name api --package ./dist --output json","azure-cli vm list --resource-group prod --output json"],
     plat:["linux","macos","windows"],req:["azure-cli>=2"],inf:["json","yaml"],outf:["json"]},
@@ -324,7 +325,7 @@ const PACKAGES=[
     plat:["macos"],req:["safari>=17"],inf:["url"],outf:["png","json"]},
 
   // ── New: Video / Audio ──
-  {n:"shotcut",v:"1.0.0",d:"Open-source video editor. Timeline editing, 17 built-in filters, multi-format rendering via MLT.",ld:"CLI for Shotcut video editor. Create and manipulate MLT XML projects, add tracks, place clips, apply video/audio filters, set transitions, and render via melt or ffmpeg.",c:"video",t:["video","editing","open-source"],dl:"1.2K",ts:144,logo:S+"shotcut/115C77",q:.88,
+  {n:"shotcut",v:"1.0.0",d:"Open-source video editor. Timeline editing, 17 built-in filters, multi-format rendering via MLT.",ld:"CLI for Shotcut video editor. Create and manipulate MLT XML projects, add tracks, place clips, apply video/audio filters, set transitions, and render via melt or ffmpeg.",c:"video",t:["video","editing","open-source"],dl:"1.2K",ts:144,logo:null,q:.88,
     caps:["project.create","timeline.edit","clip.add","filter.apply","export.render","media.probe"],
     cmds:["shotcut-cli project new --profile hd1080p30","shotcut-cli timeline add-clip video.mp4 --track 1 --in 00:00:05.000 --out 00:00:15.000","shotcut-cli filter add brightness --track 1 --clip 0 --param level=1.15","shotcut-cli export render output.mp4 --preset h264-high"],
     plat:["linux","macos","windows"],req:["shotcut>=22","ffmpeg"],inf:["mp4","mov","mkv","webm","avi"],outf:["mp4","webm","mkv","gif","prores"]},
@@ -335,7 +336,7 @@ const PACKAGES=[
     cmds:["wps-cli writer new --output report.docx --title 'Q4 Report'","wps-cli calc write-cell data.xlsx --cell A1 --value 'Revenue' --sheet Sheet1","wps-cli impress new --output slides.pptx --title 'Strategy'","wps-cli writer to-pdf report.docx --output report.pdf"],
     plat:["windows"],req:["wps-office>=12"],inf:["docx","xlsx","pptx","doc","xls"],outf:["docx","xlsx","pptx","pdf"]},
 
-  {n:"ms365",v:"1.0.0",d:"Microsoft 365 unified CLI. Word, Excel, PowerPoint, Outlook automation via COM interface.",ld:"Unified CLI for Microsoft 365 Office automation. Control Word, Excel, PowerPoint, and Outlook programmatically — create documents, read/write cells, export to PDF, send emails, and manage calendar.",c:"office",t:["microsoft","office","unified"],dl:"7.5K",ts:312,logo:null,q:.95,
+  {n:"ms365",v:"1.0.0",d:"Microsoft 365 unified CLI. Word, Excel, PowerPoint, Outlook automation via COM interface.",ld:"Unified CLI for Microsoft 365 Office automation. Control Word, Excel, PowerPoint, and Outlook programmatically — create documents, read/write cells, export to PDF, send emails, and manage calendar.",c:"office",t:["microsoft","office","unified"],dl:"7.5K",ts:312,logo:J+"microsoftoffice.svg",q:.95,
     caps:["word.create","word.edit","excel.write","excel.read","powerpoint.create","outlook.send","outlook.calendar","convert.pdf"],
     cmds:["ms365-cli word new --output report.docx --title 'Q4 Report'","ms365-cli excel write-cell data.xlsx --cell A1 --value 'Revenue'","ms365-cli powerpoint new --output deck.pptx --title 'Strategy'","ms365-cli outlook send --to user@company.com --subject 'Update' --body 'See attached'"],
     plat:["windows","macos"],req:["microsoft-365"],inf:["docx","xlsx","pptx","csv"],outf:["docx","xlsx","pptx","pdf"]},
@@ -346,12 +347,12 @@ const PACKAGES=[
     plat:["linux","macos","windows"],req:["google-api-credentials"],inf:["json","csv"],outf:["json","csv","pdf"]},
 
   // ── New: Communication ──
-  {n:"feishu",v:"1.0.0",d:"Feishu/Lark enterprise platform. Messaging, documents, calendar, group management via open API.",ld:"CLI for Feishu (Lark) open platform. Send messages and rich cards, manage groups, create documents, schedule calendar events, query users, and send notification cards with severity levels.",c:"comm",t:["messaging","enterprise","feishu"],dl:"1.8K",ts:134,logo:S+"lark/00D6B9",q:.89,
+  {n:"feishu",v:"1.0.0",d:"Feishu/Lark enterprise platform. Messaging, documents, calendar, group management via open API.",ld:"CLI for Feishu (Lark) open platform. Send messages and rich cards, manage groups, create documents, schedule calendar events, query users, and send notification cards with severity levels.",c:"comm",t:["messaging","enterprise","feishu"],dl:"1.8K",ts:134,logo:J+"lark.svg",q:.89,
     caps:["message.send","card.send","group.manage","doc.create","calendar.manage","user.search","notify.send"],
     cmds:["feishu-cli msg send --to OPEN_ID --text 'Hello from CLI'","feishu-cli msg send-card --to CHAT_ID --title 'Deploy Complete' --body 'v2.1 is live' --color green","feishu-cli cal list --start 2026-01-01 --end 2026-01-07","feishu-cli doc create --title 'Meeting Notes' --content '# Agenda'"],
     plat:["linux","macos","windows"],req:["feishu-app-credentials"],inf:["json","md"],outf:["json"]},
 
-  {n:"twilio",v:"1.0.0",d:"Twilio communications API. Send SMS, make voice calls, send WhatsApp messages, manage phone numbers.",ld:"CLI for Twilio REST API. Send SMS and WhatsApp messages, initiate voice calls with TwiML, list message and call history, and manage owned phone numbers.",c:"comm",t:["sms","voice","api"],dl:"2.4K",ts:112,logo:S+"twilio/F22F46",q:.90,
+  {n:"twilio",v:"1.0.0",d:"Twilio communications API. Send SMS, make voice calls, send WhatsApp messages, manage phone numbers.",ld:"CLI for Twilio REST API. Send SMS and WhatsApp messages, initiate voice calls with TwiML, list message and call history, and manage owned phone numbers.",c:"comm",t:["sms","voice","api"],dl:"2.4K",ts:112,logo:J+"twilio.svg",q:.90,
     caps:["sms.send","sms.list","call.make","call.list","whatsapp.send","number.list"],
     cmds:["twilio-cli sms send --to +15551234567 --from +15559876543 --body 'Hello from CLI'","twilio-cli calls make --to +15551234567 --from +15559876543 --twiml '<Response><Say>Hello</Say></Response>'","twilio-cli whatsapp send --to +15551234567 --body 'Hello via WhatsApp'"],
     plat:["linux","macos","windows"],req:["twilio-credentials"],inf:["txt","json"],outf:["json"]},
@@ -373,7 +374,7 @@ const PACKAGES=[
     cmds:["hubspot-cli contacts list --limit 10","hubspot-cli contacts search --email john@example.com","hubspot-cli deals create --name 'Enterprise Deal' --amount 50000 --stage appointmentscheduled","hubspot-cli companies search --domain acme.com"],
     plat:["linux","macos","windows"],req:["hubspot-api-key"],inf:["json"],outf:["json"]},
 
-  {n:"salesforce",v:"1.0.0",d:"Salesforce CRM operations. SOQL queries, record CRUD on any sObject, schema exploration.",ld:"CLI for Salesforce REST API. Execute SOQL queries, perform CRUD operations on any sObject (Account, Contact, Lead, Opportunity), and explore object schemas. Supports OAuth2 and access token auth.",c:"cloud",t:["crm","enterprise","salesforce"],dl:"3.1K",ts:134,logo:S+"salesforce/00A1E0",q:.91,
+  {n:"salesforce",v:"1.0.0",d:"Salesforce CRM operations. SOQL queries, record CRUD on any sObject, schema exploration.",ld:"CLI for Salesforce REST API. Execute SOQL queries, perform CRUD operations on any sObject (Account, Contact, Lead, Opportunity), and explore object schemas. Supports OAuth2 and access token auth.",c:"cloud",t:["crm","enterprise","salesforce"],dl:"3.1K",ts:134,logo:J+"salesforce.svg",q:.91,
     caps:["query.soql","record.get","record.create","record.update","record.delete","objects.list"],
     cmds:["salesforce-cli query 'SELECT Id, Name FROM Account LIMIT 10'","salesforce-cli record create Contact --data '{\"FirstName\":\"Jane\",\"LastName\":\"Doe\"}'","salesforce-cli record get Account 001xx000003ABCDEF","salesforce-cli objects list"],
     plat:["linux","macos","windows"],req:["salesforce-credentials"],inf:["json"],outf:["json"]},
@@ -430,12 +431,12 @@ const PACKAGES=[
     cmds:["steam-cli library list --output json","steam-cli install --appid 730","steam-cli workshop download --id 123456"],
     plat:["linux","macos","windows"],req:["steamcmd"],inf:["json"],outf:["json"]},
 
-  {n:"minecraft",v:"1.0.0",d:"Minecraft server management. Start/stop servers, manage worlds, plugins, player administration.",ld:"Minecraft server management CLI. Start, stop, configure servers, manage worlds and plugins, handle player whitelist and bans.",c:"gaming",t:["games","server","minecraft"],dl:"3.5K",ts:123,logo:null,q:.89,
+  {n:"minecraft",v:"1.0.0",d:"Minecraft server management. Start/stop servers, manage worlds, plugins, player administration.",ld:"Minecraft server management CLI. Start, stop, configure servers, manage worlds and plugins, handle player whitelist and bans.",c:"gaming",t:["games","server","minecraft"],dl:"3.5K",ts:123,logo:J+"minecraft.svg",q:.89,
     caps:["server.start","server.stop","world.manage","plugin.install","player.manage","backup.create"],
     cmds:["minecraft-cli server start --version 1.20 --memory 4G","minecraft-cli world backup --name survival"],
     plat:["linux","macos","windows"],req:["java>=17"],inf:["json"],outf:["json"]},
 
-  {n:"roblox",v:"1.0.0",d:"Roblox development platform. Publish experiences, manage assets, analytics, moderation.",ld:"Roblox Open Cloud API wrapper. Publish places, manage assets and data stores, retrieve analytics, handle moderation.",c:"gaming",t:["games","development","roblox"],dl:"2.1K",ts:87,logo:null,q:.86,
+  {n:"roblox",v:"1.0.0",d:"Roblox development platform. Publish experiences, manage assets, analytics, moderation.",ld:"Roblox Open Cloud API wrapper. Publish places, manage assets and data stores, retrieve analytics, handle moderation.",c:"gaming",t:["games","development","roblox"],dl:"2.1K",ts:87,logo:S+"roblox/000000",q:.86,
     caps:["place.publish","asset.upload","datastore.manage","analytics.get","user.info"],
     cmds:["roblox-cli publish --place-id 123 --file game.rbxlx","roblox-cli assets list --output json"],
     plat:["linux","macos","windows"],req:["roblox-api-key"],inf:["rbxlx","json"],outf:["json"]},
@@ -475,7 +476,7 @@ const PACKAGES=[
     cmds:["cs2-cli player stats --steamid 76561198xxxx --output json"],
     plat:["linux","macos","windows"],req:["steam-api-key"],inf:["json"],outf:["json"]},
 
-  {n:"fortnite",v:"1.0.0",d:"Fortnite game stats. Player stats, item shop, news, tournament info.",ld:"Fortnite API wrapper. Retrieve player statistics, current item shop, game news, and tournament information.",c:"gaming",t:["games","battle-royale","epic"],dl:"1.6K",ts:67,logo:null,q:.84,
+  {n:"fortnite",v:"1.0.0",d:"Fortnite game stats. Player stats, item shop, news, tournament info.",ld:"Fortnite API wrapper. Retrieve player statistics, current item shop, game news, and tournament information.",c:"gaming",t:["games","battle-royale","epic"],dl:"1.6K",ts:67,logo:S+"fortnite/000000",q:.84,
     caps:["player.stats","shop.items","news.get","tournament.info"],
     cmds:["fortnite-cli stats --player Ninja --output json","fortnite-cli shop --output json"],
     plat:["linux","macos","windows"],req:["fortnite-api-key"],inf:["json"],outf:["json"]},
@@ -517,7 +518,7 @@ const PACKAGES=[
     cmds:["obsidian-cli create --title 'Meeting Notes' --content '# Agenda' --tags meeting","obsidian-cli search 'project plan'"],
     plat:["linux","macos","windows"],req:["obsidian>=1.0"],inf:["md","json"],outf:["json","md"]},
 
-  {n:"7zip",v:"1.0.0",d:"7-Zip archive management. Compress, extract, list, test archives in 30+ formats.",ld:"7-Zip CLI wrapper. Create and extract archives in 7z, ZIP, TAR, GZIP, and 30+ formats with encryption and split support.",c:"dev",t:["compression","archive","utility"],dl:"3.2K",ts:156,logo:null,q:.92,
+  {n:"7zip",v:"1.0.0",d:"7-Zip archive management. Compress, extract, list, test archives in 30+ formats.",ld:"7-Zip CLI wrapper. Create and extract archives in 7z, ZIP, TAR, GZIP, and 30+ formats with encryption and split support.",c:"dev",t:["compression","archive","utility"],dl:"3.2K",ts:156,logo:S+"7zip/000000",q:.92,
     caps:["archive.create","archive.extract","archive.list","archive.test","format.convert"],
     cmds:["7zip-cli compress --input ./folder --output archive.7z --level ultra","7zip-cli extract --input archive.zip --output ./out"],
     plat:["linux","macos","windows"],req:["7zip>=21"],inf:["7z","zip","tar","gz","rar","bz2"],outf:["7z","zip","tar","gz"]},
@@ -528,7 +529,7 @@ const PACKAGES=[
     cmds:["comfyui-cli run --workflow workflow.json --output ./results","comfyui-cli models list --output json"],
     plat:["linux","macos","windows"],req:["comfyui","python>=3.10"],inf:["json","png"],outf:["png","jpg","webp","json"]},
 
-  {n:"openai",v:"1.0.0",d:"OpenAI API. Chat completions, embeddings, image generation, audio transcription, fine-tuning.",ld:"OpenAI REST API wrapper. Run chat completions (GPT-4), generate embeddings, create images (DALL-E), transcribe audio (Whisper), and manage fine-tuning jobs.",c:"ai",t:["llm","gpt","api"],dl:"8.9K",ts:234,logo:S+"openai/412991",q:.96,
+  {n:"openai",v:"1.0.0",d:"OpenAI API. Chat completions, embeddings, image generation, audio transcription, fine-tuning.",ld:"OpenAI REST API wrapper. Run chat completions (GPT-4), generate embeddings, create images (DALL-E), transcribe audio (Whisper), and manage fine-tuning jobs.",c:"ai",t:["llm","gpt","api"],dl:"8.9K",ts:234,logo:J+"openai.svg",q:.96,
     caps:["chat.complete","embedding.create","image.generate","audio.transcribe","finetune.manage","model.list"],
     cmds:["openai-cli chat 'Explain quantum computing' --model gpt-4o --output json","openai-cli image generate 'a cat in space' --size 1024x1024"],
     plat:["linux","macos","windows"],req:["openai-api-key"],inf:["json","txt","mp3","wav"],outf:["json","png"]},
@@ -539,7 +540,7 @@ const PACKAGES=[
     cmds:["dropbox-cli upload --local report.pdf --remote /Reports/report.pdf","dropbox-cli list /Documents --output json"],
     plat:["linux","macos","windows"],req:["dropbox-api-token"],inf:["*"],outf:["json"]},
 
-  {n:"onedrive",v:"1.0.0",d:"Microsoft OneDrive cloud storage. File operations, sharing, sync, search.",ld:"OneDrive/SharePoint API wrapper via Microsoft Graph. Upload, download, share files, manage folders, and search content.",c:"cloud",t:["storage","microsoft","cloud"],dl:"2.4K",ts:112,logo:null,q:.89,
+  {n:"onedrive",v:"1.0.0",d:"Microsoft OneDrive cloud storage. File operations, sharing, sync, search.",ld:"OneDrive/SharePoint API wrapper via Microsoft Graph. Upload, download, share files, manage folders, and search content.",c:"cloud",t:["storage","microsoft","cloud"],dl:"2.4K",ts:112,logo:J+"microsoftonedrive.svg",q:.89,
     caps:["file.upload","file.download","file.share","folder.manage","search.content","sync.status"],
     cmds:["onedrive-cli upload --local doc.pdf --remote /Documents/doc.pdf","onedrive-cli list /Documents --output json"],
     plat:["linux","macos","windows"],req:["microsoft-365"],inf:["*"],outf:["json"]},
@@ -549,7 +550,7 @@ const PACKAGES=[
     cmds:["gdrive-cli upload report.pdf --folder 'Shared Reports' --output json","gdrive-cli list --query 'type=pdf' --output json"],
     plat:["linux","macos","windows"],req:["google-api-credentials"],inf:["*"],outf:["json"]},
 
-  {n:"sendgrid",v:"1.0.0",d:"SendGrid email delivery. Send transactional emails, manage templates, track delivery stats.",ld:"SendGrid API wrapper. Send transactional and marketing emails, manage templates, track delivery and engagement statistics.",c:"cloud",t:["email","delivery","api"],dl:"2.1K",ts:98,logo:S+"sendgrid/4A154B",q:.89,
+  {n:"sendgrid",v:"1.0.0",d:"SendGrid email delivery. Send transactional emails, manage templates, track delivery stats.",ld:"SendGrid API wrapper. Send transactional and marketing emails, manage templates, track delivery and engagement statistics.",c:"cloud",t:["email","delivery","api"],dl:"2.1K",ts:98,logo:J+"sendgrid.svg",q:.89,
     caps:["email.send","template.manage","stats.get","contact.manage","bounce.list"],
     cmds:["sendgrid-cli send --to user@example.com --subject 'Welcome' --template welcome-template","sendgrid-cli stats --days 30 --output json"],
     plat:["linux","macos","windows"],req:["sendgrid-api-key"],inf:["json","html"],outf:["json"]},
@@ -605,7 +606,7 @@ const PACKAGES=[
     cmds:["grab-cli ride book --pickup '1.290,103.851' --dropoff '1.300,103.860' --output json"],
     plat:["linux","macos","windows"],req:["grab-api-credentials"],inf:["json"],outf:["json"]},
 
-  {n:"meituan",v:"1.0.0",d:"Meituan platform. Food delivery, hotel booking, local services in China.",ld:"Meituan Open Platform API wrapper. Manage restaurant orders, hotel bookings, and local service listings.",c:"lifestyle",t:["food","delivery","china"],dl:"1.3K",ts:56,logo:null,q:.83,
+  {n:"meituan",v:"1.0.0",d:"Meituan platform. Food delivery, hotel booking, local services in China.",ld:"Meituan Open Platform API wrapper. Manage restaurant orders, hotel bookings, and local service listings.",c:"lifestyle",t:["food","delivery","china"],dl:"1.3K",ts:56,logo:S+"meituan/FFD100",q:.83,
     caps:["order.list","order.manage","store.info","delivery.track"],
     cmds:["meituan-cli orders list --status new --output json"],
     plat:["linux","macos","windows"],req:["meituan-api-credentials"],inf:["json"],outf:["json"]},
@@ -620,12 +621,12 @@ const PACKAGES=[
     cmds:["didi-cli ride request --pickup '39.9,116.4' --dropoff '39.95,116.45' --output json"],
     plat:["linux","macos","windows"],req:["didi-api-credentials"],inf:["json"],outf:["json"]},
 
-  {n:"kfc",v:"1.0.0",d:"KFC ordering API. Menu browsing, order placement, store locator, promotions.",ld:"KFC delivery/ordering API wrapper. Browse menus, place orders, locate stores, and view current promotions.",c:"lifestyle",t:["food","restaurant","fast-food"],dl:"560",ts:34,logo:null,q:.80,
+  {n:"kfc",v:"1.0.0",d:"KFC ordering API. Menu browsing, order placement, store locator, promotions.",ld:"KFC delivery/ordering API wrapper. Browse menus, place orders, locate stores, and view current promotions.",c:"lifestyle",t:["food","restaurant","fast-food"],dl:"560",ts:34,logo:S+"kfc/F40027",q:.80,
     caps:["menu.browse","order.place","store.locate","promotion.list"],
     cmds:["kfc-cli menu --store-id 123 --output json","kfc-cli stores near --lat 40.7 --lng -74.0 --output json"],
     plat:["linux","macos","windows"],req:["kfc-api-credentials"],inf:["json"],outf:["json"]},
 
-  {n:"mcdonalds",v:"1.0.0",d:"McDonald's ordering API. Menu, orders, store locator, deals and promotions.",ld:"McDonald's API wrapper. Browse menus, place orders, find nearby stores, and discover current deals and promotions.",c:"lifestyle",t:["food","restaurant","fast-food"],dl:"670",ts:34,logo:null,q:.80,
+  {n:"mcdonalds",v:"1.0.0",d:"McDonald's ordering API. Menu, orders, store locator, deals and promotions.",ld:"McDonald's API wrapper. Browse menus, place orders, find nearby stores, and discover current deals and promotions.",c:"lifestyle",t:["food","restaurant","fast-food"],dl:"670",ts:34,logo:S+"mcdonalds/FFC72C",q:.80,
     caps:["menu.browse","order.place","store.locate","deal.list"],
     cmds:["mcdonalds-cli menu --output json","mcdonalds-cli stores near --lat 40.7 --lng -74.0 --output json"],
     plat:["linux","macos","windows"],req:["mcdonalds-api-credentials"],inf:["json"],outf:["json"]},
