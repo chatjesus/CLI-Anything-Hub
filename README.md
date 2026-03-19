@@ -10,13 +10,13 @@
                                          H  U  B
 ```
 
-**The Open Hub for 130+ Agent-Ready CLIs**
+**The Open Hub for 160+ Agent-Ready CLIs**
 
 *pip install any tool · Agents call any software · Zero friction*
 
 [![Product Hunt](https://img.shields.io/badge/Product%20Hunt-Launch-DA552F?style=for-the-badge&logo=producthunt&logoColor=white)](https://www.producthunt.com/posts/cli-anything)
-[![Hub CLIs](https://img.shields.io/badge/Hub_CLIs-130%2B_Planned-00ff41?style=for-the-badge&logo=python&logoColor=white)](https://github.com/chatjesus/CLI-Anything-Hub)
-[![Live CLIs](https://img.shields.io/badge/Live_CLIs-30%2B_Ready-brightgreen?style=for-the-badge&logo=python)](https://github.com/chatjesus/CLI-Anything-Hub)
+[![Hub CLIs](https://img.shields.io/badge/Hub_CLIs-160%2B_Planned-00ff41?style=for-the-badge&logo=python&logoColor=white)](https://github.com/chatjesus/CLI-Anything-Hub)
+[![Live CLIs](https://img.shields.io/badge/Live_CLIs-35%2B_Ready-brightgreen?style=for-the-badge&logo=python)](https://github.com/chatjesus/CLI-Anything-Hub)
 [![PyPI](https://img.shields.io/badge/PyPI-cli--anything--*-blue?style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/search/?q=cli-anything)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 [![Fork](https://img.shields.io/badge/Fork_%26_Extend-Welcome-orange?style=for-the-badge&logo=github)](https://github.com/chatjesus/CLI-Anything-Hub/fork)
@@ -50,7 +50,7 @@ Every CLI in this Hub implements the same 4-command interface so **AI agents (Cl
 │   │   Slack API  Stripe SDK  Docker SDK  Script-Fu  Steam API   │       │
 │   └──────────────────────────────────────────────────────────────┘       │
 │                                                                          │
-│   One interface. 130+ tools. All agent-native. All JSON output.         │
+│   One interface. 160+ tools. All agent-native. All JSON output.         │
 └──────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -105,9 +105,9 @@ cli-anything-slack schema
 
 | CLI | Package | Status | Description |
 |-----|---------|--------|-------------|
-| Figma | `cli-anything-figma` | 🔜 Soon | REST API — export components, manage files |
+| Figma | `cli-anything-figma` | 🔜 Soon | Full read/write Figma Desktop control, shadcn/ui generation, design tokens |
 | Canva | `cli-anything-canva` | 🔜 Soon | Connect API — populate templates, brand kits |
-| Photoshop | `cli-anything-photoshop` | 🔜 Soon | UXP — batch image processing, layer automation |
+| Photoshop | `cli-anything-photoshop` | 🔜 Soon | Adobe API — batch image processing, background removal, layer automation |
 | Illustrator | `cli-anything-illustrator` | 🔜 Soon | UXP — vector automation, artboard export |
 | Krita | `cli-anything-krita` | 🔜 Soon | Scripting API — batch paint, digital art export |
 
@@ -119,8 +119,11 @@ cli-anything-slack schema
 | Discord | `cli-anything-discord` | ✅ Live | Bot messaging, guilds, threads |
 | Telegram | `cli-anything-telegram` | ✅ Live | Bot API, groups, channels, media |
 | Feishu / Lark | `cli-anything-feishu` | ✅ Live | Feishu/Lark open platform — messages, docs |
+| Resend | `cli-anything-resend` | 🔜 Soon | Email API — 53 commands, domains, templates, broadcasts |
 | Microsoft Teams | `cli-anything-teams` | 🔜 Soon | Graph API — channels, meetings, notifications |
 | X / Twitter | `cli-anything-x` | 🔜 Soon | API v2 — tweets, timeline, DMs, analytics |
+| Postiz (Multi-Platform) | `cli-anything-postiz` | 🔜 Soon | 30+ social platforms — TikTok, IG, YouTube, Twitch, Spotify |
+| Post Bridge | `cli-anything-postbridge` | 🔜 Soon | 9 platforms — IG, TikTok, YouTube, X, LinkedIn, Facebook |
 
 ### ☁️ Cloud SaaS & APIs
 
@@ -138,6 +141,8 @@ cli-anything-slack schema
 | Mailchimp | `cli-anything-mailchimp` | 🔜 Soon | Email campaigns, audiences, automation |
 | Zendesk | `cli-anything-zendesk` | 🔜 Soon | Support tickets, users, macros |
 | Dropbox | `cli-anything-dropbox` | 🔜 Soon | File storage, sharing, sync |
+| Cal.com | `cli-anything-calcom` | 🔜 Soon | Scheduling, availability, bookings, MCP server |
+| n8n | `cli-anything-n8n` | 🔜 Soon | Workflow automation — workflows, executions, credentials |
 
 ### 🛠️ Dev Tools & Automation
 
@@ -147,6 +152,10 @@ cli-anything-slack schema
 | GitHub | `cli-anything-github` | ✅ Live | Issues, PRs, Actions, releases, repos |
 | Notion | `cli-anything-notion` | ✅ Live | Pages, databases, blocks, comments |
 | Ollama | `cli-anything-ollama` | ✅ Live | Local LLM, models, chat, embeddings |
+| Sentry | `cli-anything-sentry` | 🔜 Soon | AI error analysis "Seer", natural language commands, JSON output |
+| Datadog | `cli-anything-datadog` | 🔜 Soon | 200+ commands, 33 products — monitors, logs, metrics, security |
+| Grafana | `cli-anything-grafana` | 🔜 Soon | A2A API, dashboards, alerts, assistant CLI |
+| PostHog | `cli-anything-posthog` | 🔜 Soon | Auto-instrumentation, analytics, 15+ framework support |
 | AWS | `cli-anything-aws` | 🔜 Soon | S3, Lambda, EC2, DynamoDB, CloudFormation |
 | GitLab | `cli-anything-gitlab` | 🔜 Soon | Repos, MRs, pipelines, CI/CD |
 | VS Code | `cli-anything-vscode` | 🔜 Soon | Extensions, workspace, tasks, debugging |
@@ -162,9 +171,9 @@ cli-anything-slack schema
 | WPS Office | `cli-anything-wps` | ✅ Live | WPS Writer, Spreadsheet, Presentation |
 | LibreOffice | `cli-anything-libreoffice` | ✅ Live | Writer, Calc, Impress (158 tests) |
 | Zoom | `cli-anything-zoom` | ✅ Live | Meetings, recordings, participants (22 tests) |
-| OpenAI | `cli-anything-openai` | 🔜 Soon | Chat, embeddings, image gen, fine-tuning |
 | OneDrive | `cli-anything-onedrive` | 🔜 Soon | File upload, download, share via Graph |
-| Dropbox | `cli-anything-dropbox` | 🔜 Soon | File storage, sharing, sync |
+| Todoist | `cli-anything-todoist` | 🔜 Soon | Tasks, projects, labels, comments, sync API |
+| Raindrop.io | `cli-anything-raindrop` | 🔜 Soon | Bookmarks, collections, tags, highlights |
 
 ### 🔑 Google Workspace (Suite)
 
@@ -186,13 +195,61 @@ cli-anything-gworkspace gmail send --to user@example.com --subject "Hello" --bod
 cli-anything-gworkspace calendar list-events --max-results 10
 ```
 
-### 📣 Advertising APIs
+### 📣 Advertising & Marketing APIs
 
 | CLI | Package | Status | Description |
 |-----|---------|--------|-------------|
 | Google Ads | `cli-anything-gads` | 🔜 Soon | Campaign management, bidding, reporting |
 | Google Play | `cli-anything-gplay` | 🔜 Soon | App management, reviews, sales data |
 | TikTok Ads | `cli-anything-tiktok` | 🔜 Soon | Campaigns, creatives, audiences, analytics |
+| Meta Ads | `cli-anything-meta-ads` | 🔜 Soon | Facebook/Instagram ads — campaigns, audiences, insights |
+| Apple Search Ads | `cli-anything-apple-ads` | 🔜 Soon | App Store campaigns, keywords, reporting |
+| SensorTower | `cli-anything-sensortower` | 🔜 Soon | App intelligence, rankings, downloads, revenue estimates |
+
+### 📋 Project Management
+
+| CLI | Package | Status | Description |
+|-----|---------|--------|-------------|
+| Linear | `cli-anything-linear` | 🔜 Soon | Issues, projects, cycles, teams — JSON output, shell completion |
+| ClickUp | `cli-anything-clickup` | 🔜 Soon | 99.3% API coverage (134/135 endpoints), JSON-first, Docs API |
+| Asana | `cli-anything-asana` | 🔜 Soon | Tasks, projects, workspaces, relationship management |
+| Airtable | `cli-anything-airtable` | 🔜 Soon | Bases, tables, records, comments, webhooks — fuzzy search |
+| Monday.com | `cli-anything-monday` | 🔜 Soon | Boards, items, updates, automations via GraphQL |
+
+### 🗄️ Database & Infrastructure
+
+| CLI | Package | Status | Description |
+|-----|---------|--------|-------------|
+| Supabase | `cli-anything-supabase` | 🔜 Soon | PostgreSQL, Auth, Edge Functions, real-time, migrations |
+| Neon | `cli-anything-neon` | 🔜 Soon | Serverless Postgres — branches, roles, connection strings |
+| PlanetScale | `cli-anything-planetscale` | 🔜 Soon | MySQL branching, deploy requests, schema management |
+| Turso | `cli-anything-turso` | 🔜 Soon | Edge SQLite (libSQL), global replication, groups |
+| Upstash | `cli-anything-upstash` | 🔜 Soon | Serverless Redis + Kafka — create, manage, CRUD |
+| Weaviate | `cli-anything-weaviate` | 🔜 Soon | Vector DB — collections, multi-tenancy, backup/restore |
+| Qdrant | `cli-anything-qdrant` | 🔜 Soon | Vector DB — collections, points, snapshots, clusters |
+| Redis | `cli-anything-redis` | 🔜 Soon | In-memory data store — keys, streams, pub/sub |
+
+### 🚀 Deployment & Hosting
+
+| CLI | Package | Status | Description |
+|-----|---------|--------|-------------|
+| Netlify | `cli-anything-netlify` | 🔜 Soon | Deploy from agents, projects, env vars, MCP server |
+| Render | `cli-anything-render` | 🔜 Soon | Services, datastores, deploys, logs, agent skill support |
+| Fly.io | `cli-anything-flyio` | 🔜 Soon | Global edge deploy, Machines API, volumes, secrets |
+| Railway | `cli-anything-railway` | 🔜 Soon | One-click deploy, environments, variables, databases |
+| Heroku | `cli-anything-heroku` | 🔜 Soon | Apps, dynos, add-ons, config vars, logs |
+| DigitalOcean | `cli-anything-digitalocean` | 🔜 Soon | Droplets, App Platform, databases, Kubernetes |
+
+### 🤖 AI & LLM Platforms
+
+| CLI | Package | Status | Description |
+|-----|---------|--------|-------------|
+| OpenAI | `cli-anything-openai` | 🔜 Soon | Chat, embeddings, image gen, fine-tuning, assistants |
+| Hugging Face | `cli-anything-huggingface` | 🔜 Soon | Models, datasets, Spaces, inference endpoints |
+| Replicate | `cli-anything-replicate` | 🔜 Soon | Model inference, training, deployments, collections |
+| Groq | `cli-anything-groq` | 🔜 Soon | Ultra-fast inference, LLM chat, audio transcription |
+| Together AI | `cli-anything-together` | 🔜 Soon | Open-source model inference, fine-tuning, embeddings |
+| Anthropic | `cli-anything-anthropic` | 🔜 Soon | Claude API — messages, tool use, batch processing |
 
 ### 🎮 Gaming & Entertainment
 
@@ -334,7 +391,7 @@ CLI-Anything-Hub/
 ```
          ┌──────────────────────────────┐
          │  chatjesus/CLI-Anything-Hub  │
-         │  130+ CLIs · MIT License     │
+         │  160+ CLIs · MIT License     │
          └──────────────┬───────────────┘
                         │  Fork
                ┌────────▼─────────┐
@@ -386,16 +443,19 @@ def detect():
 |----------|------|---------|-------|
 | Creative & Media | 9 | 6 | 15 |
 | Design & Creativity | 0 | 5 | 5 |
-| Communication | 4 | 2 | 6 |
-| Cloud SaaS | 8 | 4 | 12 |
-| Dev Tools | 4 | 6 | 10 |
+| Communication & Social | 4 | 7 | 11 |
+| Cloud SaaS & APIs | 8 | 8 | 16 |
+| Dev Tools & Monitoring | 4 | 10 | 14 |
 | Office & Productivity | 4 | 3 | 7 |
 | Google Workspace | 6 (1 pkg) | 1 | 7 |
-| Advertising APIs | 0 | 3 | 3 |
+| Project Management | 0 | 5 | 5 |
+| Database & Infrastructure | 0 | 8 | 8 |
+| Deployment & Hosting | 0 | 6 | 6 |
+| AI & LLM Platforms | 0 | 6 | 6 |
+| Advertising & Marketing | 0 | 6 | 6 |
 | Gaming & Entertainment | 0 | 18 | 18 |
 | Life & Local Services | 0 | 11 | 11 |
-| AI & Productivity | 0 | 2 | 2 |
-| **Total** | **35+** | **61** | **96+** |
+| **Total** | **35+** | **100+** | **135+** |
 
 ---
 
@@ -403,12 +463,18 @@ def detect():
 
 - [x] Core Hub CLIs: Slack, Discord, Telegram, Stripe, Shopify, HubSpot, Jira, Vercel, Cloudflare, Salesforce, Docker, GitHub, Notion, Ollama, MS365, Feishu, WPS, Google Workspace
 - [x] Agent-native standard: `schema` + `detect` + `--json` on every CLI
-- [x] Landing page: agentputer.com/cli-anything — 130+ tools
+- [x] Landing page: agentputer.com/cli-anything — 160+ tools
 - [x] SEO sub-pages for all CLIs
+- [ ] **Database & Infra CLIs**: Supabase, Neon, PlanetScale, Turso, Upstash, Weaviate, Qdrant
+- [ ] **Monitoring & Observability**: Sentry, Datadog, Grafana, PostHog
+- [ ] **Project Management**: Linear, ClickUp, Asana, Airtable, Monday.com
+- [ ] **Deployment & Hosting**: Netlify, Render, Fly.io, Railway, Heroku, DigitalOcean
+- [ ] **AI & LLM Platforms**: OpenAI, Hugging Face, Replicate, Groq, Together AI, Anthropic
+- [ ] **Social Media**: Postiz (30+ platforms), Post Bridge (9 platforms), Resend
 - [ ] **Gaming CLIs**: Steam, Epic, Roblox, Riot, Battle.net, Minecraft RCON, Twitch
 - [ ] **Life & Local**: DoorDash, Meituan, Uber Eats, Grab, Airbnb, Yelp
-- [ ] **Advertising APIs**: Google Ads, TikTok Ads, Meta Ads
-- [ ] **Creative SaaS**: Figma, Canva, Adobe UXP
+- [ ] **Advertising & Marketing**: Google Ads, TikTok Ads, Meta Ads, Apple Search Ads, SensorTower
+- [ ] **Creative SaaS**: Figma, Canva, Adobe Photoshop/Illustrator
 - [ ] PyPI releases for all Hub CLIs (`pip install cli-anything-slack`)
 - [ ] Auto-generated `SKILL.md` per CLI for agent skill discovery
 - [ ] Community CLI submissions via GitHub Issues
@@ -437,7 +503,7 @@ This repository is a community fork and extension of [HKUDS/CLI-Anything](https:
 
 <div align="center">
 
-**CLI-Anything Hub** — *The open hub for 130+ agent-ready CLIs.*
+**CLI-Anything Hub** — *The open hub for 160+ agent-ready CLIs.*
 
 `pip install` any tool · Agents call any software · Fork and extend
 

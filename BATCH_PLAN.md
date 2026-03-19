@@ -1,4 +1,4 @@
-﻿# CLI-Anything 全球软件 CLI 化计划
+# CLI-Anything 全球软件 CLI 化计划
 
 > 更新时间：2026-03-15  
 > 目标：将世界上所有主流知名软件系统地 CLI 化，统一打包发布到 GitHub + PyPI
@@ -415,7 +415,221 @@ Week 5（发布）
 
 ---
 
-*当前进度：30/106 完成 (28%)*  
+---
+
+## 十四（新）、DATABASE & INFRASTRUCTURE（数据库与基础设施）
+
+> **联网调研（2026-03-19）：**  
+> Supabase CLI v2.81.2、Neon CLI（npm/brew）、PlanetScale CLI v0.276.0、  
+> Turso CLI v1.0.17、Upstash CLI（npm）、Weaviate CLI v3.3.0、Qdrant CLI（Go）  
+> 新增 **8 个 CLI**
+
+| # | 软件 | 接口方式 | 优先级 | 说明 |
+|---|------|----------|--------|------|
+| 107 | **Supabase** | Supabase CLI (Go, 1,635 stars) | 🔥 高 | PostgreSQL + Auth + Edge Functions + 实时数据库 + 迁移 |
+| 108 | **Neon** | Neon CLI (npm/brew) | 🔥 高 | Serverless Postgres — 分支管理、角色、连接字符串，JSON/YAML 输出 |
+| 109 | **PlanetScale** | PlanetScale CLI (Go, 647 stars) | 🔥 高 | MySQL 分支、Deploy Requests、Schema 管理 |
+| 110 | **Turso** | Turso CLI (Go, 289 stars) | 🟡 中 | 边缘 SQLite (libSQL)，全球复制，Groups |
+| 111 | **Upstash** | Upstash CLI (npm) | 🟡 中 | Serverless Redis + Kafka，创建/管理/CRUD |
+| 112 | **Weaviate** | Weaviate CLI (Python, v3.3.0) | 🟡 中 | 向量数据库，集合管理，多租户，备份/恢复 |
+| 113 | **Qdrant** | Qdrant CLI (Go, 单二进制) | 🟡 中 | 向量数据库，集合/点/快照/集群，JSON/YAML/Table 输出 |
+| 114 | **Redis** | Redis CLI 封装 | 🟡 中 | 内存数据存储，Keys/Streams/Pub-Sub |
+
+### CLI 示例
+
+```bash
+# Supabase CLI
+cli-anything-supabase projects list
+cli-anything-supabase db push --project-ref xxx
+cli-anything-supabase functions deploy my-function
+
+# Neon CLI
+cli-anything-neon projects list --output json
+cli-anything-neon branches create --project-id xxx --name feature-branch
+cli-anything-neon connection-string --project-id xxx
+
+# PlanetScale CLI
+cli-anything-planetscale database list
+cli-anything-planetscale branch create main-db add-users-table
+cli-anything-planetscale deploy-request create main-db add-users-table
+```
+
+---
+
+## 十五（新）、MONITORING & OBSERVABILITY（监控与可观测性）
+
+> **联网调研（2026-03-19）：**  
+> Sentry CLI (AI-native)、Datadog Pup (200+ commands)、Grafana Assistant CLI、PostHog Wizard  
+> 新增 **4 个 CLI**
+
+| # | 软件 | 接口方式 | 优先级 | 说明 |
+|---|------|----------|--------|------|
+| 115 | **Sentry** | Sentry CLI (AI-native, cli.sentry.dev) | 🔥 高 | AI 驱动错误分析 "Seer"，自然语言命令，JSON 输出，Agent 友好 |
+| 116 | **Datadog** | Datadog Pup CLI (200+ commands) | 🔥 高 | 33 个产品覆盖，OAuth2+PKCE，监控/日志/指标/安全 |
+| 117 | **Grafana** | Grafana Assistant CLI (A2A API) | 🟡 中 | Agent-to-Agent API 交互，实时流式聊天，仪表板/告警 |
+| 118 | **PostHog** | PostHog Wizard CLI | 🟡 中 | 自动代码插桩，支持 15+ 框架（Next.js/React/Django/Rails） |
+
+### CLI 示例
+
+```bash
+# Sentry CLI
+cli-anything-sentry issues list --project my-app --json
+cli-anything-sentry explain "TypeError: Cannot read property 'map' of undefined"
+cli-anything-sentry releases new v2.1.0
+
+# Datadog CLI
+cli-anything-datadog monitors list --json
+cli-anything-datadog logs search "error" --from 1h --limit 50
+cli-anything-datadog metrics query "avg:system.cpu.user{*}" --from 24h
+```
+
+---
+
+## 十六（新）、PROJECT MANAGEMENT（项目管理）
+
+> **联网调研（2026-03-19）：**  
+> Linear CLI (TypeScript)、ClickUp CLI (99.3% API, 134/135 endpoints)、  
+> Asana MCP (Rust)、Airtable CLI v0.1.0 (PyPI)  
+> 新增 **5 个 CLI**
+
+| # | 软件 | 接口方式 | 优先级 | 说明 |
+|---|------|----------|--------|------|
+| 119 | **Linear** | Linear CLI (TypeScript, JSON 输出) | 🔥 高 | Issues/Projects/Cycles/Teams，Shell Completion |
+| 120 | **ClickUp** | ClickUp CLI (99.3% API 覆盖) | 🔥 高 | 134/135 端点，JSON-first，Docs API，Agent 优先设计 |
+| 121 | **Asana** | Asana MCP (Rust) | 🟡 中 | 任务/项目/工作区，关系管理 |
+| 122 | **Airtable** | Airtable CLI (Python, PyPI v0.1.0) | 🟡 中 | Bases/Tables/Records/Comments/Webhooks，交互式模糊搜索 |
+| 123 | **Monday.com** | Monday.com GraphQL API | 🟡 中 | Boards/Items/Updates/Automations |
+
+### CLI 示例
+
+```bash
+# Linear CLI
+cli-anything-linear issues list --team ENG --state "In Progress" --json
+cli-anything-linear issues create --title "Fix auth bug" --team ENG --priority urgent
+cli-anything-linear cycles current --team ENG
+
+# ClickUp CLI
+cli-anything-clickup tasks list --list-id xxx --json
+cli-anything-clickup tasks create --name "Deploy v2" --assignee user@co.com
+cli-anything-clickup docs create --space-id xxx --name "API Reference"
+```
+
+---
+
+## 十七（新）、DEPLOYMENT & HOSTING（部署与托管）
+
+> **联网调研（2026-03-19）：**  
+> Netlify MCP Server、Render CLI (Agent Skill)、Fly.io flyctl、Railway CLI  
+> 新增 **6 个 CLI**
+
+| # | 软件 | 接口方式 | 优先级 | 说明 |
+|---|------|----------|--------|------|
+| 124 | **Netlify** | Netlify MCP + CLI | 🔥 高 | Agent 直接部署到生产环境，项目/env/域名管理 |
+| 125 | **Render** | Render CLI (Agent Skill 内置) | 🔥 高 | 服务/数据库管理，日志，CI/CD，Agent Skill 支持 |
+| 126 | **Fly.io** | flyctl CLI (Go) | 🔥 高 | 全球边缘部署，Machines API，Volumes，Secrets |
+| 127 | **Railway** | Railway CLI | 🟡 中 | 一键部署，环境管理，变量，数据库 |
+| 128 | **Heroku** | Heroku CLI | 🟡 中 | Apps/Dynos/Add-ons/Config Vars/Logs |
+| 129 | **DigitalOcean** | doctl CLI (Go) | 🟡 中 | Droplets/App Platform/数据库/K8s |
+
+### CLI 示例
+
+```bash
+# Netlify CLI
+cli-anything-netlify deploy --dir ./dist --prod
+cli-anything-netlify sites list --json
+cli-anything-netlify env set API_KEY "xxx" --context production
+
+# Fly.io CLI
+cli-anything-flyio apps list --json
+cli-anything-flyio deploy --app my-app --image my-image:latest
+cli-anything-flyio secrets set DATABASE_URL="postgres://..."
+```
+
+---
+
+## 十八（新）、AI & LLM PLATFORMS（AI 与 LLM 平台）
+
+> **联网调研（2026-03-19）：**  
+> Hugging Face MCP、Replicate CLI、Groq API、Together AI、Anthropic SDK  
+> 新增 **6 个 CLI**（与第七章部分重叠，此处为扩展版）
+
+| # | 软件 | 接口方式 | 优先级 | 说明 |
+|---|------|----------|--------|------|
+| 130 | **OpenAI** | OpenAI Python SDK | 🔥 高 | Chat/Embeddings/Image Gen/Fine-tuning/Assistants |
+| 131 | **Hugging Face** | HF MCP Server + huggingface-cli | 🔥 高 | 模型/数据集/Spaces/推理端点 |
+| 132 | **Replicate** | Replicate CLI + Python SDK | 🟡 中 | 模型推理/训练/部署/Collections |
+| 133 | **Groq** | Groq API | 🟡 中 | 超快推理，LLM Chat，音频转写 |
+| 134 | **Together AI** | Together Python SDK | 🟡 中 | 开源模型推理/Fine-tuning/Embeddings |
+| 135 | **Anthropic** | Anthropic Python SDK | 🔥 高 | Claude API — Messages/Tool Use/Batch Processing |
+
+---
+
+## 十九（新）、SOCIAL MEDIA & EMAIL（社交媒体与邮件）
+
+> **联网调研（2026-03-19）：**  
+> Postiz Agent (30+ platforms)、Post Bridge (9 platforms)、Resend CLI (53 commands)  
+> 新增 **3 个 CLI**
+
+| # | 软件 | 接口方式 | 优先级 | 说明 |
+|---|------|----------|--------|------|
+| 136 | **Postiz** | Postiz Agent CLI (npm, 30+ 平台) | 🔥 高 | TikTok/IG/YouTube/Twitch/Spotify 等一键发布，定时发布，富媒体 |
+| 137 | **Post Bridge** | Post Bridge Agent Mode (9 平台) | 🟡 中 | IG/TikTok/YouTube/X/LinkedIn/Facebook/Pinterest/Threads/Bluesky |
+| 138 | **Resend** | Resend CLI (TypeScript, 53 commands) | 🔥 高 | 13 个资源，域名/模板/广播/联系人管理，2026-03 新发布 |
+
+### CLI 示例
+
+```bash
+# Postiz CLI
+cli-anything-postiz post --platform tiktok,instagram --text "New release!" --media ./video.mp4
+cli-anything-postiz schedule --platform twitter --text "Launch day" --at "2026-03-20T10:00Z"
+
+# Resend CLI
+cli-anything-resend emails send --from hi@co.com --to user@co.com --subject "Welcome" --html "<h1>Hi</h1>"
+cli-anything-resend domains list --json
+cli-anything-resend contacts list --audience-id xxx
+```
+
+---
+
+## 二十（新）、AUTOMATION & SCHEDULING（自动化与日程）
+
+> **联网调研（2026-03-19）：**  
+> Cal.com CLI + MCP、n8n CLI (PR #26943)  
+> 新增 **2 个 CLI**
+
+| # | 软件 | 接口方式 | 优先级 | 说明 |
+|---|------|----------|--------|------|
+| 139 | **Cal.com** | @calcom/cli + MCP Server | 🔥 高 | 日程安排/可用性检查/预约管理，Agent 友好 |
+| 140 | **n8n** | @n8n/cli (轻量客户端) | 🔥 高 | 工作流/执行/凭证/项目/标签/变量/数据表，Agent Skill 定义 |
+
+### CLI 示例
+
+```bash
+# Cal.com CLI
+cli-anything-calcom availability check --date 2026-03-20
+cli-anything-calcom bookings list --status upcoming --json
+cli-anything-calcom event-types list
+
+# n8n CLI
+cli-anything-n8n workflows list --active --json
+cli-anything-n8n workflows execute --id 123
+cli-anything-n8n credentials list --type postgres
+```
+
+---
+
+## 更新后统计
+
+```
+已完成（Live）：         35+ CLIs
+新增规划（2026-03-19）：  34 CLIs（#107–#140）
+原有规划：               71 CLIs（#37–#106）
+总计规划：               140 CLIs → 目标 160+（含未编号项）
+```
+
+---
+
+*当前进度：35/140 完成 (25%)*  
 *文档位置：`CLI-Anything/BATCH_PLAN.md`*  
-*最近更新：2026-03-15 新增 Shopify/Twilio/HubSpot/Jira/Vercel/Cloudflare/Salesforce CLI（23个软件，#84–#106）*  
-*(Ollama/Docker/GitHub/Notion 已完成，计入进度)*
+*最近更新：2026-03-19 新增 Database/Monitoring/ProjectMgmt/Deployment/AI/Social/Automation 七大板块（34个软件，#107–#140）*  
+*(全网调研数据源：GitHub trending, PyPI, npm, Sentry, Datadog, Netlify, Supabase, Neon, PlanetScale 官方文档)*
