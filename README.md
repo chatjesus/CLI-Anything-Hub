@@ -94,12 +94,12 @@ cli-anything-slack schema
 | OBS Studio | `cli-anything-obs-studio` | ✅ Live | Streaming, recording, scene switching (153 tests) |
 | Draw.io | `cli-anything-drawio` | ✅ Live | Diagrams, flowcharts, export (138 tests) |
 | AnyGen | `cli-anything-anygen` | ✅ Live | AI slides, docs, diagrams generation (50 tests) |
-| DaVinci Resolve | `cli-anything-davinci` | 🔜 Soon | Video editing, color grading scripting |
+| DaVinci Resolve | `cli-anything-davinci` | 🔜 Soon | MCP server (295+ tools), Python scripting, color grading, rendering |
 | Premiere Pro | `cli-anything-premiere` | 🔜 Soon | Adobe UXP sequence automation |
-| FFmpeg | `cli-anything-ffmpeg` | 🔜 Soon | Transcode, trim, merge any media format |
-| VLC | `cli-anything-vlc` | 🔜 Soon | Playback control via HTTP API |
-| ComfyUI | `cli-anything-comfyui` | 🔜 Soon | Stable Diffusion workflows via REST API |
-| 7-Zip | `cli-anything-7zip` | 🔜 Soon | Archive compress/extract all formats |
+| FFmpeg / CutAgent | `cli-anything-ffmpeg` | 🔜 Soon | Agent-first video editing, EDL JSON format, scene/silence detection |
+| VLC | `cli-anything-vlc` | 🔜 Soon | HTTP REST API — playback, playlist, volume, fullscreen control |
+| ComfyUI | `cli-anything-comfyui` | 🔜 Soon | AI workflow agent (Claude Vision), 31K+ node search, natural language |
+| 7-Zip | `cli-anything-7zip` | 🔜 Soon | 30+ archive formats, cross-platform, SFX self-extracting |
 
 ### 🎨 Design & Creativity
 
@@ -120,6 +120,7 @@ cli-anything-slack schema
 | Telegram | `cli-anything-telegram` | ✅ Live | Bot API, groups, channels, media |
 | Feishu / Lark | `cli-anything-feishu` | ✅ Live | Feishu/Lark open platform — messages, docs |
 | Resend | `cli-anything-resend` | 🔜 Soon | Email API — 53 commands, domains, templates, broadcasts |
+| WhatsApp | `cli-anything-whatsapp` | 🔜 Soon | wacli (personal) + Cloud API (business) — messages, files, groups |
 | Microsoft Teams | `cli-anything-teams` | 🔜 Soon | Graph API — channels, meetings, notifications |
 | X / Twitter | `cli-anything-x` | 🔜 Soon | API v2 — tweets, timeline, DMs, analytics |
 | Postiz (Multi-Platform) | `cli-anything-postiz` | 🔜 Soon | 30+ social platforms — TikTok, IG, YouTube, Twitch, Spotify |
@@ -161,7 +162,7 @@ cli-anything-slack schema
 | VS Code | `cli-anything-vscode` | 🔜 Soon | Extensions, workspace, tasks, debugging |
 | JetBrains | `cli-anything-jetbrains` | 🔜 Soon | IDE inspections, refactoring, builds |
 | Browser / Playwright | `cli-anything-browser` | 🔜 Soon | Web automation, screenshot, form fill |
-| Obsidian | `cli-anything-obsidian` | 🔜 Soon | Notes, vault, graph, tags via local REST |
+| Obsidian | `cli-anything-obsidian` | 🔜 Soon | CLI REST + MCP server — vault search, notes, tags, tasks, templates, daily notes |
 
 ### 📊 Office & Productivity
 
@@ -255,7 +256,7 @@ cli-anything-gworkspace calendar list-events --max-results 10
 
 | CLI | Package | Status | Description |
 |-----|---------|--------|-------------|
-| Steam | `cli-anything-steam` | 🔜 Soon | Library, achievements, friends, game stats |
+| Steam | `cli-anything-steam` | 🔜 Soon | Web API v2 — library, achievements, friends, game stats, steamctl |
 | Epic Games | `cli-anything-epic` | 🔜 Soon | Store, free games, library, launcher |
 | GOG Galaxy | `cli-anything-gog` | 🔜 Soon | DRM-free library, achievements, sync |
 | Battle.net | `cli-anything-battlenet` | 🔜 Soon | WoW, D4, OW2 — character profiles, OAuth |
@@ -269,9 +270,9 @@ cli-anything-gworkspace calendar list-events --max-results 10
 | Speedrun.com | `cli-anything-speedrun` | 🔜 Soon | Leaderboards, world records, categories |
 | Lichess | `cli-anything-lichess` | 🔜 Soon | Play, analyze, tournaments, user stats |
 | Chess.com | `cli-anything-chess` | 🔜 Soon | Player stats, game history, puzzles |
-| Twitch | `cli-anything-twitch` | 🔜 Soon | Helix API — streams, clips, subscriptions |
-| Spotify | `cli-anything-spotify` | 🔜 Soon | Web API — playback, playlists, recommendations |
-| YouTube | `cli-anything-youtube` | 🔜 Soon | Data API v3 — channels, videos, analytics |
+| Twitch | `cli-anything-twitch` | 🔜 Soon | Official CLI + Helix API — streams, clips, subscriptions, webhooks |
+| Spotify | `cli-anything-spotify` | 🔜 Soon | Rust/Go CLI — playback, playlists, search, queue, JSON output |
+| YouTube | `cli-anything-youtube` | 🔜 Soon | Data API v3 CLI — upload, search, playlists, analytics, JSON/YAML/CSV |
 | Valheim | `cli-anything-valheim` | 🔜 Soon | Server control, players, world saves |
 
 ### 🍔 Life & Local Services
@@ -443,7 +444,7 @@ def detect():
 |----------|------|---------|-------|
 | Creative & Media | 9 | 6 | 15 |
 | Design & Creativity | 0 | 5 | 5 |
-| Communication & Social | 4 | 7 | 11 |
+| Communication & Social | 4 | 8 | 12 |
 | Cloud SaaS & APIs | 8 | 8 | 16 |
 | Dev Tools & Monitoring | 4 | 10 | 14 |
 | Office & Productivity | 4 | 3 | 7 |

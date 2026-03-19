@@ -30,9 +30,9 @@
 | # | 软件 | Simple Icons slug | 接口方式 | 优先级 |
 |---|------|------------------|----------|--------|
 | 14 | **Krita** | `krita` | Python scripting API | 🔥 高 |
-| 15 | **Adobe Photoshop** | `adobephotoshop` | UXP JavaScript API | 🔥 高 |
+| 15 | **Adobe Photoshop** | `adobephotoshop` | @adobe/aio-lib-photoshop-api (官方) — 批量处理/抠图/图层自动化 | 🔥 高 |
 | 16 | **Adobe Illustrator** | `adobeillustrator` | UXP JavaScript API | 🔥 高 |
-| 17 | **Figma** | `figma` | Figma REST API | 🔥 高 |
+| 17 | **Figma** | `figma` | figma-ds-cli — 无需 API Key 直接控制 Figma Desktop，读写组件/变量/Token | 🔥 高 |
 | 18 | **Canva** | `canva` | Canva Connect API | 🟡 中 |
 | 19 | **Sketch** | `sketch` | REST API (macOS) | 🟡 中 |
 | 20 | **Affinity Designer** | `affinity` | 有限脚本接口 | 🟡 中 |
@@ -43,9 +43,9 @@
 
 | # | 软件 | Simple Icons slug | 接口方式 | 优先级 |
 |---|------|------------------|----------|--------|
-| 21 | **FFmpeg** | `ffmpeg` | subprocess 高级封装 | 🔥 高 |
+| 21 | **FFmpeg / CutAgent** | `ffmpeg` | CutAgent (PyPI) — agent-first 视频编辑，EDL JSON 格式，场景/静音检测 | 🔥 高 |
 | 22 | **VLC** | `vlcmediaplayer` | HTTP 接口 + RC mode | 🔥 高 |
-| 23 | **DaVinci Resolve** | `davinciresolve` | Python scripting API | 🔥 高 |
+| 23 | **DaVinci Resolve** | `davinciresolve` | davinci-cli (PyPI) + resolve-mcp (295+ tools)，MCP Server，Agent 可用 | 🔥 高 |
 | 24 | **Adobe Premiere Pro** | `adobepremierepro` | UXP ExtendScript | 🟡 中 |
 | 25 | **Adobe After Effects** | `adobeaftereffects` | UXP ExtendScript | 🟡 中 |
 | 26 | **HandBrake** | `handbrake` | HandBrakeCLI.exe 封装 | 🔥 高 |
@@ -63,7 +63,7 @@
 | 31 | **Google Slides** | `googleslides` | Slides API | 🟡 中 |
 | 32 | **Google Drive** | `googledrive` | Drive API v3 | 🔥 高 |
 | 33 | **Notion** | `notion` | Notion REST API | 🔥 高 |
-| 34 | **Obsidian** | `obsidian` | Local REST API 插件 | 🟡 中 |
+| 34 | **Obsidian** | `obsidian` | obsidian-cli-rest + MCP Server — vault 搜索/笔记/标签/任务/模板/每日笔记 | 🔥 高 |
 | 35 | **Evernote** | `evernote` | Evernote API | 🟡 中 |
 | 36 | **Anki** | `anki` | AnkiConnect REST API | 🟡 中 |
 
@@ -77,7 +77,7 @@
 | 38 | **Discord** | `discord` | Discord Bot API | 🔥 高 |
 | 39 | **Telegram** | `telegram` | Telegram Bot API | 🔥 高 |
 | 40 | **Microsoft Teams** | `microsoftteams` | Microsoft Graph API | 🔥 高 |
-| 41 | **WhatsApp Business** | `whatsapp` | WhatsApp Cloud API | 🟡 中 |
+| 41 | **WhatsApp** | `whatsapp` | wacli (个人, 22K+ 下载) + WhatsApp Cloud API (商业) — 消息/文件/群组 | 🔥 高 |
 
 ---
 
