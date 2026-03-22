@@ -10,12 +10,12 @@
                                          H  U  B
 ```
 
-**The Open Hub for 160+ Agent-Ready CLIs**
+**The Open Hub for 180+ Agent-Ready CLIs**
 
 *pip install any tool · Agents call any software · Zero friction*
 
 [![Product Hunt](https://img.shields.io/badge/Product%20Hunt-Launch-DA552F?style=for-the-badge&logo=producthunt&logoColor=white)](https://www.producthunt.com/posts/cli-anything)
-[![Hub CLIs](https://img.shields.io/badge/Hub_CLIs-160%2B_Planned-00ff41?style=for-the-badge&logo=python&logoColor=white)](https://github.com/chatjesus/CLI-Anything-Hub)
+[![Hub CLIs](https://img.shields.io/badge/Hub_CLIs-180%2B_Planned-00ff41?style=for-the-badge&logo=python&logoColor=white)](https://github.com/chatjesus/CLI-Anything-Hub)
 [![Live CLIs](https://img.shields.io/badge/Live_CLIs-35%2B_Ready-brightgreen?style=for-the-badge&logo=python)](https://github.com/chatjesus/CLI-Anything-Hub)
 [![PyPI](https://img.shields.io/badge/PyPI-cli--anything--*-blue?style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/search/?q=cli-anything)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
@@ -50,7 +50,7 @@ Every CLI in this Hub implements the same 4-command interface so **AI agents (Cl
 │   │   Slack API  Stripe SDK  Docker SDK  Script-Fu  Steam API   │       │
 │   └──────────────────────────────────────────────────────────────┘       │
 │                                                                          │
-│   One interface. 160+ tools. All agent-native. All JSON output.         │
+│   One interface. 180+ tools. All agent-native. All JSON output.         │
 └──────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -291,6 +291,48 @@ cli-anything-gworkspace calendar list-events --max-results 10
 | Booking.com | `cli-anything-booking` | 🔜 Soon | Hotel search, availability, reservations |
 | Yelp | `cli-anything-yelp` | 🔜 Soon | Fusion API — business search, reviews |
 
+### 🎯 Prediction Markets
+
+| CLI | Package | Status | Description |
+|-----|---------|--------|-------------|
+| Polymarket | `cli-anything-polymarket` | 🔜 Soon | Official Rust CLI — browse markets, place orders, manage positions, on-chain |
+| Kalshi | `cli-anything-kalshi` | 🔜 Soon | Event contracts — scan markets, orderbook, ASCII charts, price streaming |
+| Kalshi (Agent) | `cli-anything-kalshi-agent` | 🔜 Soon | SimpleFunctions — 21+ agent tools, cross-venue arbitrage detection |
+| Metaculus | `cli-anything-metaculus` | 🔜 Soon | Forecasting platform — questions, predictions, tournaments |
+
+### 📊 Market Data & Financial Analysis
+
+| CLI | Package | Status | Description |
+|-----|---------|--------|-------------|
+| Alpha Vantage | `cli-anything-alphavantage` | 🔜 Soon | 100+ endpoints — stocks, forex, crypto, commodities, technicals, fundamentals |
+| Bloomberg (MCP) | `cli-anything-bloomberg` | 🔜 Soon | BLPAPI MCP Server — reference data, market data, analytics (requires Terminal) |
+| FRED | `cli-anything-fred` | 🔜 Soon | Federal Reserve Economic Data — GDP, CPI, rates, employment, 800K+ series |
+| IEX Cloud | `cli-anything-iex` | 🔜 Soon | Real-time quotes, options, dividends, earnings, news, technicals |
+| Twelve Data | `cli-anything-twelvedata` | 🔜 Soon | Stocks, forex, crypto unified API — WebSocket streaming, time series |
+| Adanos Sentiment | `cli-anything-adanos` | 🔜 Soon | 4-source sentiment (News + Polymarket + X + Reddit), daily briefings, watchlists |
+| Finclaw | `cli-anything-finclaw` | 🔜 Soon | AI stock monitor — thesis memory, insider tracking, sector rotation alerts |
+| QuantConnect LEAN | `cli-anything-lean` | 🔜 Soon | Quant backtesting — `lean backtest`, live trading, multi-vendor data, Docker |
+
+### 💹 Broker & Stock Trading
+
+| CLI | Package | Status | Description |
+|-----|---------|--------|-------------|
+| Robinhood | `cli-anything-robinhood` | 🔜 Soon | Stocks, options, crypto — persistent auth, JSON output, safety limits |
+| Schwab | `cli-anything-schwab` | 🔜 Soon | Portfolio analysis, VIX/indices/futures, fundamentals, dividends |
+| Interactive Brokers | `cli-anything-ibkr` | 🔜 Soon | TWS connection, options chain + Greeks, market scanner, what-if preview |
+| Alpaca | `cli-anything-alpaca` | 🔜 Soon | Commission-free API — orders, positions, market data, paper trading |
+
+### 🪙 Crypto & DeFi
+
+| CLI | Package | Status | Description |
+|-----|---------|--------|-------------|
+| wooo-cli (All-in-One) | `cli-anything-wooo` | 🔜 Soon | CEX (OKX/Binance/Bybit) + DEX (Uniswap/Curve/Jupiter) + Aave + Lido + Hyperliquid |
+| Open Broker | `cli-anything-openbroker` | 🔜 Soon | Hyperliquid DEX — grid/DCA/market-making/arb strategies, non-custodial |
+| Nansen | `cli-anything-nansen` | 🔜 Soon | Smart Money tracking, 19+ chains, DEX swaps (Solana/Base), token analysis |
+| Dune Analytics | `cli-anything-dune` | 🔜 Soon | On-chain SQL queries, dataset search by contract, JSON/text output |
+| Coinbase | `cli-anything-coinbase` | 🔜 Soon | AI strategies (DCA/momentum/mean-reversion), risk management |
+| Nunchi Agent | `cli-anything-nunchi` | 🔜 Soon | 14 autonomous strategies, APEX orchestrator, REFLECT nightly review |
+
 ---
 
 ## 🤖 Agent-Native Standard
@@ -342,7 +384,7 @@ cli-anything-slack version
 CLI-Anything-Hub/
 │
 ├── 📋 README.md                   ← This file
-├── 📋 BATCH_PLAN.md               ← Full 130+ CLI roadmap with API details
+├── 📋 BATCH_PLAN.md               ← Full 180+ CLI roadmap with API details
 ├── 📋 LOCAL_CLI_CANDIDATES.md     ← Local/offline service CLI candidates
 │
 ├── ─── ✅ Live Hub CLIs ──────────────────────────────────────────────────
@@ -392,7 +434,7 @@ CLI-Anything-Hub/
 ```
          ┌──────────────────────────────┐
          │  chatjesus/CLI-Anything-Hub  │
-         │  160+ CLIs · MIT License     │
+         │  180+ CLIs · MIT License     │
          └──────────────┬───────────────┘
                         │  Fork
                ┌────────▼─────────┐
@@ -454,9 +496,13 @@ def detect():
 | Deployment & Hosting | 0 | 6 | 6 |
 | AI & LLM Platforms | 0 | 6 | 6 |
 | Advertising & Marketing | 0 | 6 | 6 |
+| Prediction Markets | 0 | 4 | 4 |
+| Market Data & Analysis | 0 | 8 | 8 |
+| Broker & Stock Trading | 0 | 4 | 4 |
+| Crypto & DeFi | 0 | 6 | 6 |
 | Gaming & Entertainment | 0 | 18 | 18 |
 | Life & Local Services | 0 | 11 | 11 |
-| **Total** | **35+** | **100+** | **135+** |
+| **Total** | **35+** | **123+** | **158+** |
 
 ---
 
@@ -464,13 +510,17 @@ def detect():
 
 - [x] Core Hub CLIs: Slack, Discord, Telegram, Stripe, Shopify, HubSpot, Jira, Vercel, Cloudflare, Salesforce, Docker, GitHub, Notion, Ollama, MS365, Feishu, WPS, Google Workspace
 - [x] Agent-native standard: `schema` + `detect` + `--json` on every CLI
-- [x] Landing page: agentputer.com/cli-anything — 160+ tools
+- [x] Landing page: agentputer.com/cli-anything — 180+ tools
 - [x] SEO sub-pages for all CLIs
 - [ ] **Database & Infra CLIs**: Supabase, Neon, PlanetScale, Turso, Upstash, Weaviate, Qdrant
 - [ ] **Monitoring & Observability**: Sentry, Datadog, Grafana, PostHog
 - [ ] **Project Management**: Linear, ClickUp, Asana, Airtable, Monday.com
 - [ ] **Deployment & Hosting**: Netlify, Render, Fly.io, Railway, Heroku, DigitalOcean
 - [ ] **AI & LLM Platforms**: OpenAI, Hugging Face, Replicate, Groq, Together AI, Anthropic
+- [ ] **Prediction Markets**: Polymarket, Kalshi, Kalshi-Agent, Metaculus
+- [ ] **Market Data & Analysis**: Alpha Vantage, Bloomberg MCP, FRED, IEX Cloud, Twelve Data, Adanos, Finclaw, QuantConnect LEAN
+- [ ] **Broker & Stock Trading**: Robinhood, Schwab, Interactive Brokers, Alpaca
+- [ ] **Crypto & DeFi**: wooo-cli, Open Broker, Nansen, Dune Analytics, Coinbase, Nunchi Agent
 - [ ] **Social Media**: Postiz (30+ platforms), Post Bridge (9 platforms), Resend
 - [ ] **Gaming CLIs**: Steam, Epic, Roblox, Riot, Battle.net, Minecraft RCON, Twitch
 - [ ] **Life & Local**: DoorDash, Meituan, Uber Eats, Grab, Airbnb, Yelp
@@ -486,7 +536,7 @@ def detect():
 
 | Document | Description |
 |----------|-------------|
-| [BATCH_PLAN.md](BATCH_PLAN.md) | Full roadmap — all 130+ planned CLIs with API details |
+| [BATCH_PLAN.md](BATCH_PLAN.md) | Full roadmap — all 180+ planned CLIs with API details |
 | [LOCAL_CLI_CANDIDATES.md](LOCAL_CLI_CANDIDATES.md) | Local/offline service CLI candidates |
 | [cli-anything-plugin/HARNESS.md](cli-anything-plugin/HARNESS.md) | Methodology SOP for generating new CLIs |
 | [cli-anything-plugin/PUBLISHING.md](cli-anything-plugin/PUBLISHING.md) | PyPI distribution guide |
@@ -504,7 +554,7 @@ This repository is a community fork and extension of [HKUDS/CLI-Anything](https:
 
 <div align="center">
 
-**CLI-Anything Hub** — *The open hub for 160+ agent-ready CLIs.*
+**CLI-Anything Hub** — *The open hub for 180+ agent-ready CLIs.*
 
 `pip install` any tool · Agents call any software · Fork and extend
 

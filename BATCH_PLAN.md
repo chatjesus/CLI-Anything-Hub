@@ -618,18 +618,180 @@ cli-anything-n8n credentials list --type postgres
 
 ---
 
-## 更新后统计
+## 二十一（新）、PREDICTION MARKETS（预测市场）
 
-```
-已完成（Live）：         35+ CLIs
-新增规划（2026-03-19）：  34 CLIs（#107–#140）
-原有规划：               71 CLIs（#37–#106）
-总计规划：               140 CLIs → 目标 160+（含未编号项）
+> **联网调研（2026-03-19）：**  
+> Polymarket (Rust CLI)、Kalshi CLI、Kalshi-Agent (SimpleFunctions)、Metaculus API  
+> 新增 **4 个 CLI**
+
+| # | 软件 | 接口方式 | 优先级 | 说明 |
+|---|------|----------|--------|------|
+| 141 | **Polymarket** | polymarket-rs CLI (Rust) + Python SDK | 🔥 高 | 浏览市场/下单/持仓管理/实时价格/历史数据，链上 (Polygon) |
+| 142 | **Kalshi** | kalshi-cli (Python) | 🔥 高 | 事件合约/订单簿/ASCII K线/价格流/登录管理 |
+| 143 | **Kalshi (Agent)** | SimpleFunctions kalshi-agent (21+ tools) | 🟡 中 | 跨市场套利检测/智能通知/MCP Server |
+| 144 | **Metaculus** | Metaculus REST API (Python) | 🟡 中 | 预测问题/锦标赛/社区预测/个人记录 |
+
+### CLI 示例
+
+```bash
+# Polymarket CLI
+cli-anything-polymarket markets list --active --category politics --json
+cli-anything-polymarket markets get --slug "will-x-happen-2026"
+cli-anything-polymarket order place --market <id> --side buy --amount 50 --price 0.65
+cli-anything-polymarket positions list --json
+
+# Kalshi CLI
+cli-anything-kalshi markets search "bitcoin" --json
+cli-anything-kalshi orderbook --ticker BTCRANGE-26MAR21
+cli-anything-kalshi order create --ticker BTCRANGE --side yes --qty 10 --price 0.40
+
+# Metaculus CLI
+cli-anything-metaculus questions list --tournament active --json
+cli-anything-metaculus predict --question-id 12345 --value 0.72
 ```
 
 ---
 
-*当前进度：35/140 完成 (25%)*  
+## 二十二（新）、MARKET DATA & FINANCIAL ANALYSIS（市场数据与金融分析）
+
+> **联网调研（2026-03-19）：**  
+> Alpha Vantage (100+ endpoints)、Bloomberg BLPAPI MCP、FRED、IEX Cloud、Twelve Data、  
+> Adanos Sentiment、Finclaw、QuantConnect LEAN  
+> 新增 **8 个 CLI**
+
+| # | 软件 | 接口方式 | 优先级 | 说明 |
+|---|------|----------|--------|------|
+| 145 | **Alpha Vantage** | alphavantage-cli (Python) | 🔥 高 | 100+ endpoints：股票/外汇/加密/商品/技术指标/基本面/经济数据 |
+| 146 | **Bloomberg (MCP)** | bloomberg-mcp-server (BLPAPI + MCP) | 🔥 高 | 参考数据/市场数据/分析（需 Bloomberg Terminal） |
+| 147 | **FRED** | fred-cli (Python) + FRED API | 🔥 高 | 美联储经济数据 — GDP/CPI/利率/就业，800K+ 时间序列 |
+| 148 | **IEX Cloud** | iex-cli (Python) | 🟡 中 | 实时报价/期权/分红/财报/新闻/技术指标 |
+| 149 | **Twelve Data** | twelvedata-cli (Python SDK) | 🟡 中 | 股票/外汇/加密统一 API — WebSocket 流/时间序列/技术指标 |
+| 150 | **Adanos Sentiment** | adanos-mcp (News+Polymarket+X+Reddit) | 🔥 高 | 四源情感分析/每日简报/监控列表/预测市场关联 |
+| 151 | **Finclaw** | finclaw-mcp (AI) | 🟡 中 | AI 股票监控 — 论题记忆/内部人交易追踪/板块轮动预警 |
+| 152 | **QuantConnect LEAN** | lean-cli (official) | 🔥 高 | 量化回测引擎 — `lean backtest`/实盘交易/多数据供应商/Docker |
+
+### CLI 示例
+
+```bash
+# Alpha Vantage CLI
+cli-anything-alphavantage quote --symbol AAPL --json
+cli-anything-alphavantage timeseries --symbol MSFT --interval 1min --outputsize compact
+cli-anything-alphavantage fundamentals --symbol TSLA --report income-statement
+
+# Bloomberg MCP
+cli-anything-bloomberg reference --securities "AAPL US Equity" --fields PX_LAST,PE_RATIO
+cli-anything-bloomberg market-data --securities "SPY US Equity" --subscribe
+
+# FRED CLI
+cli-anything-fred series --id GDP --json
+cli-anything-fred search "unemployment rate" --limit 5
+cli-anything-fred observations --id CPIAUCSL --start 2025-01-01
+
+# QuantConnect LEAN
+cli-anything-lean backtest --project my-strategy --json
+cli-anything-lean research --project my-strategy --open
+cli-anything-lean live --project my-strategy --brokerage alpaca
+```
+
+---
+
+## 二十三（新）、BROKER & STOCK TRADING（券商与股票交易）
+
+> **联网调研（2026-03-19）：**  
+> Robinhood (robin_stocks)、Schwab API、Interactive Brokers TWS、Alpaca API  
+> 新增 **4 个 CLI**
+
+| # | 软件 | 接口方式 | 优先级 | 说明 |
+|---|------|----------|--------|------|
+| 153 | **Robinhood** | robin_stocks (Python) | 🔥 高 | 股票/期权/加密 — 持久登录/JSON 输出/安全限额 |
+| 154 | **Schwab** | schwab-py + charles_schwab MCP | 🟡 中 | 组合分析/VIX 指数/期货/基本面/分红 |
+| 155 | **Interactive Brokers** | ib_insync + TWS API | 🟡 中 | TWS 连接/期权链+Greeks/扫描器/模拟下单预览 |
+| 156 | **Alpaca** | alpaca-trade-api (Python) | 🔥 高 | 零佣金 API — 下单/持仓/市场数据/模拟交易 |
+
+### CLI 示例
+
+```bash
+# Robinhood CLI
+cli-anything-robinhood portfolio --json
+cli-anything-robinhood quote AAPL TSLA NVDA --json
+cli-anything-robinhood order buy --symbol AAPL --qty 5 --type limit --price 180.50
+cli-anything-robinhood history --span month --json
+
+# Schwab CLI
+cli-anything-schwab positions --account primary --json
+cli-anything-schwab quote SPY QQQ --fundamentals
+cli-anything-schwab options-chain --symbol AAPL --expiry 2026-04-17
+
+# Interactive Brokers CLI
+cli-anything-ibkr connect --port 7497
+cli-anything-ibkr scanner --type hot-by-volume --market US --json
+cli-anything-ibkr order preview --symbol AAPL --action BUY --qty 100
+
+# Alpaca CLI
+cli-anything-alpaca account --json
+cli-anything-alpaca order submit --symbol TSLA --qty 10 --side buy --type market
+cli-anything-alpaca positions --json
+cli-anything-alpaca bars --symbol AAPL --timeframe 1Day --start 2026-01-01
+```
+
+---
+
+## 二十四（新）、CRYPTO & DEFI（加密货币与 DeFi）
+
+> **联网调研（2026-03-19）：**  
+> wooo-cli (CEX+DEX All-in-One)、Open Broker (Hyperliquid)、Nansen、Dune Analytics、  
+> Coinbase AI Strategies、Nunchi Agent (14 strategies)  
+> 新增 **6 个 CLI**
+
+| # | 软件 | 接口方式 | 优先级 | 说明 |
+|---|------|----------|--------|------|
+| 157 | **wooo-cli** | Python (CEX+DEX+DeFi 一体化) | 🔥 高 | OKX/Binance/Bybit + Uniswap/Curve/Jupiter + Aave/Lido + Hyperliquid |
+| 158 | **Open Broker** | Python (Hyperliquid DEX) | 🟡 中 | 网格/DCA/做市/套利策略，非托管 |
+| 159 | **Nansen** | Nansen MCP Server (19+ chains) | 🔥 高 | Smart Money 追踪/DEX 交易 (Solana/Base)/代币分析 |
+| 160 | **Dune Analytics** | dune-mcp (SQL) | 🔥 高 | 链上 SQL 查询/合约数据集搜索/JSON 输出 |
+| 161 | **Coinbase** | coinbase-agentkit (AI strategies) | 🟡 中 | AI 策略 (DCA/动量/均值回归)/风控/实盘执行 |
+| 162 | **Nunchi Agent** | nunchi-agent (14 autonomous strategies) | 🟡 中 | 14 自治策略/APEX 编排器/REFLECT 每日复盘 |
+
+### CLI 示例
+
+```bash
+# wooo-cli (All-in-One)
+cli-anything-wooo balance --exchange okx --json
+cli-anything-wooo swap --dex uniswap --from ETH --to USDC --amount 1.0
+cli-anything-wooo aave supply --asset USDC --amount 1000
+cli-anything-wooo hyperliquid positions --json
+
+# Nansen MCP
+cli-anything-nansen smart-money --chain solana --timeframe 24h --json
+cli-anything-nansen token-analysis --address 0x... --chain ethereum
+
+# Dune Analytics
+cli-anything-dune query run --id 12345 --json
+cli-anything-dune dataset search --contract 0x... --chain ethereum
+cli-anything-dune results --execution-id abc123
+
+# Coinbase AgentKit
+cli-anything-coinbase strategy run --type dca --asset BTC --amount 100 --interval daily
+cli-anything-coinbase portfolio --json
+cli-anything-coinbase risk-check --json
+```
+
+---
+
+## 更新后统计
+
+```
+已完成（Live）：         35+ CLIs
+新增规划（2026-03-19）：  56 CLIs（#107–#162）
+  - Database/Monitoring/ProjectMgmt/Deployment/AI/Social/Automation：34 CLIs（#107–#140）
+  - Finance & Trading 四大板块：22 CLIs（#141–#162）
+原有规划：               71 CLIs（#37–#106）
+总计规划：               162 CLIs → 目标 180+（含未编号项）
+```
+
+---
+
+*当前进度：35/162 完成 (21.6%)*  
 *文档位置：`CLI-Anything/BATCH_PLAN.md`*  
-*最近更新：2026-03-19 新增 Database/Monitoring/ProjectMgmt/Deployment/AI/Social/Automation 七大板块（34个软件，#107–#140）*  
-*(全网调研数据源：GitHub trending, PyPI, npm, Sentry, Datadog, Netlify, Supabase, Neon, PlanetScale 官方文档)*
+*最近更新：2026-03-19 新增 Prediction Markets / Market Data / Broker Trading / Crypto & DeFi 四大金融板块（22个软件，#141–#162）*  
+*(全网调研数据源：GitHub trending, PyPI, npm, Polymarket Docs, Alpha Vantage, Bloomberg BLPAPI, FRED, Robinhood robin_stocks, Alpaca API, Nansen, Dune, QuantConnect LEAN)*
